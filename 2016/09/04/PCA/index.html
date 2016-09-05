@@ -84,12 +84,34 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://henson.com/index.html">
+<meta name="description" content="Idea找到一个方向，使所有数据在该方向上的投影尽可能分散
+Application
+可视化
+压缩
+学习算法
+异常检测
+匹配/距离计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主成分分析法">
+<meta property="og:url" content="http://henson.com/2016/09/04/PCA/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Idea找到一个方向，使所有数据在该方向上的投影尽可能分散
+Application
+可视化
+压缩
+学习算法
+异常检测
+匹配/距离计算">
+<meta property="og:updated_time" content="2016-09-05T08:27:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="主成分分析法">
+<meta name="twitter:description" content="Idea找到一个方向，使所有数据在该方向上的投影尽可能分散
+Application
+可视化
+压缩
+学习算法
+异常检测
+匹配/距离计算">
 
 
 
@@ -110,9 +132,9 @@
 
 
 
-  <link rel="canonical" href="http://henson.com/"/>
+  <link rel="canonical" href="http://henson.com/2016/09/04/PCA/"/>
 
-  <title> Hexo </title>
+  <title> 主成分分析法 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -133,9 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -212,9 +232,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -234,128 +254,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/09/05/On Socail Event Organization/" itemprop="url">
-                  On Socail Event Organization
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
-              2016-09-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>most of the existing research is focused on event detection through time series analysis</p>
-<p>this paper focus on the <strong>assignment problem</strong>, where the system has to assign a given set of users to events, with the goal of making users happy</p>
-<p>i.e <em>assign users to events so as to maximize the “overall happiness”</em></p>
-<p>s.t</p>
-<ol>
-<li>innate affinity (time &amp; location)</li>
-<li>social affinity</li>
-<li>cardinality constraints</li>
-</ol>
-<p><strong>social affinity is important</strong> because an individual may enjoy an event more when she is joined by her friends</p>
-<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><ul>
-<li>generalized assignment problem</li>
-<li>national resident matching problem</li>
-<li>community search problem</li>
-</ul>
-<h3 id="Social-Event-Organization"><a href="#Social-Event-Organization" class="headerlink" title="Social Event Organization"></a>Social Event Organization</h3><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>there is a set of users <em>U</em> who must be assigned to events or activities from a given set of possible events <em>A</em></p>
-<p>we define the utility of this assignment as:</p>
-<p>$$\mu(S,a)=(1-\alpha)\sum_{u\in S}\sigma_{u,a}+\alpha\sum_{u,v\in S,u\not =v}w(u,v)$$</p>
-<p>an assignment is a partial function \(M:U\to A\)</p>
-<p>for \(a\in A\), we denote by \(M^{-1}(a)\) the (possibly empty) subset of users assign to a:</p>
-<p>$$M^{-1}(a)=\lbrace u \in U\;|\;M(u) = a\rbrace$$</p>
-<p>we define the social welfare of a feasible assignment M as:</p>
-<p>$$\omega (M)=\sum_{a\in A}\mu (M^{-1}(a),a)$$</p>
-<p>our objective is to find a feasible assignment that <strong>maximizes the overall social welfare</strong></p>
-<h4 id="Hardness-Results"><a href="#Hardness-Results" class="headerlink" title="Hardness Results"></a>Hardness Results</h4><p>NP-hard</p>
-<h4 id="Proposed-Solution"><a href="#Proposed-Solution" class="headerlink" title="Proposed Solution"></a>Proposed Solution</h4><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/04/PCA/" itemprop="url">
-                  主成分分析法
-                </a>
+                主成分分析法
               
             
           </h1>
@@ -395,9 +294,7 @@
       
 
       
-        
-          
-            <h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><p>找到一个方向，使所有数据在该方向上的投影尽可能分散</p>
+        <h3 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h3><p>找到一个方向，使所有数据在该方向上的投影尽可能分散</p>
 <h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><ol>
 <li>可视化</li>
 <li>压缩</li>
@@ -406,16 +303,20 @@
 <li>匹配/距离计算</li>
 </ol>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -423,19 +324,32 @@
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/05/On Socail Event Organization/" rel="prev" title="On Socail Event Organization">
+                On Socail Event Organization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -443,6 +357,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -462,8 +380,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -499,6 +426,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Idea"><span class="nav-number">1.</span> <span class="nav-text">Idea</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application"><span class="nav-number">2.</span> <span class="nav-text">Application</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -595,6 +533,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
