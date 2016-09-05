@@ -235,6 +235,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/On Socail Event Organization/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="On-Socail-Event-Organization"><a href="#On-Socail-Event-Organization" class="headerlink" title="On Socail Event Organization"></a>On Socail Event Organization</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>most of the existing research is focused on event detection through time series analysis</p>
+<p>this paper focus on the <strong>assignment problem</strong>, where the system has to assign a given set of users to events, with the goal of making users happy</p>
+<p>i.e <em>assign users to events so as to maximize the “overall happiness”</em></p>
+<p>s.t</p>
+<ol>
+<li>innate affinity (time &amp; location)</li>
+<li>social affinity</li>
+<li>cardinality constraints</li>
+</ol>
+<p><strong>social affinity is important</strong> because an individual may enjoy an event more when she is joined by her friends</p>
+<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><ul>
+<li>generalized assignment problem</li>
+<li>national resident matching problem</li>
+<li>community search problem</li>
+</ul>
+<h3 id="Social-Event-Organization"><a href="#Social-Event-Organization" class="headerlink" title="Social Event Organization"></a>Social Event Organization</h3><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>there is a set of users <em>U</em> who must be assigned to events or activities from a given set of possible events <em>A</em></p>
+<p>we define the utility of this assignment as:</p>
+<p>$$\mu(S,a)=(1-\alpha)\sum_{u\in S}\sigma_{u,a}+\alpha\sum_{u,v\in S,u\not =v}w(u,v)$$</p>
+<p>an assignment is a partial function \(M:U\to A\)</p>
+<p>for \(a\in A\), we denote by \(M^{-1}(a)\) the (possibly empty) subset of users assign to a:</p>
+<p>$$M^{-1}(a)=\lbrace u \in U\;|\;M(u) = a\rbrace$$</p>
+<p>we define the social welfare of a feasible assignment M as:</p>
+<p>$$\omega (M)=\sum_{a\in A}\mu (M^{-1}(a),a)$$</p>
+<p>our objective is to find a feasible assignment that <strong>maximizes the overall social welfare</strong></p>
+<h4 id="Hardness-Results"><a href="#Hardness-Results" class="headerlink" title="Hardness Results"></a>Hardness Results</h4><p>NP-hard</p>
+<h4 id="Proposed-Solution"><a href="#Proposed-Solution" class="headerlink" title="Proposed Solution"></a>Proposed Solution</h4><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/04/My-New-Post/" itemprop="url">
                   Untitled
                 </a>
@@ -459,7 +577,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
