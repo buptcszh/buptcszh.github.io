@@ -92,7 +92,7 @@ On Social Event Organization introduces the social event organization pr">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="IntroductionMost existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.
 On Social Event Organization introduces the social event organization pr">
-<meta property="og:updated_time" content="2016-09-08T09:29:03.000Z">
+<meta property="og:updated_time" content="2016-09-08T09:32:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="On Bottleneck-Aware Arrangement for Event-Based Social Networks">
 <meta name="twitter:description" content="IntroductionMost existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.
@@ -287,10 +287,10 @@ On Social Event Organization introduces the social event organization pr">
 <li><strong>capacity condition</strong>: each activity includes a capacity.</li>
 <li><strong>social friendship constraint</strong>: each user in one activity has at least one friend who is also assigned to the same activity.</li>
 </ul>
-<h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><ol>
-<li>Utility Function<br>$$\mu(a,u)=\alpha(1-\frac{D(l_a,l_u)}{MaxD})+(1-\alpha)sim(t_a,t_u)$$</li>
-<li>Average Utility of An Activity<br>$$Ave_M(a)=\frac{\sum_{u\in U,(a,u)\in M}\mu(a,u)}{|M(a)|}$$</li>
-</ol>
+<h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><ul>
+<li><strong>Utility Function</strong><br>$$\mu(a,u)=\alpha(1-\frac{D(l_a,l_u)}{MaxD})+(1-\alpha)sim(t_a,t_u)$$</li>
+<li><strong>Average Utility of An Activity</strong><br>$$Ave_M(a)=\frac{\sum_{u\in U,(a,u)\in M}\mu(a,u)}{|M(a)|}$$</li>
+</ul>
 <p>BSEA problem is to find an arrangement M among activities and users to \(max\;min_{a_i\in A \land M(a_i)\not =\emptyset}{Ave(a_i)}\)</p>
 <h3 id="Solutions-for-BSEA"><a href="#Solutions-for-BSEA" class="headerlink" title="Solutions for BSEA"></a>Solutions for BSEA</h3><ul>
 <li><strong>Random:</strong><br>visit each activity in a random order, and visit each user that has not yet been arranged to any activity with probalility \(\frac{\theta}{|U|}\), where\(\theta=\lfloor |U|\,/\,|A|\rfloor\)</li>
