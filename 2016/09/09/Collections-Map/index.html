@@ -84,19 +84,31 @@
 
 
 
-<meta name="description" content="Introductionmost of the existing research is focused on event detection through time series analysis
-this paper focus on the assignment problem, where the system has to assign a given set of users to">
+<meta name="description" content="Hashtable
+the keys must implement the hashCode method and the equals method
+only non-null object can be used as a key or as a value
+synchronized
+
+1Hashtable(int initialCapacity, float loadFactor=.75)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="On Socail Event Organization">
-<meta property="og:url" content="http://henson.com/2016/09/05/On Socail Event Organization/index.html">
+<meta property="og:title" content="Collection Framework -- Map">
+<meta property="og:url" content="http://henson.com/2016/09/09/Collections-Map/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Introductionmost of the existing research is focused on event detection through time series analysis
-this paper focus on the assignment problem, where the system has to assign a given set of users to">
-<meta property="og:updated_time" content="2016-09-06T11:01:21.000Z">
+<meta property="og:description" content="Hashtable
+the keys must implement the hashCode method and the equals method
+only non-null object can be used as a key or as a value
+synchronized
+
+1Hashtable(int initialCapacity, float loadFactor=.75)">
+<meta property="og:updated_time" content="2016-09-09T09:31:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="On Socail Event Organization">
-<meta name="twitter:description" content="Introductionmost of the existing research is focused on event detection through time series analysis
-this paper focus on the assignment problem, where the system has to assign a given set of users to">
+<meta name="twitter:title" content="Collection Framework -- Map">
+<meta name="twitter:description" content="Hashtable
+the keys must implement the hashCode method and the equals method
+only non-null object can be used as a key or as a value
+synchronized
+
+1Hashtable(int initialCapacity, float loadFactor=.75)">
 
 
 
@@ -117,9 +129,9 @@ this paper focus on the assignment problem, where the system has to assign a giv
 
 
 
-  <link rel="canonical" href="http://henson.com/2016/09/05/On Socail Event Organization/"/>
+  <link rel="canonical" href="http://henson.com/2016/09/09/Collections-Map/"/>
 
-  <title> On Socail Event Organization | Hexo </title>
+  <title> Collection Framework -- Map | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -239,7 +251,7 @@ this paper focus on the assignment problem, where the system has to assign a giv
             
             
               
-                On Socail Event Organization
+                Collection Framework -- Map
               
             
           </h1>
@@ -251,8 +263,8 @@ this paper focus on the assignment problem, where the system has to assign a giv
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
-              2016-09-05
+            <time itemprop="dateCreated" datetime="2016-09-09T17:31:29+08:00" content="2016-09-09">
+              2016-09-09
             </time>
           </span>
 
@@ -279,40 +291,28 @@ this paper focus on the assignment problem, where the system has to assign a giv
       
 
       
-        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>most of the existing research is focused on event detection through time series analysis</p>
-<p>this paper focus on the <strong>assignment problem</strong>, where the system has to assign a given set of users to events, with the goal of making users happy</p>
-<p>i.e <em>assign users to events so as to maximize the “overall happiness”</em></p>
-<p>s.t</p>
-<ol>
-<li>innate affinity (time &amp; location)</li>
-<li>social affinity</li>
-<li>cardinality constraints</li>
-</ol>
-<p><strong>social affinity is important</strong> because an individual may enjoy an event more when she is joined by her friends</p>
-<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><ul>
-<li>generalized assignment problem</li>
-<li>national resident matching problem</li>
-<li>community search problem</li>
+        <h3 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h3><ul>
+<li>the keys must implement the hashCode method and the equals method</li>
+<li>only <strong>non-null</strong> object can be used as a key or as a value</li>
+<li>synchronized</li>
 </ul>
-<h3 id="Social-Event-Organization"><a href="#Social-Event-Organization" class="headerlink" title="Social Event Organization"></a>Social Event Organization</h3><h4 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h4><p>there is a set of users <em>U</em> who must be assigned to events or activities from a given set of possible events <em>A</em></p>
-<p>we define the utility of this assignment as:</p>
-<p>$$\mu(S,a)=(1-\alpha)\sum_{u\in S}\sigma_{u,a}+\alpha\sum_{u,v\in S,u\not =v}w(u,v)$$</p>
-<p>an assignment is a partial function \(M:U\to A\)</p>
-<p>for \(a\in A\), we denote by \(M^{-1}(a)\) the (possibly empty) subset of users assign to a:</p>
-<p>$$M^{-1}(a)=\lbrace u \in U\;|\;M(u) = a\rbrace$$</p>
-<p>we define the social welfare of a feasible assignment M as:</p>
-<p>$$\omega (M)=\sum_{a\in A}\mu (M^{-1}(a),a)$$</p>
-<p>our objective is to find a feasible assignment that <strong>maximizes the overall social welfare</strong></p>
-<h4 id="Hardness-Results"><a href="#Hardness-Results" class="headerlink" title="Hardness Results"></a>Hardness Results</h4><p>NP-hard</p>
-<h4 id="Proposed-Solution"><a href="#Proposed-Solution" class="headerlink" title="Proposed Solution"></a>Proposed Solution</h4><h5 id="Baselines"><a href="#Baselines" class="headerlink" title="Baselines"></a>Baselines</h5><ol>
-<li>Random: </li>
-</ol>
-<p>1) Randomly shuffles the list \(\mathscr L\) containing user-event pairs <u,a></u,a></p>
-<ol>
-<li>NRMP+</li>
-<li></li>
-</ol>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hashtable(int initialCapacity, float loadFactor=.75)</div></pre></td></tr></table></figure>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><ul>
+<li>permits <strong>null values</strong> and the <strong>null key</strong></li>
+<li>not synchronized</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map m = Collections.synchronizedMap(new HashMap(...));</div></pre></td></tr></table></figure>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><ul>
+<li>permits <strong>null values</strong> and the <strong>null key</strong></li>
+<li>maintains a <em>doubly-linked list</em> running through all of its entries which defines the iteration ordering (<strong>insertion-order</strong> or <strong>access order</strong> which its entries were last accessed, from least-recently accessed to most-recently. This is well-suited to building LRU caches)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</div></pre></td></tr></table></figure>
+<ul>
+<li>the <figure class="highlight plain"><figcaption><span>method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></li>
+</ul>
+<p>private static final int MAX_ENTRIES = 100;<br>protected boolean removeEldestEntry(Map.Entry eldest) {<br>    return size() &gt; MAX_ENTRIES;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* not synchronized</div><div class="line"></div><div class="line">### TreeMap</div><div class="line"></div><div class="line">* the implementation based on **Red-Black tree**</div><div class="line">* permits **null values**</div><div class="line">* sorted according to the **natural ordering** of its keys, or by a ```Comparator``` provided at map creation time</div><div class="line">* the ordering maintained by a sorted map must be consistent with ```equals``` if this sorted map is to correctly implement the Map interface</div><div class="line">* not synchronized</div></pre></td></tr></table></figure></p>
+<p>SortedMap m = Collections.synchronizedSortedMap(new TreeMap(…));<br>```</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3>
       
     </div>
 
@@ -337,17 +337,13 @@ this paper focus on the assignment problem, where the system has to assign a giv
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/04/PCA/" rel="next" title="主成分分析法">
-                <i class="fa fa-chevron-left"></i> 主成分分析法
+              <a href="/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/" rel="next" title="On Bottleneck-Aware Arrangement for Event-Based Social Networks">
+                <i class="fa fa-chevron-left"></i> On Bottleneck-Aware Arrangement for Event-Based Social Networks
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/" rel="prev" title="On Bottleneck-Aware Arrangement for Event-Based Social Networks">
-                On Bottleneck-Aware Arrangement for Event-Based Social Networks <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -447,7 +443,7 @@ this paper focus on the assignment problem, where the system has to assign a giv
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Social-Event-Organization"><span class="nav-number">3.</span> <span class="nav-text">Social Event Organization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">3.1.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hardness-Results"><span class="nav-number">3.2.</span> <span class="nav-text">Hardness Results</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proposed-Solution"><span class="nav-number">3.3.</span> <span class="nav-text">Proposed Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Baselines"><span class="nav-number">3.3.1.</span> <span class="nav-text">Baselines</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashtable"><span class="nav-number">1.</span> <span class="nav-text">Hashtable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">2.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">3.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">4.</span> <span class="nav-text">ConcurrentHashMap</span></a></li></ol></div>
             
           </div>
         </section>
