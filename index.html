@@ -296,10 +296,20 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</div></pre></td></tr></table></figure>
 <ul>
-<li>the <figure class="highlight plain"><figcaption><span>method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></li>
+<li>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map</li>
 </ul>
-<p>private static final int MAX_ENTRIES = 100;<br>protected boolean removeEldestEntry(Map.Entry eldest) {<br>    return size() &gt; MAX_ENTRIES;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* not synchronized</div><div class="line"></div><div class="line">### TreeMap</div><div class="line"></div><div class="line">* the implementation based on **Red-Black tree**</div><div class="line">* permits **null values**</div><div class="line">* sorted according to the **natural ordering** of its keys, or by a ```Comparator``` provided at map creation time</div><div class="line">* the ordering maintained by a sorted map must be consistent with ```equals``` if this sorted map is to correctly implement the Map interface</div><div class="line">* not synchronized</div></pre></td></tr></table></figure></p>
-<p>SortedMap m = Collections.synchronizedSortedMap(new TreeMap(…));<br>```</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">    return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>not synchronized</li>
+</ul>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><ul>
+<li>the implementation based on <strong>Red-Black tree</strong></li>
+<li>permits <strong>null values</strong></li>
+<li>sorted according to the <strong>natural ordering</strong> of its keys, or by a <code>Comparator</code> provided at map creation time</li>
+<li>the ordering maintained by a sorted map must be consistent with <code>equals</code> if this sorted map is to correctly implement the Map interface</li>
+<li>not synchronized</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...));</div></pre></td></tr></table></figure>
 <h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3>
           
         
