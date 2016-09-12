@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-12T23:40:17+08:00" content="2016-09-12">
               2016-09-12
             </time>
@@ -307,6 +307,13 @@
 </tbody>
 </table>
 <p>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</p>
+<h3 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h3><ul>
+<li>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public PriorityQueue(Comparator&lt;? super E&gt; comparator)</div></pre></td></tr></table></figure>
+<ul>
+<li>not synchronized.</li>
+</ul>
 <h3 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h3><p>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
 <table>
 <thead>
@@ -350,12 +357,11 @@
 </tbody>
 </table>
 <p>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</p>
-<h3 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h3><ul>
-<li>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public PriorityQueue(Comparator&lt;? super E&gt; comparator)</div></pre></td></tr></table></figure>
-<ul>
-<li>not synchronized.</li>
+<h3 id="ArrayDeque"><a href="#ArrayDeque" class="headerlink" title="ArrayDeque"></a>ArrayDeque</h3><ul>
+<li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
+<li><code>null</code> elements are prohibited.</li>
+<li>not thread-safe</li>
+<li>faster than <code>Stack</code> when used as a stack, and faster than <code>LinkedList</code> when used as a queue.</li>
 </ul>
 <h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><ul>
 <li>doubly-linked list implementation of the <code>List</code> and <code>Deque</code> interfaces.</li>
@@ -466,7 +472,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-09T17:31:29+08:00" content="2016-09-09">
               2016-09-09
             </time>
@@ -590,7 +596,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -704,7 +710,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
               2016-09-05
             </time>
@@ -830,7 +836,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-04T17:01:08+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -939,7 +945,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">5</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -986,7 +992,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
