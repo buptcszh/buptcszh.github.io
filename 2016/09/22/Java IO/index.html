@@ -87,7 +87,9 @@
 <meta name="description" content="基本IO
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。 
 不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
- 123byte b1 = 32; byte b2 = 33;byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
+byte b1 = 32; 
+byte b2 = 33;
+byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java IO">
 <meta property="og:url" content="http://henson.com/2016/09/22/Java IO/index.html">
@@ -95,14 +97,18 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 <meta property="og:description" content="基本IO
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。 
 不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
- 123byte b1 = 32; byte b2 = 33;byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
-<meta property="og:updated_time" content="2016-09-22T10:35:40.000Z">
+byte b1 = 32; 
+byte b2 = 33;
+byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
+<meta property="og:updated_time" content="2016-09-22T10:38:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java IO">
 <meta name="twitter:description" content="基本IO
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。 
 不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
- 123byte b1 = 32; byte b2 = 33;byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
+byte b1 = 32; 
+byte b2 = 33;
+byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
 
 
 
@@ -288,10 +294,10 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
         <h3 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h3><ol>
 <li>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。 </li>
 <li><p>不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte b1 = 32; </div><div class="line">byte b2 = 33;</div><div class="line">byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
+<pre><code>byte b1 = 32; 
+byte b2 = 33;
+byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错
+</code></pre></li>
 <li><p>unicode是字符集 (2 bytes)，而不是字符的编码方式。</p>
 <ul>
 <li>代码点：可用于编码字符集的数字。</li>
