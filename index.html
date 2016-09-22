@@ -280,8 +280,8 @@
         
           
             <h3 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h3><ol>
-<li>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。 </li>
-<li><p>不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
+<li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
+<p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
 <pre><code>byte b1 = 32; 
 byte b2 = 33;
 byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错
