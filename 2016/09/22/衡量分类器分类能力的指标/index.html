@@ -84,19 +84,46 @@
 
 
 
-<meta name="description" content="IntroductionMost existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.
-On Social Event Organization introduces the social event organization pr">
+<meta name="description" content="title:衡量分类器分类能力的指标
+正例：假设有P个类别为1的样本，称为正例。
+反例：假设有N个类别为0的样本，称为反例。
+TP表示正例被判定为正例的样本个数，FP表示反例被判定为正例的样本个数
+TN表示反例被判定为反例的样本个数，FN表示正例被判定为反例的样本个数
+
+衡量指标
+精确度 (Precision)：
+ TP/(TP + FP)，表示被分类器判定的正例中真正的正例所占的比重。
+
+准确">
 <meta property="og:type" content="article">
-<meta property="og:title" content="On Bottleneck-Aware Arrangement for Event-Based Social Networks">
-<meta property="og:url" content="http://henson.com/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://henson.com/2016/09/22/衡量分类器分类能力的指标/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="IntroductionMost existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.
-On Social Event Organization introduces the social event organization pr">
-<meta property="og:updated_time" content="2016-09-08T09:32:11.000Z">
+<meta property="og:description" content="title:衡量分类器分类能力的指标
+正例：假设有P个类别为1的样本，称为正例。
+反例：假设有N个类别为0的样本，称为反例。
+TP表示正例被判定为正例的样本个数，FP表示反例被判定为正例的样本个数
+TN表示反例被判定为反例的样本个数，FN表示正例被判定为反例的样本个数
+
+衡量指标
+精确度 (Precision)：
+ TP/(TP + FP)，表示被分类器判定的正例中真正的正例所占的比重。
+
+准确">
+<meta property="og:updated_time" content="2016-09-22T14:10:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="On Bottleneck-Aware Arrangement for Event-Based Social Networks">
-<meta name="twitter:description" content="IntroductionMost existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.
-On Social Event Organization introduces the social event organization pr">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="title:衡量分类器分类能力的指标
+正例：假设有P个类别为1的样本，称为正例。
+反例：假设有N个类别为0的样本，称为反例。
+TP表示正例被判定为正例的样本个数，FP表示反例被判定为正例的样本个数
+TN表示反例被判定为反例的样本个数，FN表示正例被判定为反例的样本个数
+
+衡量指标
+精确度 (Precision)：
+ TP/(TP + FP)，表示被分类器判定的正例中真正的正例所占的比重。
+
+准确">
 
 
 
@@ -117,9 +144,9 @@ On Social Event Organization introduces the social event organization pr">
 
 
 
-  <link rel="canonical" href="http://henson.com/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/"/>
+  <link rel="canonical" href="http://henson.com/2016/09/22/衡量分类器分类能力的指标/"/>
 
-  <title> On Bottleneck-Aware Arrangement for Event-Based Social Networks | Hexo </title>
+  <title>  | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -239,7 +266,7 @@ On Social Event Organization introduces the social event organization pr">
             
             
               
-                On Bottleneck-Aware Arrangement for Event-Based Social Networks
+                
               
             
           </h1>
@@ -251,8 +278,8 @@ On Social Event Organization introduces the social event organization pr">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
-              2016-09-08
+            <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
+              2016-09-22
             </time>
           </span>
 
@@ -279,28 +306,28 @@ On Social Event Organization introduces the social event organization pr">
       
 
       
-        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Most existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.</p>
-<p><a href="http://www.cs.ubc.ca/~keqianli/papers/On_Social_Event_Organization_papers.pdf" target="_blank" rel="external">On Social Event Organization</a> introduces the <strong>social event organization</strong> problem, but it neglects the spatial influence between activities and users.</p>
-<p>Therefore, this paper introduced a novel social event arrangement strategy, called <strong>bottleneck-aware social event arrangement(BSEA)</strong>, it not only consider <em>location information</em>, <em>similarity of attributes</em> and <em>social friendship</em>, but also guarantees a balanced satisfactions in different activities in a <em>global optimal perspective</em></p>
-<ul>
-<li>we assume that each activity/user includes a profile, which consists of a list of attributes.</li>
-<li><strong>capacity condition</strong>: each activity includes a capacity.</li>
-<li><strong>social friendship constraint</strong>: each user in one activity has at least one friend who is also assigned to the same activity.</li>
+        <hr>
+<h2 id="title-衡量分类器分类能力的指标"><a href="#title-衡量分类器分类能力的指标" class="headerlink" title="title:衡量分类器分类能力的指标"></a>title:衡量分类器分类能力的指标</h2><ul>
+<li>正例：假设有P个类别为1的样本，称为正例。</li>
+<li>反例：假设有N个类别为0的样本，称为反例。</li>
+<li><code>TP</code>表示正例被判定为正例的样本个数，<code>FP</code>表示反例被判定为正例的样本个数</li>
+<li><code>TN</code>表示反例被判定为反例的样本个数，<code>FN</code>表示正例被判定为反例的样本个数</li>
 </ul>
-<h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><ul>
-<li><strong>Utility Function</strong><br>$$\mu(a,u)=\alpha(1-\frac{D(l_a,l_u)}{MaxD})+(1-\alpha)sim(t_a,t_u)$$</li>
-<li><strong>Average Utility of An Activity</strong><br>$$Ave_M(a)=\frac{\sum_{u\in U,(a,u)\in M}\mu(a,u)}{|M(a)|}$$</li>
-</ul>
-<p>BSEA problem is to find an arrangement M among activities and users to \(max\;min_{a_i\in A \land M(a_i)\not =\emptyset}{Ave(a_i)}\)</p>
-<h3 id="Solutions-for-BSEA"><a href="#Solutions-for-BSEA" class="headerlink" title="Solutions for BSEA"></a>Solutions for BSEA</h3><ul>
-<li><strong>Random:</strong><br>visit each activity in a random order, and visit each user that has not yet been arranged to any activity with probalility \(\frac{\theta}{|U|}\), where\(\theta=\lfloor |U|\,/\,|A|\rfloor\)</li>
-<li><strong>Greedy Algorithm:</strong><br>try to arrange a new user to an activity that curently has the lowest average utility value(or the one that will still have the lowest averate utility value even such new arrangement is made if there are multiple activities sharing the same lowest average utility value).</li>
-<li><strong>Random+Greedy Algorithm:</strong><br>similar to Random, except that visit each unarranged u in non-ascending order of \(\mu(a_i,u)\).</li>
-</ul>
-<h3 id="Experimental-Evaluation"><a href="#Experimental-Evaluation" class="headerlink" title="Experimental Evaluation"></a>Experimental Evaluation</h3><p>Evaluate proposed three algorithms interms of <em>Min Ave</em>, <em>running time</em> and <em>memory cost</em> via three parameters: <em>capacity \(\delta\)</em>, <em>the density of graph</em> and <em>balance parameter \(\alpha\)</em></p>
-<p><strong>Datasets:</strong> Meetup dataset and synthetic dataset.</p>
-<p>Note that Meetup dataset does not contain social information, this paper generate social graphs using the <em>python gragh library</em>.</p>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<h3 id="衡量指标"><a href="#衡量指标" class="headerlink" title="衡量指标"></a>衡量指标</h3><ol>
+<li><p>精确度 (Precision)：</p>
+<p> <code>TP/(TP + FP)</code>，表示被分类器判定的正例中真正的正例所占的比重。</p>
+</li>
+<li><p>准确率 (Accuracy)</p>
+<p> <code>(TP + TN)/(T + P)</code>，表示分类器对整个样本的判定能力。</p>
+</li>
+<li><p>召回率 (Recall)</p>
+<p> <code>TP/(TP + FN)</code>，表示真正的正例中，被分类器正确判断出来的所占的比重。</p>
+</li>
+<li><p>F1值</p>
+<p> <code>2(准确率 * 召回率)/(准确率 + 召回率)</code></p>
+</li>
+</ol>
+
       
     </div>
 
@@ -325,17 +352,13 @@ On Social Event Organization introduces the social event organization pr">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/05/On Socail Event Organization/" rel="next" title="On Socail Event Organization">
-                <i class="fa fa-chevron-left"></i> On Socail Event Organization
+              <a href="/2016/09/22/Java IO/" rel="next" title="Java IO">
+                <i class="fa fa-chevron-left"></i> Java IO
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/09/Collections-Map/" rel="prev" title="Collection Framework -- Map">
-                Collection Framework -- Map <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,7 +458,7 @@ On Social Event Organization introduces the social event organization pr">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problem-Statement"><span class="nav-number">2.</span> <span class="nav-text">Problem Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solutions-for-BSEA"><span class="nav-number">3.</span> <span class="nav-text">Solutions for BSEA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-Evaluation"><span class="nav-number">4.</span> <span class="nav-text">Experimental Evaluation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-衡量分类器分类能力的指标"><span class="nav-number">1.</span> <span class="nav-text">title:衡量分类器分类能力的指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#衡量指标"><span class="nav-number">1.1.</span> <span class="nav-text">衡量指标</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
