@@ -85,30 +85,30 @@
 
 
 <meta name="description" content="基本IO
+流指不确定长度的有序bytes。输入流将数据从外部源输入到java程序，输出流则相反。
+
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。
  不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
-byte b1 = 32; 
-byte b2 = 33;
-byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
+ 1234567891011121314151617">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java IO">
 <meta property="og:url" content="http://henson.com/2016/09/22/Java IO/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="基本IO
+流指不确定长度的有序bytes。输入流将数据从外部源输入到java程序，输出流则相反。
+
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。
  不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
-byte b1 = 32; 
-byte b2 = 33;
-byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
-<meta property="og:updated_time" content="2016-09-22T10:39:49.000Z">
+ 1234567891011121314151617">
+<meta property="og:updated_time" content="2016-09-24T16:56:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java IO">
 <meta name="twitter:description" content="基本IO
+流指不确定长度的有序bytes。输入流将数据从外部源输入到java程序，输出流则相反。
+
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。
  不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
-byte b1 = 32; 
-byte b2 = 33;
-byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
+ 1234567891011121314151617">
 
 
 
@@ -292,34 +292,37 @@ byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错">
 
       
         <h3 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h3><ol>
+<li><p>流指<strong>不确定长度的有序bytes</strong>。输入流将数据从外部源输入到java程序，输出流则相反。</p>
+</li>
 <li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
 <p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
-<pre><code>byte b1 = 32; 
-byte b2 = 33;
-byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错
-</code></pre></li>
-<li><p>unicode是字符集 (2 bytes)，而不是字符的编码方式。</p>
-<ul>
-<li>代码点：可用于编码字符集的数字。</li>
-<li><p>代码单元：字符编码的基本单元，如UTF-16是2 bytes。</p>
-<p>JVM内部使用<code>UTF-16</code>编码方式，一个char实际上是一个UTF-16的代码单元，因此有一些字符需要使用两个char来表示。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">	byte b1 = 32; </div><div class="line">	byte b2 = 33;</div><div class="line">	byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div><div class="line">	```	</div><div class="line"></div><div class="line">3. unicode是字符集 (2 bytes)，而不是字符的编码方式。</div><div class="line">	* 代码点：可用于编码字符集的数字。</div><div class="line">	* 代码单元：字符编码的基本单元，如UTF-16是2 bytes。</div><div class="line">	</div><div class="line">	JVM内部使用`UTF-16`编码方式，一个char实际上是一个UTF-16的代码单元，因此有一些字符需要使用两个char来表示。</div><div class="line"></div><div class="line">4. EOF字符在mac或unix平台下用`ctrl-D`表示，而在windows平台下用`ctrl-Z`表示。有时需要在单独的一行中输入这个字符。</div><div class="line"></div><div class="line">5. 几乎所有IO方法都会抛出IOException，但是`PrintStream`和`PrintWriter`类的方法除外，因为每次调用System.out.println()都用try/catch块包含会很不方便。</div><div class="line"></div><div class="line">6. System.in是`InputStream`的实例，System.out是`PrintStream`的实例。</div><div class="line"></div><div class="line">7. 重定向</div><div class="line">	* 在shell中重定向：`java OptimumBattingOrder &lt; yankees06.tab &gt; yankees06.out`</div><div class="line">	* 在程序内重定向：`System.setIn(InputStream in)`、`System.setOut(PrintStream out)`、`System.setErr(PrintStream err)`</div><div class="line"></div><div class="line">### OutputStream</div><div class="line"></div><div class="line">1. OutputStream是一个抽象类，需要实现`void write(int b)`方法。它将一个表示`0`到`255`的字节写入到输出流。</div><div class="line"></div><div class="line">	`void write(byte[] data)`将几个字节的数据写入到输出流。</div><div class="line">2. 并非所有的流都需要被`close`，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</div></pre></td></tr></table></figure>
+<p> finally {</p>
+<pre><code>if (out != null) {
+    try {
+        out.close();
+    }
+    catch(IOException ex) {
+        System.err.println(ex);
+    }
+}
+</code></pre><p> }<br> ```</p>
 </li>
-</ul>
-</li>
-<li><p>EOF字符在mac或unix平台下用<code>ctrl-D</code>表示，而在windows平台下用<code>ctrl-Z</code>表示。有时需要在单独的一行中输入这个字符。</p>
-</li>
-<li><p>几乎所有IO方法都会抛出IOException，但是<code>PrintStream</code>和<code>PrintWriter</code>类的方法除外，因为每次调用System.out.println()都用try/catch块包含会很不方便。</p>
-</li>
-<li><p>System.in是<code>InputStream</code>的实例，System.out是<code>PrintStream</code>的实例。</p>
-</li>
-<li><p>重定向  </p>
-<ul>
-<li>在shell中重定向：<code>java OptimumBattingOrder &lt; yankees06.tab &gt; yankees06.out</code></li>
-<li>在程序内重定向：<code>System.setIn()</code>、<code>System.setOut()</code>、<code>System.setErr()</code></li>
-</ul>
+<li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。<code>System.out()</code>、<code>System.err()</code>和其他一些print流在每次调用<code>println()</code>或遇到<code>&#39;\n&#39;</code>字符后会自动刷新。</p>
 </li>
 </ol>
-<h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><p>OutputStream是一个抽象类，需要实现<code>write(int b)</code>方法。</p>
+<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
+<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
+<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
+</li>
+<li><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</li>
+<li><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</li>
+<li>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</li>
+<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
+<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
+<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
+</li>
+</ol>
 
       
     </div>
@@ -455,7 +458,7 @@ byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本IO"><span class="nav-number">1.</span> <span class="nav-text">基本IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OutputStream"><span class="nav-number">2.</span> <span class="nav-text">OutputStream</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本IO"><span class="nav-number">1.</span> <span class="nav-text">基本IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream"><span class="nav-number">2.</span> <span class="nav-text">InputStream</span></a></li></ol></div>
             
           </div>
         </section>
