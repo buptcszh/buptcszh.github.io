@@ -98,7 +98,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 java中字面量默认为int类型，并且byte、char、int任意两个类型相加的结果都为int类型。
  不能将int类型的变量直接赋值给byte或char类型。但是byte b = 42是可以的，因为字面量是编译期常量，编译器会自动做类型转换。
  123byte b1 = 32; byte b2 =">
-<meta property="og:updated_time" content="2016-09-25T09:53:58.000Z">
+<meta property="og:updated_time" content="2016-09-25T16:36:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java IO">
 <meta name="twitter:description" content="基本IO
@@ -186,7 +186,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -196,7 +196,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -259,7 +259,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -288,7 +288,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
       
 
       
-        <h3 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h3><ol>
+        <h2 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h2><ol>
 <li>流指<strong>不确定长度的有序bytes</strong>。输入流将数据从外部源输入到java程序，输出流则相反。</li>
 <li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
 <p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
@@ -298,7 +298,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 <ul>
 <li>代码点：可用于编码字符集的数字。</li>
 <li><p>代码单元：字符编码的基本单元，如UTF-16是2 bytes。</p>
-<p>JVM内部使用<code>UTF-16</code>编码方式，一个char实际上是一个UTF-16的代码单元，因此有一些字符需要使用两个char来表示。</p>
+<p>char存放的是字符的<strong>unicode代码点</strong>。</p>
 </li>
 </ul>
 </li>
@@ -311,30 +311,8 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 </ul>
 </li>
 </ol>
-<h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><ol>
-<li><p>OutputStream是一个抽象类，需要实现<code>void write(int b)</code>方法。它将一个表示<code>0</code>到<code>255</code>的字节写入到输出流。</p>
-<p> <code>void write(byte[] data)</code>将几个字节的数据写入到输出流。</p>
-</li>
-<li><p>并非所有的流都需要被<code>close</code>，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">finally &#123;</div><div class="line">    if (out != null) &#123;</div><div class="line">        try &#123;</div><div class="line">            out.close();</div><div class="line">        &#125;</div><div class="line">        catch(IOException ex) &#123;</div><div class="line">            System.err.println(ex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。<code>System.out()</code>、<code>System.err()</code>和其他一些print流在每次调用<code>println()</code>或遇到<code>&#39;\n&#39;</code>字符后会自动刷新。</p>
-</li>
-</ol>
-<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
-<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
-<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
-</li>
-<li><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</li>
-<li><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</li>
-<li>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</li>
-<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
-<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
-<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
-</li>
-</ol>
-<h3 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h3><p><code>FileInputStream</code>、<code>FileOutputStream</code></p>
-<h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><ol>
+<h2 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h2><p><code>FileInputStream</code>、<code>FileOutputStream</code></p>
+<h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><ol>
 <li>File类表示的是文件系统上的一个文件名，而不是一个实际的文件。因此不能保证它表示的这个文件真实存在。</li>
 <li><p>File类有三种构造函数：</p>
 <ul>
@@ -354,7 +332,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 </li>
 <li><p>文件名和路径：</p>
 <p>  <code>String getName()</code>方法返回文件名。</p>
-<p>  <code>String getPath()</code>方法只是简单的返回<code>path</code>域，因此有可能是绝对路径，也有可能是相对路径。</p>
+<p>  <code>String getPath()</code>方法只是简单的返回<code>path</code>域。</p>
 <p>  <code>boolean isAbsolute()</code>方法可以判断<code>path</code>域中包含的是绝对路径还是相对路径。</p>
 <p>  <code>String getAbsolutePath()</code>方法返回绝对路径。</p>
 <p>  <code>String getCanonicalPath()</code>返回真实的绝对路径 (即去掉<code>..</code>或返回软链接的实际路径)。</p>
@@ -364,12 +342,8 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 <p>  <code>File getParentFile()</code>方法同理，只不过返回的是一个File类。</p>
 </li>
 <li><p>文件属性：</p>
-<p>  <code>boolean canRead()</code></p>
-<p>  <code>boolean canWrite()</code></p>
-<p>  <code>boolean canExecute()</code></p>
-<p>  <code>boolean isHidden()</code></p>
-<p>  <code>long lastModified()</code></p>
-<p>  <code>long length()</code></p>
+<p>  <code>boolean canRead()</code>、<code>boolean canWrite()</code>、<code>boolean canExecute()</code></p>
+<p>  <code>boolean isHidden()</code>、<code>long lastModified()</code>、<code>long length()</code></p>
 </li>
 </ul>
 </li>
@@ -387,11 +361,8 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 <p>  <code>boolean delete()</code>，如果文件存在则删除该文件并返回<code>true</code>。</p>
 </li>
 <li><p>改变文件属性：</p>
-<p>  <code>boolean setReadOnly()</code></p>
-<p>  <code>boolean setLastModified(long time)</code></p>
-<p>  <code>boolean setReadable(boolean executable[, boolean ownerOnly])</code></p>
-<p>  <code>boolean setWritable(boolean executable[, boolean ownerOnly])</code></p>
-<p>  <code>boolean setExecutable(boolean executable[, boolean ownerOnly])</code></p>
+<p>  <code>setReadOnly()</code>、<code>setLastModified(long time)</code></p>
+<p>  <code>setReadable(boolean exec)</code>、<code>setWritable(boolean exec)</code>、<code>setExecutable(boolean exec)</code></p>
 <p>  java没有unix中group的概念。</p>
 </li>
 <li><p>临时文件：</p>
@@ -411,11 +382,8 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File f = new File(&quot;tmp/&quot;);  // 最后的斜杠是可选的，只是用来表示文件夹</div><div class="line">f.mkdir();</div></pre></td></tr></table></figure>
 </li>
 <li><p>LIST</p>
-<p>  <code>String[] list()</code></p>
-<p>  <code>String[] list(FilenameFilter filter)</code></p>
-<p>  <code>File[] listFiles()</code></p>
-<p>  <code>File[] listFiles(FilenameFilter filter)</code></p>
-<p>  <code>File[] listFiles(FileFilter filter)</code></p>
+<p>  <code>String[] list()</code>、<code>String[] list(FilenameFilter filter)</code></p>
+<p>  <code>File[] listFiles()</code>、<code>File[] listFiles(FilenameFilter filter)</code>、<code>File[] listFiles(FileFilter filter)</code></p>
 </li>
 </ul>
 </li>
@@ -441,12 +409,35 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 <p><code>int skipBytes(int n)</code>方法试图将文件指针向后移动n个字节，返回实际移动的字节数。</p>
 </li>
 </ol>
+<h2 id="InputStream和OutputStream-面向字节"><a href="#InputStream和OutputStream-面向字节" class="headerlink" title="InputStream和OutputStream - 面向字节"></a>InputStream和OutputStream - 面向字节</h2><h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
+<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
+<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
+</li>
+<li><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</li>
+<li><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</li>
+<li>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</li>
+<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
+<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
+<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
+</li>
+</ol>
+<h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><ol>
+<li><p>OutputStream是一个抽象类，需要实现<code>void write(int b)</code>方法。它将一个表示<code>0</code>到<code>255</code>的字节写入到输出流。</p>
+<p> <code>void write(byte[] data)</code>将几个字节的数据写入到输出流。</p>
+</li>
+<li><p>并非所有的流都需要被<code>close</code>，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">finally &#123;</div><div class="line">    if (out != null) &#123;</div><div class="line">        try &#123;</div><div class="line">            out.close();</div><div class="line">        &#125;</div><div class="line">        catch(IOException ex) &#123;</div><div class="line">            System.err.println(ex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。</p>
+</li>
+</ol>
 <h3 id="Fileter-Streams"><a href="#Fileter-Streams" class="headerlink" title="Fileter Streams"></a>Fileter Streams</h3><h4 id="Bufferd-Streams"><a href="#Bufferd-Streams" class="headerlink" title="Bufferd Streams"></a>Bufferd Streams</h4><ol>
 <li><code>BufferedInputStream</code>一次读取多个字节放入缓冲区中，那么调用read()方法的时候就可以从这个缓冲区中读取数据而不用进行系统调用了。</li>
 <li><code>BufferedOutputStream</code>与此类似，它重写了OutputStream中的<code>flush()</code>方法 (父类的这个方法什么都没做)。</li>
 </ol>
 <h4 id="PrintStream"><a href="#PrintStream" class="headerlink" title="PrintStream"></a>PrintStream</h4><ol>
-<li><code>print()</code>和<code>println()</code>方法会将参数转化为<strong>编码后</strong>的bytes再写入底层的输出流，而<code>write()</code>方法写入的是原始的二进制数据。</li>
+<li><code>print(char c)</code>和<code>println(char c)</code>方法会将数据用系统默认的编码方式<strong>编码后</strong>再写入底层的输出流，而<code>write(int b)</code>方法写入的就是原始的byte。</li>
+<li>每次调用<code>println()</code>方法或遇到<code>\n</code>字符时会自动刷新，其它方法默认是不会自动刷新的。</li>
 <li><p><code>System.getProperty(&quot;line.separator&quot;)</code>可以获得系统的行分隔符。</p>
 <ul>
 <li>unix是<code>\n</code>。</li>
@@ -459,6 +450,52 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 </li>
 </ol>
 <h4 id="Data-Streams"><a href="#Data-Streams" class="headerlink" title="Data Streams"></a>Data Streams</h4><p><code>DataInputStream</code>和<code>DataOutputStream</code>对字符串、整形、浮点数或其他表示在bytes之上的高层数据进行读写。</p>
+<h2 id="Writers-amp-Readers-面向字符"><a href="#Writers-amp-Readers-面向字符" class="headerlink" title="Writers &amp; Readers - 面向字符"></a>Writers &amp; Readers - 面向字符</h2><h3 id="Writer"><a href="#Writer" class="headerlink" title="Writer"></a>Writer</h3><ol>
+<li>Writer是一个抽象类，需要实现<code>void write(char[] text, int offset, int length)</code>方法。它根据指定的编码方式<strong>将字符编码为字节</strong>，写入到底层的输出流。</li>
+<li><code>append</code>方法与对应的write方法的区别就在于它返回当前Writer，从而允许方法的链式调用。</li>
+</ol>
+<h3 id="Reader"><a href="#Reader" class="headerlink" title="Reader"></a>Reader</h3><ol>
+<li>Reader是一个抽象类，需要实现<code>int read(char[] text, int offset, int length)</code>方法。它从底层的输入流读入数据，根据指定的编码方式<strong>将字节解码为字符</strong>。</li>
+<li><code>boolean ready()</code>方法在底层输入流有有效数据时返回true。Reader没有<code>available()</code>方法。</li>
+</ol>
+<h3 id="OutputStreamWriter和InputStreamReader"><a href="#OutputStreamWriter和InputStreamReader" class="headerlink" title="OutputStreamWriter和InputStreamReader"></a>OutputStreamWriter和InputStreamReader</h3><p><code>OutputStreamWriter</code>和<code>InputStreamReader</code>负责字符和字节之间的转换。</p>
+<ol>
+<li><p>OutputStreamWriter有两个构造函数：</p>
+<ul>
+<li><code>OutputStreamWriter(OutputStream out)</code></li>
+<li><p><code>OutputStreamWriter(OutputStream out, String encoding)</code></p>
+<p>前者使用指定writer使用系统默认的编码方式，可以使用<code>System.getProperty(&quot;file.encoding&quot;)</code>获得默认的编码方式。</p>
+</li>
+</ul>
+</li>
+<li><p><code>String getEncoding()</code>方法返回该writer使用的编码方式。</p>
+</li>
+<li>InputStreamReader与OutputStreamWriter类似。</li>
+</ol>
+<h3 id="StringWriter和StringReader"><a href="#StringWriter和StringReader" class="headerlink" title="StringWriter和StringReader"></a>StringWriter和StringReader</h3><ol>
+<li>内部使用StringBuffer。</li>
+<li><p>String和char[]都是由<strong>unicode字符</strong> (2 bytes，用一个int就可以表示)组成的。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s = &quot;简体中文&quot;;</div><div class="line">StringReader sr = new StringReader(s);</div><div class="line">try &#123;</div><div class="line">       int c;</div><div class="line">       while ((c = sr.read()) != -1) &#123;</div><div class="line">           System.out.println((char) c);</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    catch(IOException ex) &#123;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="FileWriter和FileReader"><a href="#FileWriter和FileReader" class="headerlink" title="FileWriter和FileReader"></a>FileWriter和FileReader</h3><ol>
+<li><p>FileWriter和FileReader总是使用系统默认的编码方式。因此需要将它们链接到OutputStreamWriter或InputStreamReader上。</p>
+<p> <code>OutputStreamWriter out = new OutputStreamWriter(new FileWriter())</code></p>
+</li>
+<li><p>FileWriter有四种构造函数，其中<code>FileWriter(String filename, boolean append)</code>的第二个参数为true的话，表示将新的文本追加到文件末尾而非覆盖。</p>
+</li>
+</ol>
+<h3 id="BufferedWriter和BufferedReader"><a href="#BufferedWriter和BufferedReader" class="headerlink" title="BufferedWriter和BufferedReader"></a>BufferedWriter和BufferedReader</h3><ol>
+<li><p>BufferedWriter的<code>String newLine()</code>会写入一个系统相关的行分隔符。</p>
+<p> 不要在网络编程的代码中调用这个方法，因为大多数网络协议都指定<code>\r\n</code>作为行分隔符。</p>
+</li>
+<li><p>BufferedReader的<code>String readLine()</code>用于读入一行，但不包括行分隔符。</p>
+</li>
+</ol>
+<h3 id="PrintWriter"><a href="#PrintWriter" class="headerlink" title="PrintWriter"></a>PrintWriter</h3><ol>
+<li>PrintWriter与PrintStream的区别在于它能够正确的处理非Latin-1字符集。</li>
+<li>遇到’\n’时不会自动刷新了。</li>
+</ol>
 
       
     </div>
@@ -543,10 +580,10 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -563,7 +600,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -594,7 +631,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本IO"><span class="nav-number">1.</span> <span class="nav-text">基本IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OutputStream"><span class="nav-number">2.</span> <span class="nav-text">OutputStream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream"><span class="nav-number">3.</span> <span class="nav-text">InputStream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件IO"><span class="nav-number">4.</span> <span class="nav-text">文件IO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#File类"><span class="nav-number">4.1.</span> <span class="nav-text">File类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fileter-Streams"><span class="nav-number">5.</span> <span class="nav-text">Fileter Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bufferd-Streams"><span class="nav-number">5.1.</span> <span class="nav-text">Bufferd Streams</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PrintStream"><span class="nav-number">5.2.</span> <span class="nav-text">PrintStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Streams"><span class="nav-number">5.3.</span> <span class="nav-text">Data Streams</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本IO"><span class="nav-number">1.</span> <span class="nav-text">基本IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件IO"><span class="nav-number">2.</span> <span class="nav-text">文件IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File类"><span class="nav-number">2.1.</span> <span class="nav-text">File类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InputStream和OutputStream-面向字节"><span class="nav-number">3.</span> <span class="nav-text">InputStream和OutputStream - 面向字节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream"><span class="nav-number">3.1.</span> <span class="nav-text">InputStream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OutputStream"><span class="nav-number">3.2.</span> <span class="nav-text">OutputStream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fileter-Streams"><span class="nav-number">3.3.</span> <span class="nav-text">Fileter Streams</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bufferd-Streams"><span class="nav-number">3.3.1.</span> <span class="nav-text">Bufferd Streams</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PrintStream"><span class="nav-number">3.3.2.</span> <span class="nav-text">PrintStream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Streams"><span class="nav-number">3.3.3.</span> <span class="nav-text">Data Streams</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writers-amp-Readers-面向字符"><span class="nav-number">4.</span> <span class="nav-text">Writers & Readers - 面向字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Writer"><span class="nav-number">4.1.</span> <span class="nav-text">Writer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reader"><span class="nav-number">4.2.</span> <span class="nav-text">Reader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OutputStreamWriter和InputStreamReader"><span class="nav-number">4.3.</span> <span class="nav-text">OutputStreamWriter和InputStreamReader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringWriter和StringReader"><span class="nav-number">4.4.</span> <span class="nav-text">StringWriter和StringReader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FileWriter和FileReader"><span class="nav-number">4.5.</span> <span class="nav-text">FileWriter和FileReader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BufferedWriter和BufferedReader"><span class="nav-number">4.6.</span> <span class="nav-text">BufferedWriter和BufferedReader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PrintWriter"><span class="nav-number">4.7.</span> <span class="nav-text">PrintWriter</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -621,7 +658,7 @@ java中字面量默认为int类型，并且byte、char、int任意两个类型�
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
