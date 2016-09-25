@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -407,23 +407,66 @@
         System.err.println(ex);
     }
 }
+</code></pre><p> }</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">3. 很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用`flush()`可以强制将数据输出。`System.out()`、`System.err()`和其他一些print流在每次调用`println()`或遇到`&apos;\n&apos;`字符后会自动刷新。</div><div class="line"></div><div class="line">### InputStream</div><div class="line"></div><div class="line">1. InputStream是一个抽象类，需要实现`int read()`方法。它读入一个字节的数据，返回一个`0`到`255`的整数。</div><div class="line"></div><div class="line">	`int read(byte[] data)`将数据读入到一个byte数组里，返回读入的字节数或用`-1`表示到达流的末尾。</div><div class="line">2. `int available()`方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</div><div class="line">3. `long skip(long byteToSkip)`方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用`-1`表示到达流的末尾。</div><div class="line">4. 并非所有的流都需要被`close`，如System.in。但是文件和网络连接相关的流一定要关闭。</div><div class="line">5. `void mark(int readLimit)`方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</div><div class="line"></div><div class="line">	`void reset()`方法可以使流返回到该标记。</div><div class="line">	</div><div class="line">	`boolean markSupported()`用来判断流是否支持标记。`BufferedInputStream`和`ByteArrayInputStream`是两个永远支持标记的输入流。</div><div class="line">	</div><div class="line">### 文件IO</div><div class="line"></div><div class="line">`FileInputStream`、`FileOutputStream`</div><div class="line"></div><div class="line">#### File类</div><div class="line"></div><div class="line">1. File类表示的是文件系统上的一个文件名，而不是一个实际的文件。因此不能保证它表示的这个文件真实存在。</div><div class="line">2. File类有三种构造函数：</div><div class="line"></div><div class="line">	* `File(String path)`</div><div class="line">	* `File(String directory, String filename)`</div><div class="line">	* `File(File directory, String filename)`</div><div class="line">3. `static File[] listRoots()`方法可以返回文件系统的roots。</div><div class="line">4. 有些操作涉及到java security manager的安全问题，有可能抛出`SecurityException`异常。</div><div class="line">5. 大部分文件的信息都可以通过`path`域获得而不需要访问文件系统，因此大部分方法不会抛出`IOException`异常。</div><div class="line"></div><div class="line">	* 存在性、文件、目录：</div><div class="line">	</div><div class="line">		`boolean exists()`方法判断文件是否存在。</div><div class="line">		</div><div class="line">		`boolean isFile()`方法在文件存在且不是目录的时候返回`true`。</div><div class="line">		</div><div class="line">		`boolean isDirctory()`方法在文件存在且是目录的时候返回`true`。该方法将unix的`软链接`和mac的`aliase`视为它们所指向的目录本身，但不把windows的`快捷方式`视为目录。</div><div class="line">	* 文件名和路径：</div><div class="line">	</div><div class="line">		`String getName()`方法返回文件名。</div><div class="line">		</div><div class="line">		`String getPath()`方法只是简单的返回`path`域，因此有可能是绝对路径，也有可能是相对路径。</div><div class="line">		</div><div class="line">		`boolean isAbsolute()`方法可以判断`path`域中包含的是绝对路径还是相对路径。</div><div class="line"></div><div class="line">		`String getAbsolutePath()`方法返回绝对路径。</div><div class="line">		</div><div class="line">		`String getCanonicalPath()`返回真实的绝对路径 (即去掉`..`或返回软链接的实际路径)。</div><div class="line">	* Parent：</div><div class="line">		</div><div class="line">		`String getParent()`方法返回`path`域中最后一个分隔符 (`File.separatorChar`)之前的部分，为空则返回`null`。</div><div class="line">		</div><div class="line">		`File getParentFile()`方法同理，只不过返回的是一个File类。</div><div class="line">	* 文件属性：</div><div class="line">	</div><div class="line">		`boolean canRead()`</div><div class="line">		</div><div class="line">		`boolean canWrite()`</div><div class="line">		</div><div class="line">		`boolean canExecute()`</div><div class="line">		</div><div class="line">		`boolean isHidden()`</div><div class="line">		</div><div class="line">		`long lastModified()`</div><div class="line">		</div><div class="line">		`long length()`</div><div class="line">6. 文件操作。</div><div class="line"></div><div class="line">	* 创建：</div><div class="line">	</div><div class="line">		`boolean createNewFile()`方法试图创建该文件，如果文件存在或无法创建则返回`false`。</div><div class="line">	* 重命名或移动：</div><div class="line">		</div><div class="line">		`boolean renameTo()`方法可以重命名或移动一个文件，区别就在于源和目标是否在一个文件夹。如果目标文件存在，则**覆盖**目标文件或因操作失败而返回`false`。</div></pre></td></tr></table></figure>
+<pre><code>File src = new File(&quot;src.txt&quot;);
+File des = new File(&quot;des.txt&quot;);
+src.renameTo(des);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">	**没有copy方法。**</div><div class="line">* 删除：</div><div class="line">	</div><div class="line">	`boolean delete()`，如果文件存在则删除该文件并返回`true`。</div><div class="line">* 改变文件属性：</div><div class="line"></div><div class="line">	`boolean setReadOnly()`</div><div class="line">	</div><div class="line">	`boolean setLastModified(long time)`</div><div class="line">	</div><div class="line">	`boolean setReadable(boolean executable[, boolean ownerOnly])`</div><div class="line">	</div><div class="line">	`boolean setWritable(boolean executable[, boolean ownerOnly])`</div><div class="line">	</div><div class="line">	`boolean setExecutable(boolean executable[, boolean ownerOnly])`</div><div class="line">			</div><div class="line">	java没有unix中group的概念。</div><div class="line">* 临时文件：</div><div class="line">	</div><div class="line">	`static File createTempFile(String prefix, String suffix[, File directory])`方法可以创建一个以prefix为前缀、suffix为后缀的临时文件。</div><div class="line">	</div><div class="line">	如果suffix为null，则会使用`.tmp`为后缀。</div><div class="line">	</div><div class="line">	默认的临时文件夹路径保存在`java.io.tmpdir`属性中。</div></pre></td></tr></table></figure>
+
+// user.dir属性用来保存当前的工作目录
+File cwd = new File(System.getProperty(&quot;user.dir&quot;));
+File temp = File.createTempFile(&quot;rus&quot;, &quot;.tmp&quot;, cwd);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">7. 文件夹操作</div><div class="line"></div><div class="line">	* `delete()`方法只能用于空文件夹，否则返回`false`。</div><div class="line">	* `renameTo()`方法只能用于重命名文件夹，否则返回`false`。</div><div class="line">	* 创建：</div><div class="line">		</div><div class="line">		`boolean mkdir()`，该方法不能用来级联创建文件夹 (应该使用`boolean mkdirs()`)，如果文件夹存在则返回`false`。</div></pre></td></tr></table></figure>
+
+File f = new File(&quot;tmp/&quot;);  // 最后的斜杠是可选的，只是用来表示文件夹
+f.mkdir();
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">	* LIST</div><div class="line">		</div><div class="line">		`String[] list()`</div><div class="line">		</div><div class="line">		`String[] list(FilenameFilter filter)`</div><div class="line">		</div><div class="line">		`File[] listFiles()`</div><div class="line">		</div><div class="line">		`File[] listFiles(FilenameFilter filter)`</div><div class="line">		</div><div class="line">		`File[] listFiles(FileFilter filter)`</div><div class="line">8. `FilenameFilter`是一个接口，需要实现`boolean accept(File directory, String name)`方法。</div></pre></td></tr></table></figure>
+</code></pre><p> public class HTMLFilter implements FilenameFilter {</p>
+<pre><code>public boolean accept(File directory, String name) {
+    if (name.endsWith(&quot;.html&quot;)) return true;
+    if (name.endsWith(&quot;.htm&quot;)) return true;
+    return false;
+}
 </code></pre><p> }<br> ```</p>
+<p> <code>FileFilter</code>也是一个接口，需要实现<code>boolean accept(File pathname)</code>方法。</p>
 </li>
-<li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。<code>System.out()</code>、<code>System.err()</code>和其他一些print流在每次调用<code>println()</code>或遇到<code>&#39;\n&#39;</code>字符后会自动刷新。</p>
+<li><p><code>FileDescriptor</code>类用来表示一个<strong>已打开</strong>的<code>文件</code>或<code>socket</code>。<code>final FileDescriptor getFD()</code>方法可以返回该文件的文件描述符。</p>
+<p> <code>native boolean valid()</code>方法可以判断一个文件描述符是否仍然有效。</p>
+<p> <code>native void sync()</code>方法可以强制将操作系统buffer中的数据写入硬件 (应该先刷新流的buffer)。</p>
+</li>
+<li><p>RandomAccessFile是<code>Object</code>的子类，实现了<code>DataInput</code>和<code>DataOutput</code>接口。它提供了从文件任意位置读/写 (or both)数据的方法。</p>
+<p><code>RandomAccessFile(String filename, String mode)</code></p>
+<p><code>RandomAccessFile(File file, String mode)</code></p>
+<ul>
+<li><code>r</code>模式表示只读访问。</li>
+<li><code>rw</code>模式会先将改动缓存起来，而不是立即写入文件。</li>
+<li><code>rws</code>模式会将改动立即写入文件。</li>
+<li><code>rwd</code>模式只是会将对文件元数据 (name、permission等)缓存起来。</li>
+</ul>
+<p><code>long getFilePointer()</code>方法获取当前文件指针的位置。</p>
+<p><code>void seek(long position)</code>方法将文件指针重定位到指定的绝对位置。</p>
+<p><code>int skipBytes(int n)</code>方法试图将文件指针向后移动n个字节，返回实际移动的字节数。</p>
 </li>
 </ol>
-<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
-<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
-<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
+<h3 id="Fileter-Streams"><a href="#Fileter-Streams" class="headerlink" title="Fileter Streams"></a>Fileter Streams</h3><h4 id="Bufferd-Streams"><a href="#Bufferd-Streams" class="headerlink" title="Bufferd Streams"></a>Bufferd Streams</h4><ol>
+<li><code>BufferedInputStream</code>一次读取多个字节放入缓冲区中，那么调用read()方法的时候就可以从这个缓冲区中读取数据而不用进行系统调用了。</li>
+<li><code>BufferedOutputStream</code>与此类似，它重写了OutputStream中的<code>flush()</code>方法 (父类的这个方法什么都没做)。</li>
+</ol>
+<h4 id="PrintStream"><a href="#PrintStream" class="headerlink" title="PrintStream"></a>PrintStream</h4><ol>
+<li><code>print()</code>和<code>println()</code>方法会将参数转化为<strong>编码后</strong>的bytes再写入底层的输出流，而<code>write()</code>方法写入的是原始的二进制数据。</li>
+<li><p><code>System.getProperty(&quot;line.separator&quot;)</code>可以获得系统的行分隔符。</p>
+<ul>
+<li>unix是<code>\n</code>。</li>
+<li>mac是<code>\r</code>。</li>
+<li>windows是<code>\r\n</code>。</li>
+</ul>
 </li>
-<li><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</li>
-<li><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</li>
-<li>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</li>
-<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
-<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
-<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
+<li><p><code>printf(String format, Object... args)</code>方法提供了格式化输出。</p>
+<p> <code>format(String format, Object... args)</code>方法与此类似，但该方法还可以用在<code>Formatter</code>类上。</p>
 </li>
 </ol>
+<h4 id="Data-Streams"><a href="#Data-Streams" class="headerlink" title="Data Streams"></a>Data Streams</h4><p><code>DataInputStream</code>和<code>DataOutputStream</code>对字符串、整形、浮点数或其他表示在bytes之上的高层数据进行读写。</p>
 
           
         
@@ -486,7 +529,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-13T23:03:38+08:00" content="2016-09-13">
               2016-09-13
             </time>
@@ -596,7 +639,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-12T23:40:17+08:00" content="2016-09-12">
               2016-09-12
             </time>
@@ -820,7 +863,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-09T17:31:29+08:00" content="2016-09-09">
               2016-09-09
             </time>
@@ -944,7 +987,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1058,7 +1101,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
               2016-09-05
             </time>
@@ -1184,7 +1227,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-04T17:01:08+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -1293,7 +1336,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -1340,11 +1383,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
