@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -397,40 +397,154 @@
 </li>
 <li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
 <p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">	byte b1 = 32; </div><div class="line">	byte b2 = 33;</div><div class="line">	byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div><div class="line">	```	</div><div class="line"></div><div class="line">3. unicode是字符集 (2 bytes)，而不是字符的编码方式。</div><div class="line">	* 代码点：可用于编码字符集的数字。</div><div class="line">	* 代码单元：字符编码的基本单元，如UTF-16是2 bytes。</div><div class="line">	</div><div class="line">	JVM内部使用`UTF-16`编码方式，一个char实际上是一个UTF-16的代码单元，因此有一些字符需要使用两个char来表示。</div><div class="line"></div><div class="line">4. EOF字符在mac或unix平台下用`ctrl-D`表示，而在windows平台下用`ctrl-Z`表示。有时需要在单独的一行中输入这个字符。</div><div class="line"></div><div class="line">5. 几乎所有IO方法都会抛出IOException，但是`PrintStream`和`PrintWriter`类的方法除外，因为每次调用System.out.println()都用try/catch块包含会很不方便。</div><div class="line"></div><div class="line">6. System.in是`InputStream`的实例，System.out是`PrintStream`的实例。</div><div class="line"></div><div class="line">7. 重定向</div><div class="line">	* 在shell中重定向：`java OptimumBattingOrder &lt; yankees06.tab &gt; yankees06.out`</div><div class="line">	* 在程序内重定向：`System.setIn(InputStream in)`、`System.setOut(PrintStream out)`、`System.setErr(PrintStream err)`</div><div class="line"></div><div class="line">### OutputStream</div><div class="line"></div><div class="line">1. OutputStream是一个抽象类，需要实现`void write(int b)`方法。它将一个表示`0`到`255`的字节写入到输出流。</div><div class="line"></div><div class="line">	`void write(byte[] data)`将几个字节的数据写入到输出流。</div><div class="line">2. 并非所有的流都需要被`close`，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</div></pre></td></tr></table></figure>
-<p> finally {</p>
-<pre><code>if (out != null) {
-    try {
-        out.close();
-    }
-    catch(IOException ex) {
-        System.err.println(ex);
-    }
-}
-</code></pre><p> }</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">3. 很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用`flush()`可以强制将数据输出。`System.out()`、`System.err()`和其他一些print流在每次调用`println()`或遇到`&apos;\n&apos;`字符后会自动刷新。</div><div class="line"></div><div class="line">### InputStream</div><div class="line"></div><div class="line">1. InputStream是一个抽象类，需要实现`int read()`方法。它读入一个字节的数据，返回一个`0`到`255`的整数。</div><div class="line"></div><div class="line">	`int read(byte[] data)`将数据读入到一个byte数组里，返回读入的字节数或用`-1`表示到达流的末尾。</div><div class="line">2. `int available()`方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</div><div class="line">3. `long skip(long byteToSkip)`方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用`-1`表示到达流的末尾。</div><div class="line">4. 并非所有的流都需要被`close`，如System.in。但是文件和网络连接相关的流一定要关闭。</div><div class="line">5. `void mark(int readLimit)`方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</div><div class="line"></div><div class="line">	`void reset()`方法可以使流返回到该标记。</div><div class="line">	</div><div class="line">	`boolean markSupported()`用来判断流是否支持标记。`BufferedInputStream`和`ByteArrayInputStream`是两个永远支持标记的输入流。</div><div class="line">	</div><div class="line">### 文件IO</div><div class="line"></div><div class="line">`FileInputStream`、`FileOutputStream`</div><div class="line"></div><div class="line">#### File类</div><div class="line"></div><div class="line">1. File类表示的是文件系统上的一个文件名，而不是一个实际的文件。因此不能保证它表示的这个文件真实存在。</div><div class="line">2. File类有三种构造函数：</div><div class="line"></div><div class="line">	* `File(String path)`</div><div class="line">	* `File(String directory, String filename)`</div><div class="line">	* `File(File directory, String filename)`</div><div class="line">3. `static File[] listRoots()`方法可以返回文件系统的roots。</div><div class="line">4. 有些操作涉及到java security manager的安全问题，有可能抛出`SecurityException`异常。</div><div class="line">5. 大部分文件的信息都可以通过`path`域获得而不需要访问文件系统，因此大部分方法不会抛出`IOException`异常。</div><div class="line"></div><div class="line">	* 存在性、文件、目录：</div><div class="line">	</div><div class="line">		`boolean exists()`方法判断文件是否存在。</div><div class="line">		</div><div class="line">		`boolean isFile()`方法在文件存在且不是目录的时候返回`true`。</div><div class="line">		</div><div class="line">		`boolean isDirctory()`方法在文件存在且是目录的时候返回`true`。该方法将unix的`软链接`和mac的`aliase`视为它们所指向的目录本身，但不把windows的`快捷方式`视为目录。</div><div class="line">	* 文件名和路径：</div><div class="line">	</div><div class="line">		`String getName()`方法返回文件名。</div><div class="line">		</div><div class="line">		`String getPath()`方法只是简单的返回`path`域，因此有可能是绝对路径，也有可能是相对路径。</div><div class="line">		</div><div class="line">		`boolean isAbsolute()`方法可以判断`path`域中包含的是绝对路径还是相对路径。</div><div class="line"></div><div class="line">		`String getAbsolutePath()`方法返回绝对路径。</div><div class="line">		</div><div class="line">		`String getCanonicalPath()`返回真实的绝对路径 (即去掉`..`或返回软链接的实际路径)。</div><div class="line">	* Parent：</div><div class="line">		</div><div class="line">		`String getParent()`方法返回`path`域中最后一个分隔符 (`File.separatorChar`)之前的部分，为空则返回`null`。</div><div class="line">		</div><div class="line">		`File getParentFile()`方法同理，只不过返回的是一个File类。</div><div class="line">	* 文件属性：</div><div class="line">	</div><div class="line">		`boolean canRead()`</div><div class="line">		</div><div class="line">		`boolean canWrite()`</div><div class="line">		</div><div class="line">		`boolean canExecute()`</div><div class="line">		</div><div class="line">		`boolean isHidden()`</div><div class="line">		</div><div class="line">		`long lastModified()`</div><div class="line">		</div><div class="line">		`long length()`</div><div class="line">6. 文件操作。</div><div class="line"></div><div class="line">	* 创建：</div><div class="line">	</div><div class="line">		`boolean createNewFile()`方法试图创建该文件，如果文件存在或无法创建则返回`false`。</div><div class="line">	* 重命名或移动：</div><div class="line">		</div><div class="line">		`boolean renameTo()`方法可以重命名或移动一个文件，区别就在于源和目标是否在一个文件夹。如果目标文件存在，则**覆盖**目标文件或因操作失败而返回`false`。</div></pre></td></tr></table></figure>
-<pre><code>File src = new File(&quot;src.txt&quot;);
-File des = new File(&quot;des.txt&quot;);
-src.renameTo(des);
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">	**没有copy方法。**</div><div class="line">* 删除：</div><div class="line">	</div><div class="line">	`boolean delete()`，如果文件存在则删除该文件并返回`true`。</div><div class="line">* 改变文件属性：</div><div class="line"></div><div class="line">	`boolean setReadOnly()`</div><div class="line">	</div><div class="line">	`boolean setLastModified(long time)`</div><div class="line">	</div><div class="line">	`boolean setReadable(boolean executable[, boolean ownerOnly])`</div><div class="line">	</div><div class="line">	`boolean setWritable(boolean executable[, boolean ownerOnly])`</div><div class="line">	</div><div class="line">	`boolean setExecutable(boolean executable[, boolean ownerOnly])`</div><div class="line">			</div><div class="line">	java没有unix中group的概念。</div><div class="line">* 临时文件：</div><div class="line">	</div><div class="line">	`static File createTempFile(String prefix, String suffix[, File directory])`方法可以创建一个以prefix为前缀、suffix为后缀的临时文件。</div><div class="line">	</div><div class="line">	如果suffix为null，则会使用`.tmp`为后缀。</div><div class="line">	</div><div class="line">	默认的临时文件夹路径保存在`java.io.tmpdir`属性中。</div></pre></td></tr></table></figure>
-
-// user.dir属性用来保存当前的工作目录
-File cwd = new File(System.getProperty(&quot;user.dir&quot;));
-File temp = File.createTempFile(&quot;rus&quot;, &quot;.tmp&quot;, cwd);
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">7. 文件夹操作</div><div class="line"></div><div class="line">	* `delete()`方法只能用于空文件夹，否则返回`false`。</div><div class="line">	* `renameTo()`方法只能用于重命名文件夹，否则返回`false`。</div><div class="line">	* 创建：</div><div class="line">		</div><div class="line">		`boolean mkdir()`，该方法不能用来级联创建文件夹 (应该使用`boolean mkdirs()`)，如果文件夹存在则返回`false`。</div></pre></td></tr></table></figure>
-
-File f = new File(&quot;tmp/&quot;);  // 最后的斜杠是可选的，只是用来表示文件夹
-f.mkdir();
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">	* LIST</div><div class="line">		</div><div class="line">		`String[] list()`</div><div class="line">		</div><div class="line">		`String[] list(FilenameFilter filter)`</div><div class="line">		</div><div class="line">		`File[] listFiles()`</div><div class="line">		</div><div class="line">		`File[] listFiles(FilenameFilter filter)`</div><div class="line">		</div><div class="line">		`File[] listFiles(FileFilter filter)`</div><div class="line">8. `FilenameFilter`是一个接口，需要实现`boolean accept(File directory, String name)`方法。</div></pre></td></tr></table></figure>
-</code></pre><p> public class HTMLFilter implements FilenameFilter {</p>
-<pre><code>public boolean accept(File directory, String name) {
-    if (name.endsWith(&quot;.html&quot;)) return true;
-    if (name.endsWith(&quot;.htm&quot;)) return true;
-    return false;
-}
-</code></pre><p> }<br> ```</p>
-<p> <code>FileFilter</code>也是一个接口，需要实现<code>boolean accept(File pathname)</code>方法。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte b1 = 32; </div><div class="line">byte b2 = 33;</div><div class="line">byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div></pre></td></tr></table></figure>
 </li>
+<li><p>unicode是字符集 (2 bytes)，而不是字符的编码方式。</p>
+<ul>
+<li>代码点：可用于编码字符集的数字。</li>
+<li><p>代码单元：字符编码的基本单元，如UTF-16是2 bytes。</p>
+<p>JVM内部使用<code>UTF-16</code>编码方式，一个char实际上是一个UTF-16的代码单元，因此有一些字符需要使用两个char来表示。</p>
+</li>
+</ul>
+</li>
+<li><p>EOF字符在mac或unix平台下用<code>ctrl-D</code>表示，而在windows平台下用<code>ctrl-Z</code>表示。有时需要在单独的一行中输入这个字符。</p>
+</li>
+<li><p>几乎所有IO方法都会抛出IOException，但是<code>PrintStream</code>和<code>PrintWriter</code>类的方法除外，因为每次调用System.out.println()都用try/catch块包含会很不方便。</p>
+</li>
+<li><p>System.in是<code>InputStream</code>的实例，System.out是<code>PrintStream</code>的实例。</p>
+</li>
+<li><p>重定向</p>
+<ul>
+<li>在shell中重定向：<code>java OptimumBattingOrder &lt; yankees06.tab &gt; yankees06.out</code></li>
+<li>在程序内重定向：<code>System.setIn(InputStream in)</code>、<code>System.setOut(PrintStream out)</code>、<code>System.setErr(PrintStream err)</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><ol>
+<li><p>OutputStream是一个抽象类，需要实现<code>void write(int b)</code>方法。它将一个表示<code>0</code>到<code>255</code>的字节写入到输出流。</p>
+<p> <code>void write(byte[] data)</code>将几个字节的数据写入到输出流。</p>
+</li>
+<li><p>并非所有的流都需要被<code>close</code>，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">finally &#123;</div><div class="line">	if (out != null) &#123;</div><div class="line">		try &#123;</div><div class="line">			out.close();</div><div class="line">		&#125;</div><div class="line">		catch(IOException ex) &#123;</div><div class="line">			System.err.println(ex);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。<code>System.out()</code>、<code>System.err()</code>和其他一些print流在每次调用<code>println()</code>或遇到<code>&#39;\n&#39;</code>字符后会自动刷新。</li>
+</ol>
+<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
+<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
+<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
+</li>
+<li><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</li>
+<li><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</li>
+<li>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</li>
+<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
+<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
+<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
+</li>
+</ol>
+<h3 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h3><p><code>FileInputStream</code>、<code>FileOutputStream</code></p>
+<h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><ol>
+<li>File类表示的是文件系统上的一个文件名，而不是一个实际的文件。因此不能保证它表示的这个文件真实存在。</li>
+<li><p>File类有三种构造函数：</p>
+<ul>
+<li><code>File(String path)</code></li>
+<li><code>File(String directory, String filename)</code></li>
+<li><code>File(File directory, String filename)</code></li>
+</ul>
+</li>
+<li><code>static File[] listRoots()</code>方法可以返回文件系统的roots。</li>
+<li>有些操作涉及到java security manager的安全问题，有可能抛出<code>SecurityException</code>异常。</li>
+<li><p>大部分文件的信息都可以通过<code>path</code>域获得而不需要访问文件系统，因此大部分方法不会抛出<code>IOException</code>异常。</p>
+<ul>
+<li><p>存在性、文件、目录：</p>
+<p>  <code>boolean exists()</code>方法判断文件是否存在。</p>
+<p>  <code>boolean isFile()</code>方法在文件存在且不是目录的时候返回<code>true</code>。</p>
+<p>  <code>boolean isDirctory()</code>方法在文件存在且是目录的时候返回<code>true</code>。该方法将unix的<code>软链接</code>和mac的<code>aliase</code>视为它们所指向的目录本身，但不把windows的<code>快捷方式</code>视为目录。</p>
+</li>
+<li><p>文件名和路径：</p>
+<p>  <code>String getName()</code>方法返回文件名。</p>
+<p>  <code>String getPath()</code>方法只是简单的返回<code>path</code>域，因此有可能是绝对路径，也有可能是相对路径。</p>
+<p>  <code>boolean isAbsolute()</code>方法可以判断<code>path</code>域中包含的是绝对路径还是相对路径。</p>
+<p>  <code>String getAbsolutePath()</code>方法返回绝对路径。</p>
+<p>  <code>String getCanonicalPath()</code>返回真实的绝对路径 (即去掉<code>..</code>或返回软链接的实际路径)。</p>
+</li>
+<li><p>Parent：</p>
+<p>  <code>String getParent()</code>方法返回<code>path</code>域中最后一个分隔符 (<code>File.separatorChar</code>)之前的部分，为空则返回<code>null</code>。</p>
+<p>  <code>File getParentFile()</code>方法同理，只不过返回的是一个File类。</p>
+</li>
+<li><p>文件属性：</p>
+<p>  <code>boolean canRead()</code></p>
+<p>  <code>boolean canWrite()</code></p>
+<p>  <code>boolean canExecute()</code></p>
+<p>  <code>boolean isHidden()</code></p>
+<p>  <code>long lastModified()</code></p>
+<p>  <code>long length()</code></p>
+</li>
+</ul>
+</li>
+<li><p>文件操作。</p>
+<ul>
+<li><p>创建：</p>
+<p>  <code>boolean createNewFile()</code>方法试图创建该文件，如果文件存在或无法创建则返回<code>false</code>。</p>
+</li>
+<li><p>重命名或移动：</p>
+<p>  <code>boolean renameTo()</code>方法可以重命名或移动一个文件，区别就在于源和目标是否在一个文件夹。如果目标文件存在，则<strong>覆盖</strong>目标文件或因操作失败而返回<code>false</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File src = new File(&quot;src.txt&quot;);</div><div class="line">File des = new File(&quot;des.txt&quot;);</div><div class="line">src.renameTo(des);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>    **没有copy方法。**
+* 删除：
+
+    `boolean delete()`，如果文件存在则删除该文件并返回`true`。
+* 改变文件属性：
+
+    `boolean setReadOnly()`
+
+    `boolean setLastModified(long time)`
+
+    `boolean setReadable(boolean executable[, boolean ownerOnly])`
+
+    `boolean setWritable(boolean executable[, boolean ownerOnly])`
+
+    `boolean setExecutable(boolean executable[, boolean ownerOnly])`
+
+    java没有unix中group的概念。
+* 临时文件：
+
+    `static File createTempFile(String prefix, String suffix[, File directory])`方法可以创建一个以prefix为前缀、suffix为后缀的临时文件。
+
+    如果suffix为null，则会使用`.tmp`为后缀。
+
+    默认的临时文件夹路径保存在`java.io.tmpdir`属性中。
+
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// user.dir属性用来保存当前的工作目录</div><div class="line">File cwd = new File(System.getProperty(&quot;user.dir&quot;));</div><div class="line">File temp = File.createTempFile(&quot;rus&quot;, &quot;.tmp&quot;, cwd);</div></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>文件夹操作</p>
+<ul>
+<li><code>delete()</code>方法只能用于空文件夹，否则返回<code>false</code>。</li>
+<li><code>renameTo()</code>方法只能用于重命名文件夹，否则返回<code>false</code>。</li>
+<li><p>创建：</p>
+<p>  <code>boolean mkdir()</code>，该方法不能用来级联创建文件夹 (应该使用<code>boolean mkdirs()</code>)，如果文件夹存在则返回<code>false</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File f = new File(&quot;tmp/&quot;);  // 最后的斜杠是可选的，只是用来表示文件夹</div><div class="line">f.mkdir();</div></pre></td></tr></table></figure>
+</li>
+<li><p>LIST</p>
+<p>  <code>String[] list()</code></p>
+<p>  <code>String[] list(FilenameFilter filter)</code></p>
+<p>  <code>File[] listFiles()</code></p>
+<p>  <code>File[] listFiles(FilenameFilter filter)</code></p>
+<p>  <code>File[] listFiles(FileFilter filter)</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>FilenameFilter</code>是一个接口，需要实现<code>boolean accept(File directory, String name)</code>方法。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class HTMLFilter implements FilenameFilter &#123;</div><div class="line">	public boolean accept(File directory, String name) &#123;</div><div class="line">		if (name.endsWith(&quot;.html&quot;)) return true;</div><div class="line">		if (name.endsWith(&quot;.htm&quot;)) return true;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>`FileFilter`也是一个接口，需要实现`boolean accept(File pathname)`方法。
+</code></pre><ol>
 <li><p><code>FileDescriptor</code>类用来表示一个<strong>已打开</strong>的<code>文件</code>或<code>socket</code>。<code>final FileDescriptor getFD()</code>方法可以返回该文件的文件描述符。</p>
 <p> <code>native boolean valid()</code>方法可以判断一个文件描述符是否仍然有效。</p>
 <p> <code>native void sync()</code>方法可以强制将操作系统buffer中的数据写入硬件 (应该先刷新流的buffer)。</p>
@@ -529,7 +643,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-13T23:03:38+08:00" content="2016-09-13">
               2016-09-13
             </time>
@@ -639,7 +753,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-12T23:40:17+08:00" content="2016-09-12">
               2016-09-12
             </time>
@@ -863,7 +977,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-09T17:31:29+08:00" content="2016-09-09">
               2016-09-09
             </time>
@@ -987,7 +1101,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1101,7 +1215,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
               2016-09-05
             </time>
@@ -1227,7 +1341,7 @@ f.mkdir();
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-04T17:01:08+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -1336,7 +1450,7 @@ f.mkdir();
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1383,11 +1497,11 @@ f.mkdir();
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
