@@ -102,7 +102,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Penulis'
+      author: 'Author'
     }
   };
 </script>
@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Beranda
+            Startseite
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Arsip
+            Archiv
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Diposting di</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Diposting di</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -466,8 +466,10 @@
 </ol>
 <h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
 <li><p>Queue</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><br>     <tr><br>         <td></td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>     </tr><br>     <tr><br>         <td>Insert</td><br>         <td>add(e)</td><br>         <td>offer(e)</td><br>     </tr><br>     <tr><br>         <td>Remove</td><br>         <td>remove()</td><br>         <td>poll()</td><br>     </tr><br>     <tr><br>         <td>Examine</td><br>         <td>element()</td><br>         <td>peek()</td><br>     </tr><br> </table>
+
 <ul>
-<li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
 <li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
 </ul>
 </li>
@@ -508,52 +510,13 @@
 </ul>
 </li>
 <li><p>Deque</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><br>     <tr><br>         <td></td><br>         <td>Head</td><br>         <td></td><br>         <td>Tail</td><br>         <td></td><br>     </tr><br>     <tr><br>         <td></td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>     </tr><br>     <tr><br>         <td>Insert</td><br>         <td>addFirst(e)</td><br>         <td>offerFirst(e)</td><br>         <td>addLast(e)</td><br>         <td>offerLast(e)</td><br>     </tr><br>     <tr><br>         <td>Remove</td><br>         <td>removeFirst()</td><br>         <td>pollFirst()</td><br>         <td>removeLast()</td><br>         <td>pollLast()</td><br>     </tr><br>     <tr><br>         <td>Examine</td><br>         <td>getFirst()</td><br>         <td>peekFirst()</td><br>         <td>getLast()</td><br>         <td>peekLast()</td><br>     </tr><br> </table>
+
+<ul>
+<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
+</ul>
 </li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Head</th>
-<th style="text-align:center"></th>
-<th style="text-align:center">Tail</th>
-<th style="text-align:center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">Throws exception</td>
-<td style="text-align:center">Returns special value</td>
-<td style="text-align:center">Throws exception</td>
-<td style="text-align:center">Returns special value</td>
-</tr>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">addFirst(e)</td>
-<td style="text-align:center">offerFirst(e)</td>
-<td style="text-align:center">addLast(e)</td>
-<td style="text-align:center">offerLast(e)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">removeFirst()</td>
-<td style="text-align:center">pollFirst()</td>
-<td style="text-align:center">removeLast()</td>
-<td style="text-align:center">pollLast()</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">getFirst()</td>
-<td style="text-align:center">peekFirst()</td>
-<td style="text-align:center">getLast()</td>
-<td style="text-align:center">peekLast()</td>
-</tr>
-</tbody>
-</table>
-<pre><code>* each of these methods exists in two forms: one **throws an exception** if the operation fails, the other **returns a special value** (`null` or `false`).
-* this interface provides two methods to remove interior elements, `removeFirstOccurrence` and `removeLastOccurrence`.
-</code></pre><ol>
 <li><p>ArrayDeque</p>
 <ul>
 <li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
@@ -572,15 +535,13 @@
 </ul>
 </li>
 <li><p>BlockingQueue</p>
+<p> the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
+ <table><br>     <tr><br>         <td></td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>         <td>Blocks</td><br>         <td>Times out</td><br>     </tr><br>     <tr><br>         <td>Insert</td><br>         <td>add(e)</td><br>         <td>offer(e)</td><br>         <td>put(e)</td><br>         <td>offer(e, time, unit)</td><br>     </tr><br>     <tr><br>         <td>Remove</td><br>         <td>remove()</td><br>         <td>poll()</td><br>         <td>take()</td><br>         <td>poll(time, unit)</td><br>     </tr><br>     <tr><br>         <td>Examine</td><br>         <td>element()</td><br>         <td>peek()</td><br>         <td>not applicable</td><br>         <td>not applicable</td><br>     </tr><br> </table>
+
 <ul>
-<li>the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</li>
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
-<li><p>designed to be used primarily for producer-consumer queues. </p>
-<table><br>  <tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Blocks</td><td>Times out</td></tr><br>  <tr><td>Insert</td><td>add(e)</td><td>offer(e)</td><td>put(e)</td><td>offer(e, time, unit)</td></tr><br>  <tr><td>Remove</td><td>remove()</td><td>poll()</td><td>take()</td><td>poll(time, unit)</td></tr><br>  <tr><td>Examine</td><td>element()</td><td>peek()</td><td>not applicable</td><td>not applicable</td></tr><br></table>
-
-<p>|       |Throws exception|Returns special value|Blocks        |Times out           |<br>|:—–:|:————–:|:——————-:|:————:|:——————:|<br>|Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>|Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>|Examine|element()       |peek()               |not applicable|not applicable      |</p>
-</li>
+<li>designed to be used primarily for producer-consumer queues. </li>
 </ul>
 </li>
 </ol>
@@ -646,7 +607,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Diposting di</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -990,7 +951,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Diposting di</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1112,7 +1073,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">posting</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -1159,11 +1120,11 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Tema -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
