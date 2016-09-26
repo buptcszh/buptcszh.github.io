@@ -104,7 +104,7 @@ not synchronized.
   List list = Collections.synchronizedList(new ArrayList(...))
 
 an application can increase the capacity of an ArrayList instance before adding a large n">
-<meta property="og:updated_time" content="2016-09-26T06:39:39.000Z">
+<meta property="og:updated_time" content="2016-09-26T06:50:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Collections">
 <meta name="twitter:description" content="List
@@ -195,7 +195,7 @@ an application can increase the capacity of an ArrayList instance before adding 
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -268,7 +268,7 @@ an application can increase the capacity of an ArrayList instance before adding 
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -413,10 +413,6 @@ an application can increase the capacity of an ArrayList instance before adding 
 </ul>
 </li>
 <li><p>Deque</p>
-<ul>
-<li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
-<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
-</ul>
 </li>
 </ol>
 <table>
@@ -460,7 +456,9 @@ an application can increase the capacity of an ArrayList instance before adding 
 </tr>
 </tbody>
 </table>
-<ol>
+<pre><code>* each of these methods exists in two forms: one **throws an exception** if the operation fails, the other **returns a special value** (`null` or `false`).
+* this interface provides two methods to remove interior elements, `removeFirstOccurrence` and `removeLastOccurrence`.
+</code></pre><ol>
 <li><p>ArrayDeque</p>
 <ul>
 <li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
@@ -484,6 +482,7 @@ an application can increase the capacity of an ArrayList instance before adding 
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
 <li><p>designed to be used primarily for producer-consumer queues. </p>
+<p>||       ||<em>Throws exception</em>||<em>Returns special value</em>||<em>Blocks</em>||<em>Times out</em>||<br>||Insert ||add(e)          ||offer(e)             ||put(e)        ||offer(e, time, unit)||<br>||Remove ||remove()        ||poll()               ||take()        ||poll(time, unit)    ||<br>||Examine||element()       ||peek()               ||not applicable||not applicable      ||</p>
 <p>|       |Throws exception|Returns special value|Blocks        |Times out           |<br>|:—–:|:————–:|:——————-:|:————:|:——————:|<br>|Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>|Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>|Examine|element()       |peek()               |not applicable|not applicable      |</p>
 </li>
 </ul>
@@ -573,10 +572,10 @@ an application can increase the capacity of an ArrayList instance before adding 
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Ensemble
           </li>
         </ul>
       
@@ -593,7 +592,7 @@ an application can increase the capacity of an ArrayList instance before adding 
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -655,7 +654,7 @@ an application can increase the capacity of an ArrayList instance before adding 
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

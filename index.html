@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -508,10 +508,6 @@
 </ul>
 </li>
 <li><p>Deque</p>
-<ul>
-<li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
-<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
-</ul>
 </li>
 </ol>
 <table>
@@ -555,7 +551,9 @@
 </tr>
 </tbody>
 </table>
-<ol>
+<pre><code>* each of these methods exists in two forms: one **throws an exception** if the operation fails, the other **returns a special value** (`null` or `false`).
+* this interface provides two methods to remove interior elements, `removeFirstOccurrence` and `removeLastOccurrence`.
+</code></pre><ol>
 <li><p>ArrayDeque</p>
 <ul>
 <li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
@@ -579,6 +577,7 @@
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
 <li><p>designed to be used primarily for producer-consumer queues. </p>
+<p>||       ||<em>Throws exception</em>||<em>Returns special value</em>||<em>Blocks</em>||<em>Times out</em>||<br>||Insert ||add(e)          ||offer(e)             ||put(e)        ||offer(e, time, unit)||<br>||Remove ||remove()        ||poll()               ||take()        ||poll(time, unit)    ||<br>||Examine||element()       ||peek()               ||not applicable||not applicable      ||</p>
 <p>|       |Throws exception|Returns special value|Blocks        |Times out           |<br>|:—–:|:————–:|:——————-:|:————:|:——————:|<br>|Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>|Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>|Examine|element()       |peek()               |not applicable|not applicable      |</p>
 </li>
 </ul>
@@ -646,7 +645,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -990,7 +989,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1112,7 +1111,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -1163,7 +1162,7 @@
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
