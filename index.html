@@ -579,7 +579,7 @@
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
 <li><p>designed to be used primarily for producer-consumer queues. </p>
-<p>  |       |Throws exception|Returns special value|Blocks        |Times out           |<br>  |:—–:|:————–:|:——————-:|:————:|:——————:|<br>  |Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>  |Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>  |Examine|element()       |peek()               |not applicable|not applicable      |</p>
+<p>|       |Throws exception|Returns special value|Blocks        |Times out           |<br>|:—–:|:————–:|:——————-:|:————:|:——————:|<br>|Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>|Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>|Examine|element()       |peek()               |not applicable|not applicable      |</p>
 </li>
 </ul>
 </li>
