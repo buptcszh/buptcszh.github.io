@@ -473,34 +473,6 @@
 <li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
 </ul>
 </li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Throws exception</th>
-<th style="text-align:center">Returns special value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">add(e)</td>
-<td style="text-align:center">offer(e)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">remove()</td>
-<td style="text-align:center">poll()</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">element()</td>
-<td style="text-align:center">peek()</td>
-</tr>
-</tbody>
-</table>
-<ol>
 <li><p>PriorityQueue</p>
 <ul>
 <li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
