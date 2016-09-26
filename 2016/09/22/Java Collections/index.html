@@ -104,7 +104,7 @@ not synchronized.
   List list = Collections.synchronizedList(new ArrayList(...))
 
 an application can increase the capacity of an ArrayList instance before adding a large n">
-<meta property="og:updated_time" content="2016-09-26T06:50:21.000Z">
+<meta property="og:updated_time" content="2016-09-26T06:54:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Collections">
 <meta name="twitter:description" content="List
@@ -195,7 +195,7 @@ an application can increase the capacity of an ArrayList instance before adding 
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -205,7 +205,7 @@ an application can increase the capacity of an ArrayList instance before adding 
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -268,7 +268,7 @@ an application can increase the capacity of an ArrayList instance before adding 
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -482,7 +482,8 @@ an application can increase the capacity of an ArrayList instance before adding 
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
 <li><p>designed to be used primarily for producer-consumer queues. </p>
-<p>||       ||<em>Throws exception</em>||<em>Returns special value</em>||<em>Blocks</em>||<em>Times out</em>||<br>||Insert ||add(e)          ||offer(e)             ||put(e)        ||offer(e, time, unit)||<br>||Remove ||remove()        ||poll()               ||take()        ||poll(time, unit)    ||<br>||Examine||element()       ||peek()               ||not applicable||not applicable      ||</p>
+<pre><code>|Throws exception|Returns special value|Blocks        |Times out
+</code></pre><p>——-|—————-|———————|————–|——————–<br>Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)<br>Remove |remove()        |poll()               |take()        |poll(time, unit)<br>Examine|element()       |peek()               |not applicable|not applicable      </p>
 <p>|       |Throws exception|Returns special value|Blocks        |Times out           |<br>|:—–:|:————–:|:——————-:|:————:|:——————:|<br>|Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br>|Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br>|Examine|element()       |peek()               |not applicable|not applicable      |</p>
 </li>
 </ul>
@@ -572,10 +573,10 @@ an application can increase the capacity of an ArrayList instance before adding 
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Des Matières
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Ensemble
+            Übersicht
           </li>
         </ul>
       
@@ -592,7 +593,7 @@ an application can increase the capacity of an ArrayList instance before adding 
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -650,11 +651,11 @@ an application can increase the capacity of an ArrayList instance before adding 
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
