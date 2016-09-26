@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -466,37 +466,13 @@
 </ol>
 <h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
 <li><p>Queue</p>
-<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+<ul>
+<li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
+<li><p>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</p>
+<p>|       |Throws exception|Returns special value|<br>|:—–:|:————–:|:——————-:|<br>|Insert |add(e)          |offer(e)             |<br>|Remove |remove()        |poll()               |<br>|Examine|element()       |peek()               |</p>
 </li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Throws exception</th>
-<th style="text-align:center">Returns special value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">add(e)</td>
-<td style="text-align:center">offer(e)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">remove()</td>
-<td style="text-align:center">poll()</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">element()</td>
-<td style="text-align:center">peek()</td>
-</tr>
-</tbody>
-</table>
-<pre><code>Queue implementations generally do not allow insertion of `null` elements, although some implementations, such as **LinkedList**, but it should not be inserted into a Queue, as null is also used as a special return value by the `poll` method to indicate that the queue contains no elements.
-</code></pre><ol>
+</ul>
+</li>
 <li><p>PriorityQueue</p>
 <ul>
 <li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
@@ -600,7 +576,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -944,7 +920,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1066,7 +1042,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1113,7 +1089,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
