@@ -467,7 +467,7 @@
 <h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
 <li><p>Queue</p>
 <p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
- <table><br>     <tr><br>         <td></td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>     </tr><br>     <tr><br>         <td>Insert</td><br>         <td>add(e)</td><br>         <td>offer(e)</td><br>     </tr><br>     <tr><br>         <td>Remove</td><br>         <td>remove()</td><br>         <td>poll()</td><br>     </tr><br>     <tr><br>         <td>Examine</td><br>         <td>element()</td><br>         <td>peek()</td><br>     </tr><br> </table>
+ <table><tr><td></td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>add(e)</td><td>offer(e)</td></tr><tr><td>Remove</td><td>remove()</td><td>poll()</td></tr><tr><td>Examine</td><td>element()</td><td>peek()</td></tr></table>
 
 <ul>
 <li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
@@ -483,7 +483,7 @@
 </li>
 <li><p>Deque</p>
 <p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
- <table><br>     <tr><br>         <td></td><br>         <td>Head</td><br>         <td></td><br>         <td>Tail</td><br>         <td></td><br>     </tr><br>     <tr><br>         <td></td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>         <td>Throws exception</td><br>         <td>Returns special value</td><br>     </tr><br>     <tr><br>         <td>Insert</td><br>         <td>addFirst(e)</td><br>         <td>offerFirst(e)</td><br>         <td>addLast(e)</td><br>         <td>offerLast(e)</td><br>     </tr><br>     <tr><br>         <td>Remove</td><br>         <td>removeFirst()</td><br>         <td>pollFirst()</td><br>         <td>removeLast()</td><br>         <td>pollLast()</td><br>     </tr><br>     <tr><br>         <td>Examine</td><br>         <td>getFirst()</td><br>         <td>peekFirst()</td><br>         <td>getLast()</td><br>         <td>peekLast()</td><br>     </tr><br> </table>
+ <table><tr><td></td><td>Head</td><td></td><td>Tail</td><td></td></tr><tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>addFirst(e)</td><td>offerFirst(e)</td><td>addLast(e)</td><td>offerLast(e)</td></tr><tr><td>Remove</td><td>removeFirst()</td><td>pollFirst()</td><td>removeLast()</td><td>pollLast()</td></tr><tr><td>Examine</td><td>getFirst()</td><td>peekFirst()</td><td>getLast()</td><td>peekLast()</td></tr></table>
 
 <ul>
 <li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
