@@ -84,34 +84,37 @@
 
 
 
-<meta name="description" content="ListArrayList
+<meta name="description" content="List
+ArrayList
+
 permit null.
 not synchronized.
+  List list = Collections.synchronizedList(new ArrayList(...))
 
-1List list = Collections.synchronizedList(new ArrayList(...));
-
-an application can increase the capacity of an ArrayList instance before adding a large nu">
+an application can increase the capacity of an ArrayList instance before adding a large n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Collections">
 <meta property="og:url" content="http://henson.com/2016/09/22/Java Collections/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ListArrayList
+<meta property="og:description" content="List
+ArrayList
+
 permit null.
 not synchronized.
+  List list = Collections.synchronizedList(new ArrayList(...))
 
-1List list = Collections.synchronizedList(new ArrayList(...));
-
-an application can increase the capacity of an ArrayList instance before adding a large nu">
-<meta property="og:updated_time" content="2016-09-26T06:09:06.000Z">
+an application can increase the capacity of an ArrayList instance before adding a large n">
+<meta property="og:updated_time" content="2016-09-26T06:20:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Collections">
-<meta name="twitter:description" content="ListArrayList
+<meta name="twitter:description" content="List
+ArrayList
+
 permit null.
 not synchronized.
+  List list = Collections.synchronizedList(new ArrayList(...))
 
-1List list = Collections.synchronizedList(new ArrayList(...));
-
-an application can increase the capacity of an ArrayList instance before adding a large nu">
+an application can increase the capacity of an ArrayList instance before adding a large n">
 
 
 
@@ -294,185 +297,125 @@ an application can increase the capacity of an ArrayList instance before adding 
       
 
       
-        <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><ul>
-<li>permit <code>null</code>.</li>
-<li>not synchronized.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List list = Collections.synchronizedList(new ArrayList(...));</div></pre></td></tr></table></figure>
+        <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ol>
+<li><p>ArrayList</p>
 <ul>
-<li>an application can increase the capacity of an ArrayList instance before adding a large number of elements using the <code>ensureCapacity</code> operation.</li>
+<li>permit <code>null</code>.</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new ArrayList(...))</code></p>
+</li>
+<li><p>an application can increase the capacity of an ArrayList instance before adding a large number of elements using the <code>ensureCapacity</code> operation.</p>
+<p>  <code>ensureCapacity(int minCapacity)</code></p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ensureCapacity(int minCapacity)</div></pre></td></tr></table></figure>
-<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><ul>
+</li>
+<li><p>Vector</p>
+<ul>
 <li>synchronized.</li>
 </ul>
-<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><ul>
+</li>
+<li><p>Stack</p>
+<ul>
 <li>extends class <code>Vector</code>.</li>
 <li>a more complete and consistent set of LIFO stack operations is provided by the <code>Deque</code> interface and its implementations.</li>
 </ul>
-<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>see also <code>Queue</code>.</p>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h3><ul>
+</li>
+<li><p>LinkedList</p>
+<p> see also <code>Queue</code>.</p>
+</li>
+</ol>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ol>
+<li><p>Hashtable</p>
+<ul>
 <li>the keys must implement the hashCode method and the equals method.</li>
 <li>only <strong>non-null</strong> object can be used as a key or as a value.</li>
-<li>synchronized.</li>
+<li><p>synchronized.</p>
+<p>  <code>Hashtable(int initialCapacity, float loadFactor=.75)</code></p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hashtable(int initialCapacity, float loadFactor=.75)</div></pre></td></tr></table></figure>
-<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><ul>
-<li>permits <code>null</code> values and the <code>null</code> key.</li>
-<li>not synchronized.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Map m = Collections.synchronizedMap(new HashMap(...));</div></pre></td></tr></table></figure>
-<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><ul>
-<li>permits <code>null</code> values and the <code>null</code> key.</li>
-<li>maintains a <strong>doubly-linked list</strong> running through all of its entries which defines the iteration ordering (<strong>insertion-order</strong> or <strong>access order</strong> which its entries were last accessed, from least-recently accessed to most-recently. This is well-suited to building LRU caches).</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</div></pre></td></tr></table></figure>
+</li>
+<li><p>HashMap</p>
 <ul>
-<li>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map.</li>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>not synchronized.</p>
+<p>  <code>Map m = Collections.synchronizedMap(new HashMap(...))</code></p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">    return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>LinkedHashMap</p>
 <ul>
-<li>not synchronized</li>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>maintains a <strong>doubly-linked list</strong> running through all of its entries which defines the iteration ordering (<strong>insertion-order</strong> or <strong>access order</strong> which its entries were last accessed, from least-recently accessed to most-recently. This is well-suited to building LRU caches).</p>
+<p>  <code>LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</code></p>
+</li>
+<li><p>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">       return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>not synchronized</p>
+</li>
 </ul>
-<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><ul>
+</li>
+<li><p>TreeMap</p>
+<ul>
 <li>the implementation based on <strong>Red-Black tree</strong>.</li>
 <li>permits <code>null</code> values.</li>
 <li>sorted according to the <strong>natural ordering</strong> of its keys, or by a <code>Comparator</code> provided at map creation time.</li>
 <li>the ordering maintained by a sorted map must be consistent with <code>equals</code> if this sorted map is to correctly implement the Map interface.</li>
-<li>not synchronized.</li>
+<li><p>not synchronized.</p>
+<p>  <code>SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...))</code></p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...));</div></pre></td></tr></table></figure>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><h3 id="Queue-1"><a href="#Queue-1" class="headerlink" title="Queue"></a>Queue</h3><p>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Throws exception</th>
-<th style="text-align:center">Returns special value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">add(e)</td>
-<td style="text-align:center">offer(e)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">remove()</td>
-<td style="text-align:center">poll()</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">element()</td>
-<td style="text-align:center">peek()</td>
-</tr>
-</tbody>
-</table>
-<p>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</p>
-<h3 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h3><ul>
-<li>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public PriorityQueue(Comparator&lt;? super E&gt; comparator)</div></pre></td></tr></table></figure>
+</li>
+<li><p>ConcurrentHashMap</p>
+</li>
+</ol>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
+<li><p>Queue</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+<p> |       |Throws exception|Returns special value|<br> |:—–:|:————–:|:——————-:|<br> |Insert |add(e)          |offer(e)             |<br> |Remove |remove()        |poll()               |<br> |Examine|element()       |peek()               |</p>
+<p> Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</p>
+</li>
+<li><p>PriorityQueue</p>
 <ul>
-<li>not synchronized.</li>
+<li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
+<p>  <code>public PriorityQueue(Comparator&lt;? super E&gt; comparator)</code></p>
+</li>
+<li><p>not synchronized.</p>
+</li>
 </ul>
-<h3 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h3><p>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Head</th>
-<th style="text-align:center"></th>
-<th style="text-align:center">Tail</th>
-<th style="text-align:center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">Throws exception</td>
-<td style="text-align:center">Returns special value</td>
-<td style="text-align:center">Throws exception</td>
-<td style="text-align:center">Returns special value</td>
-</tr>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">addFirst(e)</td>
-<td style="text-align:center">offerFirst(e)</td>
-<td style="text-align:center">addLast(e)</td>
-<td style="text-align:center">offerLast(e)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">removeFirst()</td>
-<td style="text-align:center">pollFirst()</td>
-<td style="text-align:center">removeLast()</td>
-<td style="text-align:center">pollLast()</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">getFirst()</td>
-<td style="text-align:center">peekFirst()</td>
-<td style="text-align:center">getLast()</td>
-<td style="text-align:center">peekLast()</td>
-</tr>
-</tbody>
-</table>
-<p>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</p>
-<h3 id="ArrayDeque"><a href="#ArrayDeque" class="headerlink" title="ArrayDeque"></a>ArrayDeque</h3><ul>
+</li>
+<li><p>Deque</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+<p> |       |Head            |                     |Tail            |                         |<br> |:—–:|:————–:|:——————-:|:————–:|:——————-:|<br> |       |Throws exception|Returns special value|Throws exception|Returns special value|<br> |Insert |addFirst(e)     |offerFirst(e)        |addLast(e)      |offerLast(e)             |<br> |Remove |removeFirst()   |pollFirst()          |removeLast()    |pollLast()               |<br> |Examine|getFirst()      |peekFirst()          |getLast()       |peekLast()               |</p>
+<p> this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</p>
+</li>
+<li><p>ArrayDeque</p>
+<ul>
 <li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
 <li><code>null</code> elements are prohibited.</li>
 <li>not thread-safe.</li>
 <li>faster than <code>Stack</code> when used as a stack, and faster than <code>LinkedList</code> when used as a queue.</li>
 </ul>
-<h3 id="LinkedList-1"><a href="#LinkedList-1" class="headerlink" title="LinkedList"></a>LinkedList</h3><ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
 <li>doubly-linked list implementation of the <code>List</code> and <code>Deque</code> interfaces.</li>
 <li>permits all elements (including <code>null</code>).</li>
-<li>not synchronized.</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new LinkedList(...))</code></p>
+</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List list = Collections.synchronizedList(new LinkedList(...));</div></pre></td></tr></table></figure>
-<h3 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h3><p>the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">Throws exception</th>
-<th style="text-align:center">Returns special value</th>
-<th style="text-align:center">Blocks</th>
-<th style="text-align:center">Times out</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Insert</td>
-<td style="text-align:center">add(e)</td>
-<td style="text-align:center">offer(e)</td>
-<td style="text-align:center">put(e)</td>
-<td style="text-align:center">offer(e, time, unit)</td>
-</tr>
-<tr>
-<td style="text-align:center">Remove</td>
-<td style="text-align:center">remove()</td>
-<td style="text-align:center">poll()</td>
-<td style="text-align:center">take()</td>
-<td style="text-align:center">poll(time, unit)</td>
-</tr>
-<tr>
-<td style="text-align:center">Examine</td>
-<td style="text-align:center">element()</td>
-<td style="text-align:center">peek()</td>
-<td style="text-align:center">not applicable</td>
-<td style="text-align:center">not applicable</td>
-</tr>
-</tbody>
-</table>
+</li>
+<li><p>BlockingQueue</p>
+<p> the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
+<p> |       |Throws exception|Returns special value|Blocks        |Times out               |<br> |:—–:|:————–:|:——————-:|:————:|:——————:|<br> |Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br> |Remove |remove()        |poll()               |take()        |poll(time, unit)        |<br> |Examine|element()       |peek()               |not applicable|not applicable          |</p>
 <ul>
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
-<li>designed to be used primarily for producer-consumer queues.</li>
+<li>designed to be used primarily for producer-consumer queues. </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">class Producer implements Runnable &#123;</div><div class="line">  private final BlockingQueue queue;</div><div class="line">  Producer(BlockingQueue q) &#123; queue = q; &#125;</div><div class="line">  public void run() &#123;</div><div class="line">    try &#123;</div><div class="line">      while (true) &#123; queue.put(produce()); &#125;</div><div class="line">    &#125; catch (InterruptedException ex) &#123; ... handle ...&#125;</div><div class="line">  &#125;</div><div class="line">  Object produce() &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Consumer implements Runnable &#123;</div><div class="line">  private final BlockingQueue queue;</div><div class="line">  Consumer(BlockingQueue q) &#123; queue = q; &#125;</div><div class="line">  public void run() &#123;</div><div class="line">    try &#123;</div><div class="line">      while (true) &#123; consume(queue.take()); &#125;</div><div class="line">    &#125; catch (InterruptedException ex) &#123; ... handle ...&#125;</div><div class="line">  &#125;</div><div class="line">  void consume(Object x) &#123; ... &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Setup &#123;</div><div class="line">  void main() &#123;</div><div class="line">    BlockingQueue q = new SomeQueueImplementation();</div><div class="line">    Producer p = new Producer(q);</div><div class="line">    Consumer c1 = new Consumer(q);</div><div class="line">    Consumer c2 = new Consumer(q);</div><div class="line">    new Thread(p).start();</div><div class="line">    new Thread(c1).start();</div><div class="line">    new Thread(c2).start();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
     </div>
@@ -608,7 +551,7 @@ an application can increase the capacity of an ArrayList instance before adding 
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">1.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack"><span class="nav-number">1.3.</span> <span class="nav-text">Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.4.</span> <span class="nav-text">LinkedList</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">2.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashtable"><span class="nav-number">2.1.</span> <span class="nav-text">Hashtable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">2.2.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">2.3.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeMap"><span class="nav-number">2.4.</span> <span class="nav-text">TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">2.5.</span> <span class="nav-text">ConcurrentHashMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Queue"><span class="nav-number">3.</span> <span class="nav-text">Queue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue-1"><span class="nav-number">3.1.</span> <span class="nav-text">Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PriorityQueue"><span class="nav-number">3.2.</span> <span class="nav-text">PriorityQueue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deque"><span class="nav-number">3.3.</span> <span class="nav-text">Deque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayDeque"><span class="nav-number">3.4.</span> <span class="nav-text">ArrayDeque</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList-1"><span class="nav-number">3.5.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BlockingQueue"><span class="nav-number">3.6.</span> <span class="nav-text">BlockingQueue</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">1.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">2.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">3.</span> <span class="nav-text">Queue</span></a></li></ol></div>
             
           </div>
         </section>
