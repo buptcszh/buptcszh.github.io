@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -464,9 +464,15 @@
 </ol>
 <h3 id="DataOutputStream和DataInputStream"><a href="#DataOutputStream和DataInputStream" class="headerlink" title="DataOutputStream和DataInputStream"></a>DataOutputStream和DataInputStream</h3><p>对字符串、整形、浮点数或其他表示在bytes之上的高层数据进行读写。</p>
 <h3 id="PrintStream"><a href="#PrintStream" class="headerlink" title="PrintStream"></a>PrintStream</h3><ol>
-<li><p><code>print(char c)</code>和<code>println(char c)</code>方法会将数据用系统默认的编码方式<strong>编码后</strong>再写入底层的输出流，而<code>write(int b)</code>方法写入的就是原始的byte。</p>
+<li><p><code>PrintStream(OutputStream out, boolean autoFlush, String encoding)</code></p>
+<ul>
+<li><p>autoFlush为true时 (默认)，当缓冲区满、调用<code>println()</code>方法或遇到<code>\n</code>字符后会自动调用<code>flush()</code>方法 (PrintStream本身没有缓冲区)。</p>
 </li>
-<li><p>每次调用<code>println()</code>方法或遇到<code>\n</code>字符时会自动刷新，其它方法默认是不会自动刷新的。</p>
+<li><p>encoding指定编码方式。</p>
+</li>
+</ul>
+</li>
+<li><p><code>print(char c)</code>和<code>println(char c)</code>方法会将数据<strong>编码后</strong>再写入底层的输出流，而<code>write(int b)</code>方法写入的就是给定的byte。</p>
 </li>
 <li><p><code>printf(String format, Object... args)</code>方法提供了格式化输出。</p>
 <p> <code>format(String format, Object... args)</code>方法与此类似，但该方法还可以用在<code>Formatter</code>类上。</p>
@@ -521,9 +527,9 @@
 </li>
 </ol>
 <h3 id="PrintWriter"><a href="#PrintWriter" class="headerlink" title="PrintWriter"></a>PrintWriter</h3><ol>
-<li><p>PrintWriter与PrintStream的区别在于它能够正确的处理非Latin-1字符集。</p>
+<li><p>PrintWriter<strong>有缓冲区</strong>。</p>
 </li>
-<li><p>遇到’\n’时不会自动刷新了。</p>
+<li><p>遇到<code>\n</code>时不会自动刷新了。</p>
 </li>
 </ol>
 <h2 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h2><p><code>FileInputStream</code>、<code>FileOutputStream</code></p>
@@ -690,7 +696,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-13T23:03:38+08:00" content="2016-09-13">
               2016-09-13
             </time>
@@ -800,7 +806,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-12T23:40:17+08:00" content="2016-09-12">
               2016-09-12
             </time>
@@ -1024,7 +1030,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-09T17:31:29+08:00" content="2016-09-09">
               2016-09-09
             </time>
@@ -1148,7 +1154,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1262,7 +1268,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-05T16:10:45+08:00" content="2016-09-05">
               2016-09-05
             </time>
@@ -1388,7 +1394,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-04T17:01:08+08:00" content="2016-09-04">
               2016-09-04
             </time>
@@ -1497,7 +1503,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1544,7 +1550,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
