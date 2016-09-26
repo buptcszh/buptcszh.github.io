@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -361,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -444,9 +444,9 @@
 <p>  <code>LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</code></p>
 </li>
 <li><p>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">       return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">    return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>not synchronized</p>
+<li><p>not synchronized.</p>
 </li>
 </ul>
 </li>
@@ -468,25 +468,94 @@
 <li><p>Queue</p>
 <ul>
 <li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
-<li><p>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</p>
-<p>|       |Throws exception|Returns special value|<br>|:—–:|:————–:|:——————-:|<br>|Insert |add(e)          |offer(e)             |<br>|Remove |remove()        |poll()               |<br>|Examine|element()       |peek()               |</p>
-</li>
+<li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
 </ul>
 </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Throws exception</th>
+<th style="text-align:center">Returns special value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Insert</td>
+<td style="text-align:center">add(e)</td>
+<td style="text-align:center">offer(e)</td>
+</tr>
+<tr>
+<td style="text-align:center">Remove</td>
+<td style="text-align:center">remove()</td>
+<td style="text-align:center">poll()</td>
+</tr>
+<tr>
+<td style="text-align:center">Examine</td>
+<td style="text-align:center">element()</td>
+<td style="text-align:center">peek()</td>
+</tr>
+</tbody>
+</table>
+<ol>
 <li><p>PriorityQueue</p>
 <ul>
 <li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
 <p>  <code>public PriorityQueue(Comparator&lt;? super E&gt; comparator)</code></p>
 </li>
-<li><p>not synchronized.</p>
-</li>
+<li>not synchronized.</li>
 </ul>
 </li>
 <li><p>Deque</p>
-<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
-<p> |       |Head            |                     |Tail            |                     |<br> |:—–:|:————–:|:——————-:|:————–:|:——————-:|<br> |       |Throws exception|Returns special value|Throws exception|Returns special value|<br> |Insert |addFirst(e)     |offerFirst(e)        |addLast(e)      |offerLast(e)         |<br> |Remove |removeFirst()   |pollFirst()          |removeLast()    |pollLast()           |<br> |Examine|getFirst()      |peekFirst()          |getLast()       |peekLast()           |</p>
-<p> this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</p>
+<ul>
+<li>each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</li>
+<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
+</ul>
 </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Head</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">Tail</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Throws exception</td>
+<td style="text-align:center">Returns special value</td>
+<td style="text-align:center">Throws exception</td>
+<td style="text-align:center">Returns special value</td>
+</tr>
+<tr>
+<td style="text-align:center">Insert</td>
+<td style="text-align:center">addFirst(e)</td>
+<td style="text-align:center">offerFirst(e)</td>
+<td style="text-align:center">addLast(e)</td>
+<td style="text-align:center">offerLast(e)</td>
+</tr>
+<tr>
+<td style="text-align:center">Remove</td>
+<td style="text-align:center">removeFirst()</td>
+<td style="text-align:center">pollFirst()</td>
+<td style="text-align:center">removeLast()</td>
+<td style="text-align:center">pollLast()</td>
+</tr>
+<tr>
+<td style="text-align:center">Examine</td>
+<td style="text-align:center">getFirst()</td>
+<td style="text-align:center">peekFirst()</td>
+<td style="text-align:center">getLast()</td>
+<td style="text-align:center">peekLast()</td>
+</tr>
+</tbody>
+</table>
+<ol>
 <li><p>ArrayDeque</p>
 <ul>
 <li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
@@ -505,15 +574,48 @@
 </ul>
 </li>
 <li><p>BlockingQueue</p>
-<p> the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
-<p> |       |Throws exception|Returns special value|Blocks        |Times out           |<br> |:—–:|:————–:|:——————-:|:————:|:——————:|<br> |Insert |add(e)          |offer(e)             |put(e)        |offer(e, time, unit)|<br> |Remove |remove()        |poll()               |take()        |poll(time, unit)    |<br> |Examine|element()       |peek()               |not applicable|not applicable      |</p>
 <ul>
+<li>the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</li>
 <li>does not accept <code>null</code> elements.</li>
 <li>thread-safe.</li>
 <li>designed to be used primarily for producer-consumer queues. </li>
 </ul>
 </li>
 </ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Throws exception</th>
+<th style="text-align:center">Returns special value</th>
+<th style="text-align:center">Blocks</th>
+<th style="text-align:center">Times out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Insert</td>
+<td style="text-align:center">add(e)</td>
+<td style="text-align:center">offer(e)</td>
+<td style="text-align:center">put(e)</td>
+<td style="text-align:center">offer(e, time, unit)</td>
+</tr>
+<tr>
+<td style="text-align:center">Remove</td>
+<td style="text-align:center">remove()</td>
+<td style="text-align:center">poll()</td>
+<td style="text-align:center">take()</td>
+<td style="text-align:center">poll(time, unit)</td>
+</tr>
+<tr>
+<td style="text-align:center">Examine</td>
+<td style="text-align:center">element()</td>
+<td style="text-align:center">peek()</td>
+<td style="text-align:center">not applicable</td>
+<td style="text-align:center">not applicable</td>
+</tr>
+</tbody>
+</table>
 
           
         
@@ -576,7 +678,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -920,7 +1022,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1042,7 +1144,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1089,7 +1191,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
