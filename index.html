@@ -235,6 +235,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/27/Java Nested Classes/" itemprop="url">
+                  Unbenannt
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T19:16:54+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Nested-Class"><a href="#Nested-Class" class="headerlink" title="Nested Class"></a>Nested Class</h2><p>A nested class can be declared private, public, protected, or package private. (Recall that outer classes can only be declared public or package private.)</p>
+<h3 id="Static-Nested-Classes"><a href="#Static-Nested-Classes" class="headerlink" title="Static Nested Classes"></a>Static Nested Classes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class OuterClass &#123;</div><div class="line">    ...</div><div class="line">    static class StaticNestedClass &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>A static nested class cannot refer directly to instance variables or methods defined in its enclosing class.</p>
+</li>
+<li><p>Static nested classes are accessed using the enclosing class name.</p>
+<p> <code>OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass()</code></p>
+</li>
+</ol>
+<h3 id="Inner-Classes"><a href="#Inner-Classes" class="headerlink" title="Inner Classes"></a>Inner Classes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class OuterClass &#123;</div><div class="line">    ...</div><div class="line">    class InnerClass &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>An instance of InnerClass can exist only within an instance of OuterClass.</p>
+<p> <code>OuterClass.InnerClass innerObject = outerObject.new InnerClass()</code></p>
+</li>
+<li><p>It cannot define any static members itself.</p>
+</li>
+<li><p>It has direct access to the methods and fields of its enclosing instance.</p>
+</li>
+<li><p>Refer to member variables that enclose larger scopes by the class name to which they belong.</p>
+<p> <code>System.out.println(&quot;ShadowTest.this.x = &quot; + ShadowTest.this.x)</code></p>
+</li>
+<li><p>There are two special kinds of inner classes: <strong>local classes</strong> and <strong>anonymous classes</strong>.</p>
+</li>
+</ol>
+<h4 id="Local-Classes"><a href="#Local-Classes" class="headerlink" title="Local Classes"></a>Local Classes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class LocalClassExample &#123;</div><div class="line">    static String regularExpression = &quot;[^0-9]&quot;;</div><div class="line">    public static void validatePhoneNumber(String phoneNumber) &#123;</div><div class="line">        final int numberLength = 10;</div><div class="line">        class PhoneNumber &#123;</div><div class="line">            ...</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>Local classes are classes that are defined in a <strong>block</strong>, which is a group of zero or more statements between balanced braces.</p>
+</li>
+<li><p>It can only access local variables (&amp; parameters) that are declared <strong>final</strong>.</p>
+<p> But starting in Java SE 8, a local class can access local variables and parameters of the enclosing block that are final or effectively final (whose value is never changed after it is initialized).</p>
+</li>
+<li><p>Local classes in <em>static methods</em> can only refer to <strong>static</strong> members of the enclosing class. </p>
+</li>
+<li><p>You cannot declare an interface inside a block, because interfaces are inherently static.</p>
+<p> You can have static members provided that they are <strong>constant</strong> variables.</p>
+</li>
+</ol>
+<h4 id="Anonymous-Classes"><a href="#Anonymous-Classes" class="headerlink" title="Anonymous Classes"></a>Anonymous Classes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HelloWorld frenchGreeting = new HelloWorld() &#123;</div><div class="line">    String name = &quot;tout le monde&quot;;</div><div class="line">    public void greet() &#123;</div><div class="line">        greetSomeone(&quot;tout le monde&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>Anonymous classes enable you to declare and instantiate a class at the same time. Use them if you need to use a local class only once.</p>
+</li>
+<li><p>When you implement an interface, there is no constructor, so you use an empty pair of parentheses, as in this example.</p>
+</li>
+<li><p>You cannot declare constructors in an anonymous class.</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/Java引用对象/" itemprop="url">
                   Java 引用对象
                 </a>
@@ -1177,7 +1316,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
