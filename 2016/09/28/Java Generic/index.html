@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Java Generic | Henson的小窝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.
+Therefore, the T in Foo&amp;lt;T&amp;gt; is a type parameter and the St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Generic">
+<meta property="og:url" content="http://henson.com/2016/09/28/Java Generic/index.html">
+<meta property="og:site_name" content="Henson的小窝">
+<meta property="og:description" content="“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.
+Therefore, the T in Foo&amp;lt;T&amp;gt; is a type parameter and the St">
+<meta property="og:updated_time" content="2016-09-28T14:49:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java Generic">
+<meta name="twitter:description" content="“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.
+Therefore, the T in Foo&amp;lt;T&amp;gt; is a type parameter and the St">
+  
+    <link rel="alternative" href="/atom.xml" title="Henson的小窝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="//favicon.png">
+  
+  <script src="/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://avatars2.githubusercontent.com/u/6492999" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Henson</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="3" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/buptcszh" title="github">github</a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/u/1953093757" title="weibo">weibo</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Henson</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="https://avatars2.githubusercontent.com/u/6492999" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Henson</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/buptcszh" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/1953093757" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-Java Generic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java Generic
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.</p>
+<p>Therefore, the <code>T</code> in <code>Foo&lt;T&gt;</code> is a type parameter and the <code>String</code> in <code>Foo&lt;String&gt;</code> is a type argument.</p>
+<h3 id="Raw-Types"><a href="#Raw-Types" class="headerlink" title="Raw Types"></a>Raw Types</h3><ol>
+<li><p>A raw type is the name of a generic class or interface without any type arguments.</p>
+</li>
+<li><p>For backward compatibility, assigning a parameterized type to its raw type is allowed. But if you assign a raw type to a parameterized type, you get a warning.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;  // OK</div><div class="line"></div><div class="line">Box rawBox = new Box();  // Raw type of the generic type Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;  // warning: unchecked conversion</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Erasure"><a href="#Type-Erasure" class="headerlink" title="Type Erasure"></a>Type Erasure</h3><ol>
+<li><p>During the type erasure process, the Java compiler erases all type parameters and replaces each with its <strong>first bound</strong> if the type parameter is bounded, or <strong>Object</strong> if the type parameter is unbounded.</p>
+</li>
+<li><p>Bridge Method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Node&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    public T data;</div><div class="line"></div><div class="line">    public Node(T data) &#123; this.data = data; &#125;</div><div class="line"></div><div class="line">    public void setData(T data) &#123;</div><div class="line">        System.out.println(&quot;Node.setData&quot;);</div><div class="line">        this.data = data;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class MyNode extends Node&lt;Integer&gt; &#123;</div><div class="line">    public MyNode(Integer data) &#123; super(data); &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> After type erasure, the Node method becomes <code>setData(Object)</code> and the MyNode method becomes <code>setData(Integer)</code>. Therefore, the MyNode setData method does not override the Node setData method.</p>
+<p> To solve this problem, a Java compiler generates a <strong>bridge method</strong>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 擦除后的MyNode类</div><div class="line">class MyNode extends Node &#123;</div><div class="line"></div><div class="line">    // 编译器生成的桥接方法</div><div class="line">    public void setData(Object data) &#123;</div><div class="line">        setData((Integer) data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Subtypes-amp-Inheritance"><a href="#Subtypes-amp-Inheritance" class="headerlink" title="Subtypes &amp; Inheritance"></a>Subtypes &amp; Inheritance</h3><ol>
+<li><p>Given two concrete types A and B, <code>MyClass&lt;A&gt;</code> has no relationship to <code>MyClass&lt;B&gt;</code>, their common parent is <code>Object</code>.</p>
+</li>
+<li><p>So long as you do not vary the type argument, the subtyping relationship is preserved between the types.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line"> 	    void setPayload(int index, P val);</div><div class="line"> 	    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><ol>
+<li><p>The inference algorithm tries to find the <strong>most specific</strong> type that works with all of the arguments.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; T pick(T a1, T a2) &#123; return a2; &#125;</div><div class="line">Serializable s = pick(&quot;d&quot;, new ArrayList&lt;String&gt;());  // 推断T的类型为Serializable</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>The inference algorithm uses only <strong>invocation arguments</strong>, <strong>target types</strong>, and possibly an obvious <strong>expected return type</strong> to infer types.</p>
+<p> Consider the following method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/* static &lt;T&gt; List&lt;T&gt; emptyList(); */</div><div class="line"></div><div class="line">void processStringList(List&lt;String&gt; stringList) &#123; ... &#125;</div><div class="line"></div><div class="line">/* processStringList(Collections.emptyList());  // won&apos;t compile before Java 8 */</div><div class="line">processStringList(Collections.&lt;String&gt;emptyList();</div></pre></td></tr></table></figure>
+</li>
+<li><p>To take advantage of type inference during generic class instantiation, you must use the diamond <code>&lt;&gt;</code> instead of raw type.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap(); // unchecked conversion warning */</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Bounded-Type-Parameters"><a href="#Bounded-Type-Parameters" class="headerlink" title="Bounded Type Parameters"></a>Bounded Type Parameters</h3><ol>
+<li><p>To declare a bounded type parameter, list the type parameter’s name, followed by the <code>extends</code> keyword, followed by its <strong>upper bound</strong>.</p>
+</li>
+<li><p>A type parameter can have multiple bounds. If one of the bounds is a <strong>class</strong>, it must be specified first.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class A &#123; ... &#125;</div><div class="line">interface B &#123; ... &#125;</div><div class="line">interface C &#123; ... &#125;</div><div class="line"></div><div class="line">class D &lt;T extends A &amp; B &amp; C&gt; &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Generic Methods and Bounded Type Parameters</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Wildcards"><a href="#Wildcards" class="headerlink" title="Wildcards"></a>Wildcards</h3><p>The wildcard can be used as the type of a parameter, field, or local variable; sometimes as a return type (though it is better programming practice to be more specific).</p>
+<ol>
+<li><p>Upper Bounded Wildcards: <code>&lt;? extends A&gt;</code>.</p>
+</li>
+<li><p>Unbounded Wildcards: <code>&lt;?&gt;</code>.</p>
+<p> <code>?</code>实际上表示<code>? extends Object</code>。它表示某种类型，但我们并不知道具体是哪一种类型。</p>
+<p> List&lt;Object&gt; and List&lt;?&gt; are not the same. You can insert an Object, or any subtype of Object, into a List&lt;Object&gt;. But you can only insert <code>null</code> into a List&lt;?&gt; (因为不知道List的类型参数具体是什么).</p>
+</li>
+<li><p>Lower Bounded Wildcards: <code>&lt;? super A&gt;</code>.</p>
+</li>
+<li><p>In some cases, the compiler infers the type of a wildcard, this scenario is known as <strong>wildcard capture</strong>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。</p>
+<p> You can fix it by writing a private helper method which captures the wildcard.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WildcardFixed &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        fooHelper(i);  // OK，因为fooHelper的参数可以是任意类型的List</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // Helper method</div><div class="line">    private &lt;T&gt; void fooHelper(List&lt;T&gt; l) &#123;</div><div class="line">        l.set(0, l.get(0));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/09/28/Java Generic/" class="archive-article-date">
+  	<time datetime="2016-09-28T11:19:50.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-09-28</time>
+</a>
+      
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/27/Java Nested Classes/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java Nested Classes</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Henson
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/"
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">Chasing the Sun~</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
