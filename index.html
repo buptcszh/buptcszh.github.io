@@ -342,7 +342,7 @@
 <li><p>Lower Bounded Wildcards: <code>&lt;? super A&gt;</code>.</p>
 </li>
 <li><p>In some cases, the compiler infers the type of a wildcard, this scenario is known as <strong>wildcard capture</strong>.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">       void foo(List&lt;?&gt; i) &#123;</div><div class="line">           i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <pre><code>在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。
