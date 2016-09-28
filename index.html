@@ -235,6 +235,181 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/28/Java Generic/" itemprop="url">
+                  Java Generic
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T19:19:50+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.</p>
+<p>Therefore, the <code>T</code> in <code>Foo&lt;T&gt;</code> is a type parameter and the <code>String</code> in <code>Foo&lt;String&gt;</code> is a type argument.</p>
+<h3 id="Raw-Types"><a href="#Raw-Types" class="headerlink" title="Raw Types"></a>Raw Types</h3><ol>
+<li><p>A raw type is the name of a generic class or interface without any type arguments.</p>
+</li>
+<li><p>For backward compatibility, assigning a parameterized type to its raw type is allowed. But if you assign a raw type to a parameterized type, you get a warning.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;  // OK</div><div class="line"></div><div class="line">Box rawBox = new Box();  // Raw type of the generic type Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;  // warning: unchecked conversion</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Erasure"><a href="#Type-Erasure" class="headerlink" title="Type Erasure"></a>Type Erasure</h3><ol>
+<li><p>During the type erasure process, the Java compiler erases all type parameters and replaces each with its <strong>first bound</strong> if the type parameter is bounded, or <strong>Object</strong> if the type parameter is unbounded.</p>
+</li>
+<li><p>Bridge Method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Node&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    public T data;</div><div class="line"></div><div class="line">    public Node(T data) &#123; this.data = data; &#125;</div><div class="line"></div><div class="line">    public void setData(T data) &#123;</div><div class="line">        System.out.println(&quot;Node.setData&quot;);</div><div class="line">        this.data = data;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class MyNode extends Node&lt;Integer&gt; &#123;</div><div class="line">    public MyNode(Integer data) &#123; super(data); &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> After type erasure, the Node method becomes <code>setData(Object)</code> and the MyNode method becomes <code>setData(Integer)</code>. Therefore, the MyNode setData method does not override the Node setData method.</p>
+<p> To solve this problem, a Java compiler generates a <strong>bridge method</strong>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 擦除后的MyNode类</div><div class="line">class MyNode extends Node &#123;</div><div class="line"></div><div class="line">    // 编译器生成的桥接方法</div><div class="line">    public void setData(Object data) &#123;</div><div class="line">        setData((Integer) data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Subtypes-amp-Inheritance"><a href="#Subtypes-amp-Inheritance" class="headerlink" title="Subtypes &amp; Inheritance"></a>Subtypes &amp; Inheritance</h3><ol>
+<li><p>Given two concrete types A and B, <code>MyClass&lt;A&gt;</code> has no relationship to <code>MyClass&lt;B&gt;</code>, their common parent is <code>Object</code>.</p>
+</li>
+<li><p>So long as you do not vary the type argument, the subtyping relationship is preserved between the types.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line"> 	    void setPayload(int index, P val);</div><div class="line"> 	    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><ol>
+<li><p>The inference algorithm tries to find the <strong>most specific</strong> type that works with all of the arguments.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; T pick(T a1, T a2) &#123; return a2; &#125;</div><div class="line">Serializable s = pick(&quot;d&quot;, new ArrayList&lt;String&gt;());  // 推断T的类型为Serializable</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>The inference algorithm uses only <strong>invocation arguments</strong>, <strong>target types</strong>, and possibly an obvious <strong>expected return type</strong> to infer types.</p>
+<p> Consider the following method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/* static &lt;T&gt; List&lt;T&gt; emptyList(); */</div><div class="line"></div><div class="line">void processStringList(List&lt;String&gt; stringList) &#123; ... &#125;</div><div class="line"></div><div class="line">/* processStringList(Collections.emptyList());  // won&apos;t compile before Java 8 */</div><div class="line">processStringList(Collections.&lt;String&gt;emptyList();</div></pre></td></tr></table></figure>
+</li>
+<li><p>To take advantage of type inference during generic class instantiation, you must use the diamond <code>&lt;&gt;</code> instead of raw type.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap(); // unchecked conversion warning */</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Bounded-Type-Parameters"><a href="#Bounded-Type-Parameters" class="headerlink" title="Bounded Type Parameters"></a>Bounded Type Parameters</h3><ol>
+<li><p>To declare a bounded type parameter, list the type parameter’s name, followed by the <code>extends</code> keyword, followed by its <strong>upper bound</strong>.</p>
+</li>
+<li><p>A type parameter can have multiple bounds. If one of the bounds is a <strong>class</strong>, it must be specified first.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class A &#123; ... &#125;</div><div class="line">interface B &#123; ... &#125;</div><div class="line">interface C &#123; ... &#125;</div><div class="line"></div><div class="line">class D &lt;T extends A &amp; B &amp; C&gt; &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Generic Methods and Bounded Type Parameters</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Wildcards"><a href="#Wildcards" class="headerlink" title="Wildcards"></a>Wildcards</h3><p>The wildcard can be used as the type of a parameter, field, or local variable; sometimes as a return type (though it is better programming practice to be more specific).</p>
+<ol>
+<li><p>Upper Bounded Wildcards: <code>&lt;? extends A&gt;</code>.</p>
+</li>
+<li><p>Unbounded Wildcards: <code>&lt;?&gt;</code>.</p>
+<p> <code>?</code>实际上表示<code>? extends Object</code>。它表示某种类型，但我们并不知道具体是哪一种类型。</p>
+<p> List<object> and List&lt;?&gt; are not the same. You can insert an Object, or any subtype of Object, into a List<object>. But you can only insert null into a List&lt;?&gt; (因为不知道List的类型参数具体是什么).</object></object></p>
+</li>
+<li><p>Lower Bounded Wildcards: <code>&lt;? super A&gt;</code>.</p>
+</li>
+<li><p>In some cases, the compiler infers the type of a wildcard, this scenario is known as <strong>wildcard capture</strong>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">       void foo(List&lt;?&gt; i) &#123;</div><div class="line">           i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">       &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。
+
+You can fix it by writing a private helper method which captures the wildcard.
+
+```
+public class WildcardFixed {
+    void foo(List&lt;?&gt; i) {
+        fooHelper(i);  // OK，因为fooHelper的参数可以是任意类型的List
+    }
+
+    // Helper method
+    private &lt;T&gt; void fooHelper(List&lt;T&gt; l) {
+        l.set(0, l.get(0));
+    }
+}
+```    
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/Java Nested Classes/" itemprop="url">
                   Java Nested Classes
                 </a>
@@ -1324,7 +1499,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
