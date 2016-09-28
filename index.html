@@ -172,7 +172,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-28T19:19:50+08:00" content="2016-09-28">
               2016-09-28
             </time>
@@ -343,14 +343,9 @@
 </li>
 <li><p>In some cases, the compiler infers the type of a wildcard, this scenario is known as <strong>wildcard capture</strong>.</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。
-
-You can fix it by writing a private helper method which captures the wildcard.
-
-```
-public class WildcardFixed {
+<p> 在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。</p>
+<p> You can fix it by writing a private helper method which captures the wildcard.</p>
+<pre><code>public class WildcardFixed {
     void foo(List&lt;?&gt; i) {
         fooHelper(i);  // OK，因为fooHelper的参数可以是任意类型的List
     }
@@ -360,8 +355,9 @@ public class WildcardFixed {
         l.set(0, l.get(0));
     }
 }
-```    
-</code></pre>
+</code></pre></li>
+</ol>
+
           
         
       
@@ -423,7 +419,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-27T19:16:54+08:00" content="2016-09-27">
               2016-09-27
             </time>
@@ -570,7 +566,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-27T00:40:49+08:00" content="2016-09-27">
               2016-09-27
             </time>
@@ -703,7 +699,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T22:10:55+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -816,7 +812,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -1034,7 +1030,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T17:41:00+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -1378,7 +1374,7 @@ public class WildcardFixed {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-08T17:29:03+08:00" content="2016-09-08">
               2016-09-08
             </time>
@@ -1500,7 +1496,7 @@ public class WildcardFixed {
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -1547,7 +1543,7 @@ public class WildcardFixed {
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
