@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Henson的小窝</title>
+  <title>java类的执行过程 | Henson的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java类的执行过程加载
+  <meta name="description" content="加载
 通过一个类的全限定名来获取定义此类的二进制字节流。
 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。
 在内存中生成一个代表这个类的Class对象。
@@ -20,12 +20,12 @@
 
 创建类的实例。
 static方法被调用。
-stati">
+static域被赋值或使用 (">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Henson的小窝">
+<meta property="og:title" content="java类的执行过程">
 <meta property="og:url" content="http://henson.com/2016/10/09/java类的执行过程/index.html">
 <meta property="og:site_name" content="Henson的小窝">
-<meta property="og:description" content="Java类的执行过程加载
+<meta property="og:description" content="加载
 通过一个类的全限定名来获取定义此类的二进制字节流。
 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。
 在内存中生成一个代表这个类的Class对象。
@@ -39,11 +39,11 @@ stati">
 
 创建类的实例。
 static方法被调用。
-stati">
-<meta property="og:updated_time" content="2016-10-09T07:15:55.000Z">
+static域被赋值或使用 (">
+<meta property="og:updated_time" content="2016-10-09T07:19:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Henson的小窝">
-<meta name="twitter:description" content="Java类的执行过程加载
+<meta name="twitter:title" content="java类的执行过程">
+<meta name="twitter:description" content="加载
 通过一个类的全限定名来获取定义此类的二进制字节流。
 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。
 在内存中生成一个代表这个类的Class对象。
@@ -57,7 +57,7 @@ stati">
 
 创建类的实例。
 static方法被调用。
-stati">
+static域被赋值或使用 (">
   
     <link rel="alternative" href="/atom.xml" title="Henson的小窝" type="application/atom+xml">
   
@@ -175,18 +175,28 @@ stati">
       <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java类的执行过程
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Java类的执行过程"><a href="#Java类的执行过程" class="headerlink" title="Java类的执行过程"></a>Java类的执行过程</h3><h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><ul>
+        <h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ul>
 <li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
 <li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
 <li>在内存中生成一个代表这个类的Class对象。</li>
 </ul>
-<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>这个过程包括验证、准备、解析符号引用3个阶段。</p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>这个过程包括验证、准备、解析符号引用3个阶段。</p>
 <ul>
 <li>准备阶段为static变量在<strong>方法区</strong>中分配内存并设置初始值。</li>
 </ul>
-<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><ol>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ol>
 <li><p>初始化在以下4种情况之前发生：</p>
 <ul>
 <li>创建类的实例。</li>
@@ -206,7 +216,8 @@ stati">
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">interface I &#123;</div><div class="line">       int i = 1, ii = Test.out(&quot;ii&quot;, 2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface J extends I &#123;</div><div class="line">       int j = Test.out(&quot;j&quot;, 3), jj = Test.out(&quot;jj&quot;, 4);</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface K extends J &#123;</div><div class="line">       int k = Test.out(&quot;k&quot;, 5);</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Test &#123;</div><div class="line">       public static void main(String[] args) &#123;</div><div class="line">           System.out.println(J.i);  // 只会导致I的初始化，但i是常量。</div><div class="line">           System.out.println(K.j);  // j虽然是static final类型，但右值是表达式。</div><div class="line">       &#125;</div><div class="line">   </div><div class="line">       static int out(String s, int i) &#123;</div><div class="line">           System.out.println(s + &quot;=&quot; + i);</div><div class="line">           return i;</div><div class="line">   	&#125;</div><div class="line">&#125;</div><div class="line">// 1 j=3 jj=4 3</div></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="使用与卸载"><a href="#使用与卸载" class="headerlink" title="使用与卸载"></a>使用与卸载</h4><h3 id="Java和C-多态的区别"><a href="#Java和C-多态的区别" class="headerlink" title="Java和C++多态的区别"></a>Java和C++多态的区别</h3><ol>
+<h3 id="使用与卸载"><a href="#使用与卸载" class="headerlink" title="使用与卸载"></a>使用与卸载</h3><hr>
+<h3 id="Java和C-多态的区别"><a href="#Java和C-多态的区别" class="headerlink" title="Java和C++多态的区别"></a>Java和C++多态的区别</h3><ol>
 <li><p>Java中非private、static、final方法都是动态绑定的，而C++中只有虚方法是动态绑定的。</p>
 </li>
 <li><p>单继承情况下，两者都是通过方法表的偏移量来调用具体的方法。</p>
