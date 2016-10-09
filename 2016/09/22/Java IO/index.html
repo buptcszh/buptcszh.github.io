@@ -3,7 +3,7 @@
 </li>
 <li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
 <p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte b1 = 32; </div><div class="line">byte b2 = 33;</div><div class="line">byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">byte</span> b1 = <span class="number">32</span>; </div><div class="line"><span class="keyword">byte</span> b2 = <span class="number">33</span>;</div><div class="line"><span class="keyword">byte</span> b3 = b1 + b2;  <span class="comment">// 结果是int类型变量，编译器会报错</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>unicode是字符集 (2 bytes)，而不是字符的编码方式。</p>
 <ul>
@@ -42,7 +42,7 @@
 <p> <code>void write(byte[] data)</code>将几个字节的数据写入到输出流。</p>
 </li>
 <li><p>并非所有的流都需要被<code>close</code>，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">finally &#123;</div><div class="line">    if (out != null) &#123;</div><div class="line">        try &#123;</div><div class="line">            out.close();</div><div class="line">        &#125;</div><div class="line">        catch(IOException ex) &#123;</div><div class="line">            System.err.println(ex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">finally</span> &#123;</div><div class="line">    <span class="keyword">if</span> (out != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            out.close();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">catch</span>(IOException ex) &#123;</div><div class="line">            System.err.println(ex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。</p>
 </li>
@@ -122,7 +122,7 @@
 <li><p>内部使用StringBuffer。</p>
 </li>
 <li><p>String和char[]都是由<strong>unicode字符</strong> (2 bytes，用一个int就可以表示)组成的。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s = &quot;简体中文&quot;;</div><div class="line">StringReader sr = new StringReader(s);</div><div class="line">try &#123;</div><div class="line">       int c;</div><div class="line">       while ((c = sr.read()) != -1) &#123;</div><div class="line">           System.out.println((char) c);</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    catch(IOException ex) &#123;&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s = <span class="string">"简体中文"</span>;</div><div class="line">StringReader sr = <span class="keyword">new</span> StringReader(s);</div><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">       <span class="keyword">int</span> c;</div><div class="line">       <span class="keyword">while</span> ((c = sr.read()) != -<span class="number">1</span>) &#123;</div><div class="line">           System.out.println((<span class="keyword">char</span>) c);</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span>(IOException ex) &#123;&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="FileWriter和FileReader"><a href="#FileWriter和FileReader" class="headerlink" title="FileWriter和FileReader"></a>FileWriter和FileReader</h3><ol>
@@ -193,7 +193,7 @@
 </li>
 <li><p>重命名或移动：</p>
 <p>  <code>boolean renameTo()</code>方法可以重命名或移动一个文件，区别就在于源和目标是否在一个文件夹。如果目标文件存在，则<strong>覆盖</strong>目标文件或因操作失败而返回<code>false</code>。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File src = new File(&quot;src.txt&quot;);</div><div class="line">File des = new File(&quot;des.txt&quot;);</div><div class="line">src.renameTo(des);</div></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File src = <span class="keyword">new</span> File(<span class="string">"src.txt"</span>);</div><div class="line">File des = <span class="keyword">new</span> File(<span class="string">"des.txt"</span>);</div><div class="line">src.renameTo(des);</div></pre></td></tr></table></figure>
 <p>  <strong>没有copy方法。</strong></p>
 </li>
 <li><p>删除：</p>
@@ -208,7 +208,7 @@
 <p>  <code>static File createTempFile(String prefix, String suffix[, File directory])</code>方法可以创建一个以prefix为前缀、suffix为后缀的临时文件。</p>
 <p>  如果suffix为null，则会使用<code>.tmp</code>为后缀。</p>
 <p>  默认的临时文件夹路径保存在<code>java.io.tmpdir</code>属性中。</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File cwd = new File(System.getProperty(&quot;user.dir&quot;));</div><div class="line">File temp = File.createTempFile(&quot;rus&quot;, &quot;.tmp&quot;, cwd);</div></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File cwd = <span class="keyword">new</span> File(System.getProperty(<span class="string">"user.dir"</span>));</div><div class="line">File temp = File.createTempFile(<span class="string">"rus"</span>, <span class="string">".tmp"</span>, cwd);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -227,7 +227,7 @@
 </ul>
 </li>
 <li><p>FilenameFilter是一个接口，需要实现<code>boolean accept(File directory, String name)</code>方法。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class HTMLFilter implements FilenameFilter &#123;</div><div class="line">    public boolean accept(File directory, String name) &#123;</div><div class="line">        if (name.endsWith(&quot;.html&quot;)) return true;</div><div class="line">        if (name.endsWith(&quot;.htm&quot;)) return true;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HTMLFilter</span> <span class="keyword">implements</span> <span class="title">FilenameFilter</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">accept</span><span class="params">(File directory, String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (name.endsWith(<span class="string">".html"</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span> (name.endsWith(<span class="string">".htm"</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p> FileFilter接口与此类似，需要实现<code>boolean accept(File pathname)</code>方法。</p>
 </li>
 <li><p>FileDescriptor类用来表示一个<strong>已打开</strong>的文件或socket。</p>
@@ -249,4 +249,4 @@
 <p><code>int skipBytes(int n)</code>方法试图将文件指针向后移动n个字节，返回实际移动的字节数。</p>
 </li>
 </ol>
-</div></article></div></section><footer><div class="paginator"><a href="/2016/09/22/Java Collections/" class="prev">PREV</a><a href="/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/" class="next">NEXT</a></div><div class="copyright"><p>© 2016 <a href="http://henson.com">Henson</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/09/22/Java Collections/" class="prev">PREV</a></div><div class="copyright"><p>© 2016 <a href="http://henson.com">Henson</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
