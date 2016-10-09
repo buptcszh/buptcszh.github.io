@@ -1,20 +1,126 @@
-extends partial/layout
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Java Collections · Henson的博客</title><meta name="description" content="Java Collections - Henson"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://henson.com/atom.xml" title="Henson的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/u/1953093757" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/buptcszh" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Java Collections</h1><div class="post-info">Sep 22, 2016</div><div class="post-content"><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ol>
+<li><p>ArrayList</p>
+<ul>
+<li>permit <code>null</code>.</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new ArrayList(...))</code></p>
+</li>
+<li><p>an application can increase the capacity of an ArrayList instance before adding a large number of elements using the <code>ensureCapacity</code> operation.</p>
+<p>  <code>ensureCapacity(int minCapacity)</code></p>
+</li>
+</ul>
+</li>
+<li><p>Vector</p>
+<ul>
+<li>synchronized.</li>
+</ul>
+</li>
+<li><p>Stack</p>
+<ul>
+<li>extends class <code>Vector</code>.</li>
+<li>a more complete and consistent set of LIFO stack operations is provided by the <code>Deque</code> interface and its implementations.</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<p> see also <code>Queue</code>.</p>
+</li>
+</ol>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ol>
+<li><p>Hashtable</p>
+<ul>
+<li>the keys must implement the hashCode method and the equals method.</li>
+<li>only <strong>non-null</strong> object can be used as a key or as a value.</li>
+<li><p>synchronized.</p>
+<p>  <code>Hashtable(int initialCapacity, float loadFactor=.75)</code></p>
+</li>
+</ul>
+</li>
+<li><p>HashMap</p>
+<ul>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>not synchronized.</p>
+<p>  <code>Map m = Collections.synchronizedMap(new HashMap(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>LinkedHashMap</p>
+<ul>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>maintains a <strong>doubly-linked list</strong> running through all of its entries which defines the iteration ordering (<strong>insertion-order</strong> or <strong>access order</strong> which its entries were last accessed, from least-recently accessed to most-recently. This is well-suited to building LRU caches).</p>
+<p>  <code>LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</code></p>
+</li>
+<li><p>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">    return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>not synchronized.</p>
+</li>
+</ul>
+</li>
+<li><p>TreeMap</p>
+<ul>
+<li>the implementation based on <strong>Red-Black tree</strong>.</li>
+<li>permits <code>null</code> values.</li>
+<li>sorted according to the <strong>natural ordering</strong> of its keys, or by a <code>Comparator</code> provided at map creation time.</li>
+<li>the ordering maintained by a sorted map must be consistent with <code>equals</code> if this sorted map is to correctly implement the Map interface.</li>
+<li><p>not synchronized.</p>
+<p>  <code>SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>ConcurrentHashMap</p>
+</li>
+</ol>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
+<li><p>Queue</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><tr><td></td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>add(e)</td><td>offer(e)</td></tr><tr><td>Remove</td><td>remove()</td><td>poll()</td></tr><tr><td>Examine</td><td>element()</td><td>peek()</td></tr></table>
 
-block site_title
-    != page.title + " · " + config.title
+<ul>
+<li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
+</ul>
+</li>
+<li><p>PriorityQueue</p>
+<ul>
+<li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
+<p>  <code>public PriorityQueue(Comparator&lt;? super E&gt; comparator)</code></p>
+</li>
+<li>not synchronized.</li>
+</ul>
+</li>
+<li><p>Deque</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><tr><td></td><td>Head</td><td></td><td>Tail</td><td></td></tr><tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>addFirst(e)</td><td>offerFirst(e)</td><td>addLast(e)</td><td>offerLast(e)</td></tr><tr><td>Remove</td><td>removeFirst()</td><td>pollFirst()</td><td>removeLast()</td><td>pollLast()</td></tr><tr><td>Examine</td><td>getFirst()</td><td>peekFirst()</td><td>getLast()</td><td>peekLast()</td></tr></table>
 
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
+<ul>
+<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
+</ul>
+</li>
+<li><p>ArrayDeque</p>
+<ul>
+<li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
+<li><code>null</code> elements are prohibited.</li>
+<li>not thread-safe.</li>
+<li>faster than <code>Stack</code> when used as a stack, and faster than <code>LinkedList</code> when used as a queue.</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
+<li>doubly-linked list implementation of the <code>List</code> and <code>Deque</code> interfaces.</li>
+<li>permits all elements (including <code>null</code>).</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new LinkedList(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>BlockingQueue</p>
+<p> the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
+ <table><tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Blocks</td><td>Times out</td></tr><tr><td>Insert</td><td>add(e)</td><td>offer(e)</td><td>put(e)</td><td>offer(e, time, unit)</td></tr><tr><td>Remove</td><td>remove()</td><td>poll()</td><td>take()</td><td>poll(time, unit)</td></tr><tr><td>Examine</td><td>element()</td><td>peek()</td><td>not applicable</td><td>not applicable</td></tr></table>
 
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<ul>
+<li>does not accept <code>null</code> elements.</li>
+<li>thread-safe.</li>
+<li>designed to be used primarily for producer-consumer queues. </li>
+</ul>
+</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/09/22/分类器评价指标/" class="prev">上一篇</a><a href="/2016/09/22/Java IO/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 <a href="http://henson.com">Henson</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

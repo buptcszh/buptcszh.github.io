@@ -1,20 +1,22 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-block pagination
-    include mixins/paginator
-    +post()
-    include partial/comment
-
-block copyright
-    include partial/copyright
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> On Bottleneck-Aware Arrangement for Event-Based Social Networks · Henson的博客</title><meta name="description" content="On Bottleneck-Aware Arrangement for Event-Based Social Networks - Henson"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://henson.com/atom.xml" title="Henson的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/u/1953093757" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/buptcszh" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">On Bottleneck-Aware Arrangement for Event-Based Social Networks</h1><div class="post-info">Sep 8, 2016</div><div class="post-content"><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Most existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.</p>
+<p><a href="http://www.cs.ubc.ca/~keqianli/papers/On_Social_Event_Organization_papers.pdf" target="_blank" rel="external">On Social Event Organization</a> introduces the <strong>social event organization</strong> problem, but it neglects the spatial influence between activities and users.</p>
+<p>Therefore, this paper introduced a novel social event arrangement strategy, called <strong>bottleneck-aware social event arrangement(BSEA)</strong>, it not only consider <em>location information</em>, <em>similarity of attributes</em> and <em>social friendship</em>, but also guarantees a balanced satisfactions in different activities in a <em>global optimal perspective</em></p>
+<ul>
+<li>we assume that each activity/user includes a profile, which consists of a list of attributes.</li>
+<li><strong>capacity condition</strong>: each activity includes a capacity.</li>
+<li><strong>social friendship constraint</strong>: each user in one activity has at least one friend who is also assigned to the same activity.</li>
+</ul>
+<h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><ul>
+<li><strong>Utility Function</strong><br>$$\mu(a,u)=\alpha(1-\frac{D(l_a,l_u)}{MaxD})+(1-\alpha)sim(t_a,t_u)$$</li>
+<li><strong>Average Utility of An Activity</strong><br>$$Ave_M(a)=\frac{\sum_{u\in U,(a,u)\in M}\mu(a,u)}{|M(a)|}$$</li>
+</ul>
+<p>BSEA problem is to find an arrangement M among activities and users to \(max\;min_{a_i\in A \land M(a_i)\not =\emptyset}{Ave(a_i)}\)</p>
+<h3 id="Solutions-for-BSEA"><a href="#Solutions-for-BSEA" class="headerlink" title="Solutions for BSEA"></a>Solutions for BSEA</h3><ul>
+<li><strong>Random:</strong><br>visit each activity in a random order, and visit each user that has not yet been arranged to any activity with probalility \(\frac{\theta}{|U|}\), where\(\theta=\lfloor |U|\,/\,|A|\rfloor\)</li>
+<li><strong>Greedy Algorithm:</strong><br>try to arrange a new user to an activity that curently has the lowest average utility value(or the one that will still have the lowest averate utility value even such new arrangement is made if there are multiple activities sharing the same lowest average utility value).</li>
+<li><strong>Random+Greedy Algorithm:</strong><br>similar to Random, except that visit each unarranged u in non-ascending order of \(\mu(a_i,u)\).</li>
+</ul>
+<h3 id="Experimental-Evaluation"><a href="#Experimental-Evaluation" class="headerlink" title="Experimental Evaluation"></a>Experimental Evaluation</h3><p>Evaluate proposed three algorithms interms of <em>Min Ave</em>, <em>running time</em> and <em>memory cost</em> via three parameters: <em>capacity \(\delta\)</em>, <em>the density of graph</em> and <em>balance parameter \(\alpha\)</em></p>
+<p><strong>Datasets:</strong> Meetup dataset and synthetic dataset.</p>
+<p>Note that Meetup dataset does not contain social information, this paper generate social graphs using the <em>python gragh library</em>.</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></div></article></div></section><footer><div class="paginator"><a href="/2016/09/22/Java IO/" class="prev">上一篇</a></div><div class="copyright"><p>© 2016 <a href="http://henson.com">Henson</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

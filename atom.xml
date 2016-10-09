@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Henson的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://henson.com/"/>
+  <updated>2016-10-09T07:45:18.000Z</updated>
+  <id>http://henson.com/</id>
+  
+  <author>
+    <name>Henson</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java类的执行过程</title>
+    <link href="http://henson.com/2016/10/09/java%E7%B1%BB%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/"/>
+    <id>http://henson.com/2016/10/09/java类的执行过程/</id>
+    <published>2016-10-09T07:11:36.000Z</published>
+    <updated>2016-10-09T07:45:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ul>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在内存中生成一个代表这个类的Class对象。</li>
+</ul>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>这个过程包括验证、准备、解析符号引用3个阶段。</p>
+<ul>
+<li>准备阶段为static变量在<strong>方法区</strong>中分配内存并设置初始值。</li>
+</ul>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ol>
+<li><p>初始化在以下4种情况之前发生：</p>
+<ul>
+<li>创建类的实例。</li>
+<li>static方法被调用。</li>
+<li>static域被赋值或使用 (常量除外)。</li>
+<li>有assert方法被执行。</li>
+</ul>
+</li>
+<li><p>final域不会被初始化为默认值，因此必须被赋初值 (声明时、代码块中、构造函数中)。</p>
+</li>
+<li><p>父类static域 &gt; 子类static域 &gt; [父类普通域 &gt; 父类构造函数 &gt; 子类普通域 &gt; 子类构造函数]</p>
+<p> 后面只有创建类的实例时才会进行，另外各个域按照代码的顺序执行。</p>
+</li>
+<li><p>引用static域只会导致实际声明该域的类或接口的初始化。</p>
+</li>
+<li><p>子接口的初始化不会导致父接口的初始化。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">interface I &#123;</div><div class="line">       int i = 1, ii = Test.out(&quot;ii&quot;, 2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface J extends I &#123;</div><div class="line">       int j = Test.out(&quot;j&quot;, 3), jj = Test.out(&quot;jj&quot;, 4);</div><div class="line">&#125;</div><div class="line"></div><div class="line">interface K extends J &#123;</div><div class="line">       int k = Test.out(&quot;k&quot;, 5);</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Test &#123;</div><div class="line">       public static void main(String[] args) &#123;</div><div class="line">           System.out.println(J.i);  // 只会导致I的初始化，但i是常量。</div><div class="line">           System.out.println(K.j);  // j虽然是static final类型，但右值是表达式。</div><div class="line">       &#125;</div><div class="line">   </div><div class="line">       static int out(String s, int i) &#123;</div><div class="line">           System.out.println(s + &quot;=&quot; + i);</div><div class="line">           return i;</div><div class="line">   	&#125;</div><div class="line">&#125;</div><div class="line">// 1 j=3 jj=4 3</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="使用与卸载"><a href="#使用与卸载" class="headerlink" title="使用与卸载"></a>使用与卸载</h3><hr>
+<h3 id="Java和C-多态的区别"><a href="#Java和C-多态的区别" class="headerlink" title="Java和C++多态的区别"></a>Java和C++多态的区别</h3><ol>
+<li><p>Java中非private、static、final方法都是动态绑定的，而C++中只有虚方法是动态绑定的。</p>
+</li>
+<li><p>单继承情况下，两者都是通过方法表的偏移量来调用具体的方法。</p>
+</li>
+<li><p>Java在接口调用时采用搜索的方式，效率比实例方法调用要慢。</p>
+</li>
+<li><p>C++多重继承的情况，略。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;加载&quot;&gt;&lt;a href=&quot;#加载&quot; class=&quot;headerlink&quot; title=&quot;加载&quot;&gt;&lt;/a&gt;加载&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;通过一个类的全限定名来获取定义此类的二进制字节流。&lt;/li&gt;
+&lt;li&gt;将这个字节流所代表的静态存储结构转化为方法区的运行时数据结
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java Generic</title>
+    <link href="http://henson.com/2016/09/28/Java%20Generic/"/>
+    <id>http://henson.com/2016/09/28/Java Generic/</id>
+    <published>2016-09-28T11:19:50.000Z</published>
+    <updated>2016-09-28T14:49:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.</p>
+<p>Therefore, the <code>T</code> in <code>Foo&lt;T&gt;</code> is a type parameter and the <code>String</code> in <code>Foo&lt;String&gt;</code> is a type argument.</p>
+<h3 id="Raw-Types"><a href="#Raw-Types" class="headerlink" title="Raw Types"></a>Raw Types</h3><ol>
+<li><p>A raw type is the name of a generic class or interface without any type arguments.</p>
+</li>
+<li><p>For backward compatibility, assigning a parameterized type to its raw type is allowed. But if you assign a raw type to a parameterized type, you get a warning.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Box&lt;String&gt; stringBox = new Box&lt;&gt;();</div><div class="line">Box rawBox = stringBox;  // OK</div><div class="line"></div><div class="line">Box rawBox = new Box();  // Raw type of the generic type Box&lt;T&gt;</div><div class="line">Box&lt;Integer&gt; intBox = rawBox;  // warning: unchecked conversion</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Erasure"><a href="#Type-Erasure" class="headerlink" title="Type Erasure"></a>Type Erasure</h3><ol>
+<li><p>During the type erasure process, the Java compiler erases all type parameters and replaces each with its <strong>first bound</strong> if the type parameter is bounded, or <strong>Object</strong> if the type parameter is unbounded.</p>
+</li>
+<li><p>Bridge Method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Node&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    public T data;</div><div class="line"></div><div class="line">    public Node(T data) &#123; this.data = data; &#125;</div><div class="line"></div><div class="line">    public void setData(T data) &#123;</div><div class="line">        System.out.println(&quot;Node.setData&quot;);</div><div class="line">        this.data = data;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class MyNode extends Node&lt;Integer&gt; &#123;</div><div class="line">    public MyNode(Integer data) &#123; super(data); &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> After type erasure, the Node method becomes <code>setData(Object)</code> and the MyNode method becomes <code>setData(Integer)</code>. Therefore, the MyNode setData method does not override the Node setData method.</p>
+<p> To solve this problem, a Java compiler generates a <strong>bridge method</strong>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 擦除后的MyNode类</div><div class="line">class MyNode extends Node &#123;</div><div class="line"></div><div class="line">    // 编译器生成的桥接方法</div><div class="line">    public void setData(Object data) &#123;</div><div class="line">        setData((Integer) data);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setData(Integer data) &#123;</div><div class="line">        System.out.println(&quot;MyNode.setData&quot;);</div><div class="line">        super.setData(data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Subtypes-amp-Inheritance"><a href="#Subtypes-amp-Inheritance" class="headerlink" title="Subtypes &amp; Inheritance"></a>Subtypes &amp; Inheritance</h3><ol>
+<li><p>Given two concrete types A and B, <code>MyClass&lt;A&gt;</code> has no relationship to <code>MyClass&lt;B&gt;</code>, their common parent is <code>Object</code>.</p>
+</li>
+<li><p>So long as you do not vary the type argument, the subtyping relationship is preserved between the types.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">interface PayloadList&lt;E,P&gt; extends List&lt;E&gt; &#123;</div><div class="line"> 	    void setPayload(int index, P val);</div><div class="line"> 	    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><ol>
+<li><p>The inference algorithm tries to find the <strong>most specific</strong> type that works with all of the arguments.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">static &lt;T&gt; T pick(T a1, T a2) &#123; return a2; &#125;</div><div class="line">Serializable s = pick(&quot;d&quot;, new ArrayList&lt;String&gt;());  // 推断T的类型为Serializable</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>The inference algorithm uses only <strong>invocation arguments</strong>, <strong>target types</strong>, and possibly an obvious <strong>expected return type</strong> to infer types.</p>
+<p> Consider the following method:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/* static &lt;T&gt; List&lt;T&gt; emptyList(); */</div><div class="line"></div><div class="line">void processStringList(List&lt;String&gt; stringList) &#123; ... &#125;</div><div class="line"></div><div class="line">/* processStringList(Collections.emptyList());  // won&apos;t compile before Java 8 */</div><div class="line">processStringList(Collections.&lt;String&gt;emptyList();</div></pre></td></tr></table></figure>
+</li>
+<li><p>To take advantage of type inference during generic class instantiation, you must use the diamond <code>&lt;&gt;</code> instead of raw type.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap(); // unchecked conversion warning */</div><div class="line">Map&lt;String, List&lt;String&gt;&gt; myMap = new HashMap&lt;&gt;();</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Bounded-Type-Parameters"><a href="#Bounded-Type-Parameters" class="headerlink" title="Bounded Type Parameters"></a>Bounded Type Parameters</h3><ol>
+<li><p>To declare a bounded type parameter, list the type parameter’s name, followed by the <code>extends</code> keyword, followed by its <strong>upper bound</strong>.</p>
+</li>
+<li><p>A type parameter can have multiple bounds. If one of the bounds is a <strong>class</strong>, it must be specified first.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class A &#123; ... &#125;</div><div class="line">interface B &#123; ... &#125;</div><div class="line">interface C &#123; ... &#125;</div><div class="line"></div><div class="line">class D &lt;T extends A &amp; B &amp; C&gt; &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Generic Methods and Bounded Type Parameters</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public &lt;T extends Comparable&lt;T&gt;&gt; int countGreaterThan(T[] anArray, T elem) &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Wildcards"><a href="#Wildcards" class="headerlink" title="Wildcards"></a>Wildcards</h3><p>The wildcard can be used as the type of a parameter, field, or local variable; sometimes as a return type (though it is better programming practice to be more specific).</p>
+<ol>
+<li><p>Upper Bounded Wildcards: <code>&lt;? extends A&gt;</code>.</p>
+</li>
+<li><p>Unbounded Wildcards: <code>&lt;?&gt;</code>.</p>
+<p> <code>?</code>实际上表示<code>? extends Object</code>。它表示某种类型，但我们并不知道具体是哪一种类型。</p>
+<p> List&lt;Object&gt; and List&lt;?&gt; are not the same. You can insert an Object, or any subtype of Object, into a List&lt;Object&gt;. But you can only insert <code>null</code> into a List&lt;?&gt; (因为不知道List的类型参数具体是什么).</p>
+</li>
+<li><p>Lower Bounded Wildcards: <code>&lt;? super A&gt;</code>.</p>
+</li>
+<li><p>In some cases, the compiler infers the type of a wildcard, this scenario is known as <strong>wildcard capture</strong>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class WildcardError &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        i.set(0, i.get(0));  // 取出来以后就不能放回去了</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 在这个例子中，编译器会以CAP#1代表List中的类型，而取出来的是Object类型，放回去的时候编译器不能保证类型安全。</p>
+<p> You can fix it by writing a private helper method which captures the wildcard.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class WildcardFixed &#123;</div><div class="line">    void foo(List&lt;?&gt; i) &#123;</div><div class="line">        fooHelper(i);  // OK，因为fooHelper的参数可以是任意类型的List</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // Helper method</div><div class="line">    private &lt;T&gt; void fooHelper(List&lt;T&gt; l) &#123;</div><div class="line">        l.set(0, l.get(0));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“type parameter” and “type argument” are not the same. When coding, one provides type arguments in order to create a parameterized type.&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java Nested Classes</title>
+    <link href="http://henson.com/2016/09/27/Java%20Nested%20Classes/"/>
+    <id>http://henson.com/2016/09/27/Java Nested Classes/</id>
+    <published>2016-09-27T11:16:54.000Z</published>
+    <updated>2016-09-27T16:23:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Nested-Classes"><a href="#Nested-Classes" class="headerlink" title="Nested Classes"></a>Nested Classes</h2><ol>
+<li><p>A nested class can be declared private, public, protected, or package private (Recall that outer classes can only be declared public or package private).</p>
+</li>
+<li><p>“覆盖”内部类不会起什么作用，因为两个内部类是完全独立的两个实体，各自在自己的命名空间内。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class Egg &#123;</div><div class="line">    private Yolk y;</div><div class="line">    protected class Yolk &#123;</div><div class="line">        public Yolk() &#123; print(&quot;Egg.Yolk()&quot;); &#125;</div><div class="line">    &#125;</div><div class="line">    public Egg() &#123;</div><div class="line">        print(&quot;New Egg()&quot;);</div><div class="line">        y = new Yolk();  // new的是自己的Yolk类</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class BigEgg extends Egg &#123;</div><div class="line">    public class Yolk &#123;</div><div class="line">        public Yolk() &#123; print(&quot;BigEgg.Yolk()&quot;; )</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        new BigEgg();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>成员变量和初始化块的初始化 (它们之间的初始化顺序取决于其定义的顺序)先于构造函数。</p>
+</li>
+</ol>
+<h3 id="Static-Nested-Classes"><a href="#Static-Nested-Classes" class="headerlink" title="Static Nested Classes"></a>Static Nested Classes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class OuterClass &#123;</div><div class="line">    ...</div><div class="line">    static class StaticNestedClass &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>A static nested class cannot refer directly to instance variables or methods defined in its enclosing class.</p>
+</li>
+<li><p>Static nested classes are accessed using the enclosing class name.</p>
+<p> <code>OuterClass.StaticNestedClass nestedObject = new OuterClass.StaticNestedClass()</code></p>
+</li>
+</ol>
+<h3 id="Inner-Classes"><a href="#Inner-Classes" class="headerlink" title="Inner Classes"></a>Inner Classes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class OuterClass &#123;</div><div class="line">    ...</div><div class="line">    class InnerClass &#123;</div><div class="line">        ...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>An instance of InnerClass can exist only within an instance of OuterClass.</p>
+<p> <code>OuterClass.InnerClass innerObject = outerObject.new InnerClass()</code></p>
+</li>
+<li><p>It cannot define any <strong>static</strong> members itself.</p>
+</li>
+<li><p>It has direct access to the methods and fields of its enclosing instance.</p>
+</li>
+<li><p>Refer to member variables that enclose larger scopes by the class name to which they belong.</p>
+<p> <code>System.out.println(&quot;ShadowTest.this.x = &quot; + ShadowTest.this.x)</code></p>
+</li>
+<li><p>There are two special kinds of inner classes: <strong>local classes</strong> and <strong>anonymous classes</strong>.</p>
+</li>
+</ol>
+<h4 id="Local-Classes"><a href="#Local-Classes" class="headerlink" title="Local Classes"></a>Local Classes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class LocalClass &#123;</div><div class="line">    static String regex = &quot;[^0-9]&quot;;  </div><div class="line">    public static void validatePhoneNumber(String phoneNumber) &#123;    </div><div class="line">        final int numbe = 10;</div><div class="line">        class PhoneNumber &#123;</div><div class="line">            ...</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>Local classes are classes that are defined in a <strong>block</strong>, which is a group of zero or more statements between balanced braces.</p>
+</li>
+<li><p>It can only access local variables (&amp; parameters) that are declared <strong>final</strong>.</p>
+<p> But starting in Java SE 8, a local class can access local variables and parameters of the enclosing block that are final or effectively final (whose value is never changed after it is initialized).</p>
+</li>
+<li><p>Local classes in <em>static methods</em> can only refer to <strong>static</strong> members of the enclosing class. </p>
+</li>
+<li><p>You cannot declare an interface inside a block, because interfaces are inherently static.</p>
+<p> You can have static members provided that they are <strong>constant</strong> variables.</p>
+</li>
+</ol>
+<h4 id="Anonymous-Classes"><a href="#Anonymous-Classes" class="headerlink" title="Anonymous Classes"></a>Anonymous Classes</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">HelloWorld frenchGreeting = new HelloWorld() &#123;</div><div class="line">    String name = &quot;tout le monde&quot;;</div><div class="line">    public void greet() &#123;</div><div class="line">        greetSomeone(&quot;tout le monde&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>Anonymous classes enable you to declare and instantiate a class at the same time. Use them if you need to <em>use a local class only once</em>.</p>
+</li>
+<li><p>When you implement an interface, there is no constructor, so you use an empty pair of parentheses, as in this example.</p>
+</li>
+<li><p>You cannot declare <strong>constructors</strong> in an anonymous class.</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Nested-Classes&quot;&gt;&lt;a href=&quot;#Nested-Classes&quot; class=&quot;headerlink&quot; title=&quot;Nested Classes&quot;&gt;&lt;/a&gt;Nested Classes&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;A nested clas
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 引用对象</title>
+    <link href="http://henson.com/2016/09/27/Java%20%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://henson.com/2016/09/27/Java 引用对象/</id>
+    <published>2016-09-26T16:40:49.000Z</published>
+    <updated>2016-09-26T16:40:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h2><ol>
+<li><p><code>finalize()</code>方法在对象被GC回收之前调用。该方法 (需要重写)可以使对象重生，然而通常用于回收前的清理工作。</p>
+</li>
+<li><p>该方法抛出的非捕获异常会被忽略，且导致对象的终结过程被中断。</p>
+</li>
+<li><p>一个对象的finalize()方法只会被调用一次。</p>
+</li>
+</ol>
+<h2 id="ReferenceQueue"><a href="#ReferenceQueue" class="headerlink" title="ReferenceQueue"></a>ReferenceQueue</h2><ol>
+<li><p>被注册的<strong>Reference对象</strong>会在对象被GC回收后加入到ReferenceQueue中。</p>
+</li>
+<li><p><code>Reference&lt;? extends T&gt; poll()</code>方法从队列中取出一个Reference对象，没有则返回<code>null</code>。</p>
+</li>
+<li><p><code>Reference&lt;? extends T&gt; remove()</code>与此类似，但它是阻塞调用。</p>
+</li>
+</ol>
+<h2 id="Reference类"><a href="#Reference类" class="headerlink" title="Reference类"></a>Reference类</h2><p>如果一个对象持有强引用，那么它一定不会被GC回收。</p>
+<p><code>T get()</code>方法返回该引用对象所引用的object。</p>
+<h3 id="SoftReference"><a href="#SoftReference" class="headerlink" title="SoftReference"></a>SoftReference</h3><ol>
+<li><p>如果一个对象仅持有软引用，那么它只有在内存不足时才会被GC回收 (标记为finalizable)。</p>
+</li>
+<li><p>如果包装这个对象的SoftReference对象向一个ReferenceQueue注册了的话，那么该<strong>SoftReference对象</strong>会在一段时间之后被加入到队列中。</p>
+<p> <code>SoftReference&lt;VeryBig&gt; sf = new SoftReference&lt;&gt;(new VeryBig(), rq)</code></p>
+</li>
+</ol>
+<h3 id="WeakReference"><a href="#WeakReference" class="headerlink" title="WeakReference"></a>WeakReference</h3><ol>
+<li><p>如果一个对象仅持有弱引用，那么它一定会被GC回收 (标记为finalizable)。</p>
+</li>
+<li><p>如果包装这个对象的WeakReference对象向一个ReferenceQueue注册了的话，那么该<strong>WeakReference对象</strong>会在一段时间之后被加入到队列中。</p>
+<p> <code>WeakReference&lt;VeryBig&gt; wf = new WeakReference&lt;&gt;(new VeryBig(), rq)</code></p>
+</li>
+<li><p>参见<code>WeakHashMap</code>。</p>
+</li>
+</ol>
+<h3 id="PhantomReference"><a href="#PhantomReference" class="headerlink" title="PhantomReference"></a>PhantomReference</h3><ol>
+<li><p>与WeakReference类似，但是它一定要向一个ReferenceQueue注册。</p>
+</li>
+<li><p>调用PhantomReference的get()方法始终返回<code>null</code>。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;finalize方法&quot;&gt;&lt;a href=&quot;#finalize方法&quot; class=&quot;headerlink&quot; title=&quot;finalize方法&quot;&gt;&lt;/a&gt;finalize方法&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;finalize()&lt;/code&gt;方法在对象被
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分类器评价指标</title>
+    <link href="http://henson.com/2016/09/22/%E5%88%86%E7%B1%BB%E5%99%A8%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/"/>
+    <id>http://henson.com/2016/09/22/分类器评价指标/</id>
+    <published>2016-09-22T14:10:55.000Z</published>
+    <updated>2016-09-28T14:52:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li>正例：假设有P个类别为1的样本，称为正例。</li>
+<li>反例：假设有N个类别为0的样本，称为反例。</li>
+<li><code>TP</code>表示正例被判定为正例的样本个数，<code>FP</code>表示反例被判定为正例的样本个数</li>
+<li><code>TN</code>表示反例被判定为反例的样本个数，<code>FN</code>表示正例被判定为反例的样本个数</li>
+</ul>
+<h3 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h3><ol>
+<li><p>精确度 (Precision)</p>
+<p> <code>TP/(TP + FP)</code>，表示被分类器判定的正例中真正的正例所占的比重。</p>
+</li>
+<li><p>准确率 (Accuracy)</p>
+<p> <code>(TP + TN)/(T + P)</code>，表示分类器对整个样本的判定能力。</p>
+</li>
+<li><p>召回率 (Recall)</p>
+<p> <code>TP/(TP + FN)</code>，表示真正的正例中，被分类器正确判断出来的所占的比重。</p>
+</li>
+<li><p>F1值</p>
+<p> <code>2*(准确率 * 召回率)/(准确率 + 召回率)</code></p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;正例：假设有P个类别为1的样本，称为正例。&lt;/li&gt;
+&lt;li&gt;反例：假设有N个类别为0的样本，称为反例。&lt;/li&gt;
+&lt;li&gt;&lt;c
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java Collections</title>
+    <link href="http://henson.com/2016/09/22/Java%20Collections/"/>
+    <id>http://henson.com/2016/09/22/Java Collections/</id>
+    <published>2016-09-22T09:41:00.000Z</published>
+    <updated>2016-09-26T07:29:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ol>
+<li><p>ArrayList</p>
+<ul>
+<li>permit <code>null</code>.</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new ArrayList(...))</code></p>
+</li>
+<li><p>an application can increase the capacity of an ArrayList instance before adding a large number of elements using the <code>ensureCapacity</code> operation.</p>
+<p>  <code>ensureCapacity(int minCapacity)</code></p>
+</li>
+</ul>
+</li>
+<li><p>Vector</p>
+<ul>
+<li>synchronized.</li>
+</ul>
+</li>
+<li><p>Stack</p>
+<ul>
+<li>extends class <code>Vector</code>.</li>
+<li>a more complete and consistent set of LIFO stack operations is provided by the <code>Deque</code> interface and its implementations.</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<p> see also <code>Queue</code>.</p>
+</li>
+</ol>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><ol>
+<li><p>Hashtable</p>
+<ul>
+<li>the keys must implement the hashCode method and the equals method.</li>
+<li>only <strong>non-null</strong> object can be used as a key or as a value.</li>
+<li><p>synchronized.</p>
+<p>  <code>Hashtable(int initialCapacity, float loadFactor=.75)</code></p>
+</li>
+</ul>
+</li>
+<li><p>HashMap</p>
+<ul>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>not synchronized.</p>
+<p>  <code>Map m = Collections.synchronizedMap(new HashMap(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>LinkedHashMap</p>
+<ul>
+<li>permits <code>null</code> values and the <code>null</code> key.</li>
+<li><p>maintains a <strong>doubly-linked list</strong> running through all of its entries which defines the iteration ordering (<strong>insertion-order</strong> or <strong>access order</strong> which its entries were last accessed, from least-recently accessed to most-recently. This is well-suited to building LRU caches).</p>
+<p>  <code>LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)</code></p>
+</li>
+<li><p>the <code>removeEldestEntry(Map.Entry)</code> method may be overridden to impose a policy for removing stale mappings automatically when new mappings are added to the map.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">private static final int MAX_ENTRIES = 100;</div><div class="line">protected boolean removeEldestEntry(Map.Entry eldest) &#123;</div><div class="line">    return size() &gt; MAX_ENTRIES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>not synchronized.</p>
+</li>
+</ul>
+</li>
+<li><p>TreeMap</p>
+<ul>
+<li>the implementation based on <strong>Red-Black tree</strong>.</li>
+<li>permits <code>null</code> values.</li>
+<li>sorted according to the <strong>natural ordering</strong> of its keys, or by a <code>Comparator</code> provided at map creation time.</li>
+<li>the ordering maintained by a sorted map must be consistent with <code>equals</code> if this sorted map is to correctly implement the Map interface.</li>
+<li><p>not synchronized.</p>
+<p>  <code>SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>ConcurrentHashMap</p>
+</li>
+</ol>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ol>
+<li><p>Queue</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><tr><td></td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>add(e)</td><td>offer(e)</td></tr><tr><td>Remove</td><td>remove()</td><td>poll()</td></tr><tr><td>Examine</td><td>element()</td><td>peek()</td></tr></table>
+
+<ul>
+<li>Queue implementations generally do not allow insertion of <code>null</code> elements, although some implementations, such as <strong>LinkedList</strong>, but it should not be inserted into a Queue, as null is also used as a special return value by the <code>poll</code> method to indicate that the queue contains no elements.</li>
+</ul>
+</li>
+<li><p>PriorityQueue</p>
+<ul>
+<li><p>based on a priority <strong>heap</strong>. Ordered according to their natural ordering, or by a <code>Comparator</code> provided at queue construction time.</p>
+<p>  <code>public PriorityQueue(Comparator&lt;? super E&gt; comparator)</code></p>
+</li>
+<li>not synchronized.</li>
+</ul>
+</li>
+<li><p>Deque</p>
+<p> each of these methods exists in two forms: one <strong>throws an exception</strong> if the operation fails, the other <strong>returns a special value</strong> (<code>null</code> or <code>false</code>).</p>
+ <table><tr><td></td><td>Head</td><td></td><td>Tail</td><td></td></tr><tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Throws exception</td><td>Returns special value</td></tr><tr><td>Insert</td><td>addFirst(e)</td><td>offerFirst(e)</td><td>addLast(e)</td><td>offerLast(e)</td></tr><tr><td>Remove</td><td>removeFirst()</td><td>pollFirst()</td><td>removeLast()</td><td>pollLast()</td></tr><tr><td>Examine</td><td>getFirst()</td><td>peekFirst()</td><td>getLast()</td><td>peekLast()</td></tr></table>
+
+<ul>
+<li>this interface provides two methods to remove interior elements, <code>removeFirstOccurrence</code> and <code>removeLastOccurrence</code>.</li>
+</ul>
+</li>
+<li><p>ArrayDeque</p>
+<ul>
+<li><strong>resizable-array</strong> implementation of the <code>Deque</code> interface.</li>
+<li><code>null</code> elements are prohibited.</li>
+<li>not thread-safe.</li>
+<li>faster than <code>Stack</code> when used as a stack, and faster than <code>LinkedList</code> when used as a queue.</li>
+</ul>
+</li>
+<li><p>LinkedList</p>
+<ul>
+<li>doubly-linked list implementation of the <code>List</code> and <code>Deque</code> interfaces.</li>
+<li>permits all elements (including <code>null</code>).</li>
+<li><p>not synchronized.</p>
+<p>  <code>List list = Collections.synchronizedList(new LinkedList(...))</code></p>
+</li>
+</ul>
+</li>
+<li><p>BlockingQueue</p>
+<p> the third method <strong>blocks the current thread</strong> indefinitely until the operation can succeed, and the fourth blocks for only a given maximum time limit before giving up.</p>
+ <table><tr><td></td><td>Throws exception</td><td>Returns special value</td><td>Blocks</td><td>Times out</td></tr><tr><td>Insert</td><td>add(e)</td><td>offer(e)</td><td>put(e)</td><td>offer(e, time, unit)</td></tr><tr><td>Remove</td><td>remove()</td><td>poll()</td><td>take()</td><td>poll(time, unit)</td></tr><tr><td>Examine</td><td>element()</td><td>peek()</td><td>not applicable</td><td>not applicable</td></tr></table>
+
+<ul>
+<li>does not accept <code>null</code> elements.</li>
+<li>thread-safe.</li>
+<li>designed to be used primarily for producer-consumer queues. </li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;List&quot;&gt;&lt;a href=&quot;#List&quot; class=&quot;headerlink&quot; title=&quot;List&quot;&gt;&lt;/a&gt;List&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ArrayList&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;permit &lt;code&gt;null&lt;/code&gt;.&lt;/li&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java IO</title>
+    <link href="http://henson.com/2016/09/22/Java%20IO/"/>
+    <id>http://henson.com/2016/09/22/Java IO/</id>
+    <published>2016-09-22T09:41:00.000Z</published>
+    <updated>2016-09-26T03:21:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本IO"><a href="#基本IO" class="headerlink" title="基本IO"></a>基本IO</h2><ol>
+<li><p>流指<strong>不确定长度的有序bytes</strong>。输入流将数据从外部源输入到java程序，输出流则相反。</p>
+</li>
+<li><p>java中字面量默认为<code>int</code>类型，并且<code>byte</code>、<code>char</code>、<code>int</code>任意两个类型相加的结果都为int类型。</p>
+<p> 不能将<code>int</code>类型的变量直接赋值给<code>byte</code>或<code>char</code>类型。但是<code>byte b = 42</code>是可以的，因为字面量是编译期常量，编译器会自动做类型转换。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">byte b1 = 32; </div><div class="line">byte b2 = 33;</div><div class="line">byte b3 = b1 + b2;  // 结果是int类型变量，编译器会报错</div></pre></td></tr></table></figure>
+</li>
+<li><p>unicode是字符集 (2 bytes)，而不是字符的编码方式。</p>
+<ul>
+<li>代码点：可用于编码字符集的数字。</li>
+<li><p>代码单元：字符编码的基本单元，如UTF-16是2 bytes。</p>
+<p>char存放的是字符的<strong>unicode代码点</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>EOF字符在mac或unix平台下用<code>ctrl-D</code>表示，而在windows平台下用<code>ctrl-Z</code>表示。有时需要在单独的一行中输入这个字符。</p>
+</li>
+<li><p>几乎所有IO方法都会抛出IOException，但是<code>PrintStream</code>和<code>PrintWriter</code>类的方法除外，因为每次调用System.out.println()都用try/catch块包含会很不方便。</p>
+</li>
+<li><p>System.in是<code>InputStream</code>的实例，System.out是<code>PrintStream</code>的实例。</p>
+</li>
+<li><p>在shell中重定向：<code>java OptimumBattingOrder &lt; yankees06.tab &gt; yankees06.out</code></p>
+<p> 在程序内重定向：</p>
+<ul>
+<li><code>System.setIn(InputStream in)</code></li>
+<li><code>System.setOut(PrintStream out)</code></li>
+<li><code>System.setErr(PrintStream err)</code></li>
+</ul>
+</li>
+<li><p><code>System.getProperty(&quot;user.dir&quot;)</code>可以获得当前的工作目录。</p>
+<p><code>System.getProperty(&quot;line.separator&quot;)</code>可以获得系统的行分隔符。</p>
+<ul>
+<li>unix是<code>\n</code></li>
+<li>mac是<code>\r</code></li>
+<li>windows是<code>\r\n</code></li>
+</ul>
+<p><code>System.getProperty(&quot;file.encoding&quot;)</code>可以获得系统默认的编码方式。</p>
+</li>
+</ol>
+<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><h3 id="OutputStream"><a href="#OutputStream" class="headerlink" title="OutputStream"></a>OutputStream</h3><ol>
+<li><p>OutputStream是一个抽象类，需要实现<code>void write(int b)</code>方法。它将一个表示<code>0</code>到<code>255</code>的字节写入到输出流。</p>
+<p> <code>void write(byte[] data)</code>将几个字节的数据写入到输出流。</p>
+</li>
+<li><p>并非所有的流都需要被<code>close</code>，如ByteArrayOutputStream。但是文件和网络连接相关的流一定要关闭。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">finally &#123;</div><div class="line">    if (out != null) &#123;</div><div class="line">        try &#123;</div><div class="line">            out.close();</div><div class="line">        &#125;</div><div class="line">        catch(IOException ex) &#123;</div><div class="line">            System.err.println(ex);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>很多输出流为了提高性能会先将数据写入buffer (与操作系统或硬件的buffer无关)，调用<code>flush()</code>可以强制将数据输出。</p>
+</li>
+</ol>
+<h3 id="InputStream"><a href="#InputStream" class="headerlink" title="InputStream"></a>InputStream</h3><ol>
+<li><p>InputStream是一个抽象类，需要实现<code>int read()</code>方法。它读入一个字节的数据，返回一个<code>0</code>到<code>255</code>的整数。</p>
+<p> <code>int read(byte[] data)</code>将数据读入到一个byte数组里，返回读入的字节数或用<code>-1</code>表示到达流的末尾。</p>
+</li>
+<li><p><code>int available()</code>方法获取被阻塞之前还可以读取的字节数。这个方法需要重写，否则永远返回0。</p>
+</li>
+<li><p><code>long skip(long byteToSkip)</code>方法可以跳过输入流的指定字节数，返回实际跳过的自己数或用<code>-1</code>表示到达流的末尾。</p>
+</li>
+<li><p>并非所有的流都需要被<code>close</code>，如System.in。但是文件和网络连接相关的流一定要关闭。</p>
+</li>
+<li><p><code>void mark(int readLimit)</code>方法可以在流的当前位置做标记，该标记可以持续到读取readLimit个字节以后仍然有效。</p>
+<p> <code>void reset()</code>方法可以使流返回到该标记。</p>
+<p> <code>boolean markSupported()</code>用来判断流是否支持标记。<code>BufferedInputStream</code>和<code>ByteArrayInputStream</code>是两个永远支持标记的输入流。</p>
+</li>
+</ol>
+<h3 id="BufferedOutputStream和BufferedInputStream"><a href="#BufferedOutputStream和BufferedInputStream" class="headerlink" title="BufferedOutputStream和BufferedInputStream"></a>BufferedOutputStream和BufferedInputStream</h3><ol>
+<li><p><code>BufferedInputStream</code>一次读取多个字节放入缓冲区中，那么调用read()方法的时候就可以从这个缓冲区中读取数据而不用进行系统调用了。</p>
+</li>
+<li><p><code>BufferedOutputStream</code>与此类似，它重写了OutputStream中的<code>flush()</code>方法 (父类的这个方法什么都没做)。</p>
+</li>
+</ol>
+<h3 id="DataOutputStream和DataInputStream"><a href="#DataOutputStream和DataInputStream" class="headerlink" title="DataOutputStream和DataInputStream"></a>DataOutputStream和DataInputStream</h3><ol>
+<li><p>提供对字符串、整形、浮点数或其他表示在bytes之上的高层数据进行读写的方法。</p>
+</li>
+<li><p><code>final String readLine()</code>用于读入一行 (以回车、换行、回车/换行对结尾的字符串)，但返回的结果不包括这些行分隔符。</p>
+<p> 这个方法在处理非Latin-1字符集时不能正确的将字节转换成字符，因此推荐使用<strong>BufferedReader</strong>的readLine()方法。</p>
+</li>
+</ol>
+<h3 id="FileOutputStream和FileInputStream"><a href="#FileOutputStream和FileInputStream" class="headerlink" title="FileOutputStream和FileInputStream"></a>FileOutputStream和FileInputStream</h3><p>提供对文件进行读写的方法。</p>
+<h3 id="PrintStream"><a href="#PrintStream" class="headerlink" title="PrintStream"></a>PrintStream</h3><ol>
+<li><p><code>PrintStream(OutputStream out, boolean autoFlush, String encoding)</code></p>
+<ul>
+<li><p>autoFlush为true时 (默认)，当缓冲区满、调用<code>println()</code>方法或遇到<code>\n</code>字符后会自动调用<code>flush()</code>方法 (PrintStream本身没有缓冲区)。</p>
+</li>
+<li><p>encoding指定编码方式。</p>
+</li>
+</ul>
+</li>
+<li><p><code>print(char c)</code>和<code>println(char c)</code>方法会将数据<strong>编码后</strong>再写入底层的输出流，而<code>write(int b)</code>方法写入的就是给定的byte。</p>
+</li>
+<li><p><code>printf(String format, Object... args)</code>方法提供了格式化输出。</p>
+<p> <code>format(String format, Object... args)</code>方法与此类似，但该方法还可以用在<code>Formatter</code>类上。</p>
+</li>
+</ol>
+<h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><h3 id="Writer"><a href="#Writer" class="headerlink" title="Writer"></a>Writer</h3><ol>
+<li><p>Writer是一个抽象类，需要实现<code>void write(char[] text, int offset, int length)</code>方法。它根据指定的编码方式<strong>将字符编码为字节</strong>，写入到底层的输出流。</p>
+</li>
+<li><p><code>append</code>方法与对应的write方法的区别就在于它返回当前Writer，从而允许方法的链式调用。</p>
+</li>
+</ol>
+<h3 id="Reader"><a href="#Reader" class="headerlink" title="Reader"></a>Reader</h3><ol>
+<li><p>Reader是一个抽象类，需要实现<code>int read(char[] text, int offset, int length)</code>方法。它从底层的输入流读入数据，根据指定的编码方式<strong>将字节解码为字符</strong>。</p>
+</li>
+<li><p><code>boolean ready()</code>方法在底层输入流有有效数据时返回true。Reader没有<code>available()</code>方法。</p>
+</li>
+</ol>
+<h3 id="OutputStreamWriter和InputStreamReader"><a href="#OutputStreamWriter和InputStreamReader" class="headerlink" title="OutputStreamWriter和InputStreamReader"></a>OutputStreamWriter和InputStreamReader</h3><p><code>OutputStreamWriter</code>和<code>InputStreamReader</code>负责字符和字节之间的转换。</p>
+<ol>
+<li><p>OutputStreamWriter有两个构造函数：</p>
+<ul>
+<li><p><code>OutputStreamWriter(OutputStream out)</code>，使用系统默认的编码方式。</p>
+</li>
+<li><p><code>OutputStreamWriter(OutputStream out, String encoding)</code></p>
+</li>
+</ul>
+</li>
+<li><p><code>String getEncoding()</code>方法返回该writer使用的编码方式。</p>
+</li>
+<li><p>InputStreamReader与OutputStreamWriter类似。</p>
+</li>
+</ol>
+<h3 id="StringWriter和StringReader"><a href="#StringWriter和StringReader" class="headerlink" title="StringWriter和StringReader"></a>StringWriter和StringReader</h3><ol>
+<li><p>内部使用StringBuffer。</p>
+</li>
+<li><p>String和char[]都是由<strong>unicode字符</strong> (2 bytes，用一个int就可以表示)组成的。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">String s = &quot;简体中文&quot;;</div><div class="line">StringReader sr = new StringReader(s);</div><div class="line">try &#123;</div><div class="line">       int c;</div><div class="line">       while ((c = sr.read()) != -1) &#123;</div><div class="line">           System.out.println((char) c);</div><div class="line">       &#125;</div><div class="line">    &#125;</div><div class="line">    catch(IOException ex) &#123;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="FileWriter和FileReader"><a href="#FileWriter和FileReader" class="headerlink" title="FileWriter和FileReader"></a>FileWriter和FileReader</h3><ol>
+<li><p>FileWriter和FileReader总是使用系统默认的编码方式。因此需要将它们链接到OutputStreamWriter或InputStreamReader上。</p>
+<p> <code>OutputStreamWriter out = new OutputStreamWriter(new FileWriter())</code></p>
+</li>
+<li><p>FileWriter有四种构造函数，其中<code>FileWriter(String filename, boolean append)</code>的第二个参数为true的话，表示将新的文本追加到文件末尾而非覆盖。</p>
+</li>
+</ol>
+<h3 id="BufferedWriter和BufferedReader"><a href="#BufferedWriter和BufferedReader" class="headerlink" title="BufferedWriter和BufferedReader"></a>BufferedWriter和BufferedReader</h3><ol>
+<li><p>BufferedWriter的<code>String newLine()</code>会写入一个系统相关的行分隔符。</p>
+<p> 不要在网络编程的代码中调用这个方法，因为大多数网络协议都指定<code>\r\n</code>作为行分隔符。</p>
+</li>
+<li><p>BufferedReader的<code>String readLine()</code>用于读入一行，但不包括行分隔符。</p>
+</li>
+</ol>
+<h3 id="PrintWriter"><a href="#PrintWriter" class="headerlink" title="PrintWriter"></a>PrintWriter</h3><ol>
+<li><p>PrintWriter与PrintStream类似，主要的区别在于它能正确的处理非Latin-1字符集 (目前没有遇到问题)。</p>
+</li>
+<li><p>PrintWriter<strong>有缓冲区</strong>。</p>
+</li>
+<li><p>遇到<code>\n</code>时不会自动刷新了。</p>
+</li>
+</ol>
+<h2 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h2><p><code>FileInputStream</code>、<code>FileOutputStream</code></p>
+<h3 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h3><ol>
+<li><p>File类表示的是文件系统上的一个文件名，而<strong>不是一个实际的文件</strong>，因此不能保证这个文件真实存在。</p>
+</li>
+<li><p>File类有三种构造函数：</p>
+<ul>
+<li><code>File(String path)</code></li>
+<li><code>File(String directory, String filename)</code></li>
+<li><code>File(File directory, String filename)</code></li>
+</ul>
+</li>
+<li><p><code>static File[] listRoots()</code>方法可以返回文件系统的roots。</p>
+</li>
+<li><p>有些操作涉及到java security manager的安全问题，有可能抛出<code>SecurityException</code>异常。</p>
+</li>
+<li><p>大部分文件的信息都可以通过<code>path</code>域获得而不需要访问文件系统，因此大部分方法不会抛出<code>IOException</code>异常。</p>
+<ul>
+<li><p>存在性、文件、目录：</p>
+<p>  <code>boolean exists()</code>方法判断文件是否存在。</p>
+<p>  <code>boolean isFile()</code>方法在文件存在且不是目录的时候返回<code>true</code>。</p>
+<p>  <code>boolean isDirctory()</code>方法在文件存在且是目录的时候返回<code>true</code>。该方法将unix的<code>软链接</code>和mac的<code>aliase</code>视为它们所指向的目录本身，但不把windows的<code>快捷方式</code>视为目录。</p>
+</li>
+<li><p>文件名和路径：</p>
+<p>  <code>String getName()</code>方法返回文件名。</p>
+<p>  <code>String getPath()</code>方法只是简单的返回<code>path</code>域。</p>
+<p>  <code>boolean isAbsolute()</code>方法可以判断<code>path</code>域中包含的是绝对路径还是相对路径。</p>
+<p>  <code>String getAbsolutePath()</code>方法返回绝对路径。</p>
+<p>  <code>String getCanonicalPath()</code>方法返回真实的绝对路径 (即去掉<code>..</code>或返回<code>软链接</code>的实际路径)。</p>
+</li>
+<li><p>Parent：</p>
+<p>  <code>String getParent()</code>方法返回<code>path</code>域中最后一个分隔符 (<code>File.separatorChar</code>)之前的部分，为空则返回<code>null</code>。</p>
+<p>  <code>File getParentFile()</code>方法与此类似，只不过返回的是一个File类。</p>
+</li>
+<li><p>文件属性：</p>
+<p>  <code>boolean canRead()</code>、<code>boolean canWrite()</code>、<code>boolean canExecute()</code></p>
+<p>  <code>boolean isHidden()</code>、<code>long lastModified()</code>、<code>long length()</code></p>
+</li>
+</ul>
+</li>
+<li><p>文件操作。</p>
+<ul>
+<li><p>创建：</p>
+<p>  <code>boolean createNewFile()</code>方法试图创建该文件，如果文件存在或无法创建则返回<code>false</code>。</p>
+</li>
+<li><p>重命名或移动：</p>
+<p>  <code>boolean renameTo()</code>方法可以重命名或移动一个文件，区别就在于源和目标是否在一个文件夹。如果目标文件存在，则<strong>覆盖</strong>目标文件或因操作失败而返回<code>false</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">File src = new File(&quot;src.txt&quot;);</div><div class="line">File des = new File(&quot;des.txt&quot;);</div><div class="line">src.renameTo(des);</div></pre></td></tr></table></figure>
+<p>  <strong>没有copy方法。</strong></p>
+</li>
+<li><p>删除：</p>
+<p>  <code>boolean delete()</code>，如果文件存在则删除该文件并返回<code>true</code>。</p>
+</li>
+<li><p>改变文件属性：</p>
+<p>  <code>setReadOnly()</code>、<code>setLastModified(long time)</code></p>
+<p>  <code>setReadable(boolean)</code>、<code>setWritable(boolean)</code>、<code>setExecutable(boolean)</code></p>
+<p>  java没有unix中group的概念。</p>
+</li>
+<li><p>临时文件：</p>
+<p>  <code>static File createTempFile(String prefix, String suffix[, File directory])</code>方法可以创建一个以prefix为前缀、suffix为后缀的临时文件。</p>
+<p>  如果suffix为null，则会使用<code>.tmp</code>为后缀。</p>
+<p>  默认的临时文件夹路径保存在<code>java.io.tmpdir</code>属性中。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File cwd = new File(System.getProperty(&quot;user.dir&quot;));</div><div class="line">File temp = File.createTempFile(&quot;rus&quot;, &quot;.tmp&quot;, cwd);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>文件夹操作</p>
+<ul>
+<li><code>delete()</code>方法只能用于空文件夹，否则返回<code>false</code>。</li>
+<li><code>renameTo()</code>方法只能用于重命名文件夹，否则返回<code>false</code>。</li>
+<li><p>创建：</p>
+<p>  <code>boolean mkdir()</code>，该方法不能用来级联创建文件夹 (应该使用<code>boolean mkdirs()</code>)，如果文件夹存在则返回<code>false</code>。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">File f = new File(&quot;tmp/&quot;);  // 最后的斜杠只是用于区分文件和文件夹</div><div class="line">f.mkdir();</div></pre></td></tr></table></figure>
+</li>
+<li><p>列表：</p>
+<p>  <code>String[] list(FilenameFilter filter)</code></p>
+<p>  <code>File[] listFiles(FilenameFilter filter)</code></p>
+</li>
+</ul>
+</li>
+<li><p>FilenameFilter是一个接口，需要实现<code>boolean accept(File directory, String name)</code>方法。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class HTMLFilter implements FilenameFilter &#123;</div><div class="line">    public boolean accept(File directory, String name) &#123;</div><div class="line">        if (name.endsWith(&quot;.html&quot;)) return true;</div><div class="line">        if (name.endsWith(&quot;.htm&quot;)) return true;</div><div class="line">        return false;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> FileFilter接口与此类似，需要实现<code>boolean accept(File pathname)</code>方法。</p>
+</li>
+<li><p>FileDescriptor类用来表示一个<strong>已打开</strong>的文件或socket。</p>
+<p> <code>final FileDescriptor getFD()</code>方法可以返回该文件的文件描述符。</p>
+<p> <code>boolean valid()</code>方法可以判断一个文件描述符是否仍然有效。</p>
+<p> <code>void sync()</code>方法可以强制将操作系统buffer中的数据写入硬件 (应该先刷新流的buffer)。</p>
+</li>
+<li><p>RandomAccessFile类实现了<code>DataInput</code>和<code>DataOutput</code>接口，它提供了从文件任意位置读/写 (or both)数据的方法。</p>
+<p><code>RandomAccessFile(String filename, String mode)</code></p>
+<p><code>RandomAccessFile(File file, String mode)</code></p>
+<ul>
+<li><code>r</code>模式表示只读访问。</li>
+<li><code>rw</code>模式会先将改动缓存起来，而不是立即写入文件。</li>
+<li><code>rws</code>模式会将改动立即写入文件。</li>
+<li><code>rwd</code>模式只是会将对文件元数据 (name、permission等)缓存起来。</li>
+</ul>
+<p><code>long getFilePointer()</code>方法获取当前文件指针的位置。</p>
+<p><code>void seek(long position)</code>方法将文件指针重定位到指定的绝对位置。</p>
+<p><code>int skipBytes(int n)</code>方法试图将文件指针向后移动n个字节，返回实际移动的字节数。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基本IO&quot;&gt;&lt;a href=&quot;#基本IO&quot; class=&quot;headerlink&quot; title=&quot;基本IO&quot;&gt;&lt;/a&gt;基本IO&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;流指&lt;strong&gt;不确定长度的有序bytes&lt;/strong&gt;。输入流将数据从外部源输入到java程序，
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>On Bottleneck-Aware Arrangement for Event-Based Social Networks</title>
+    <link href="http://henson.com/2016/09/08/On%20Bottleneck-Aware%20Arrangement%20for%20Event-Based%20Social%20Networks/"/>
+    <id>http://henson.com/2016/09/08/On Bottleneck-Aware Arrangement for Event-Based Social Networks/</id>
+    <published>2016-09-08T09:29:03.000Z</published>
+    <updated>2016-09-08T09:32:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Most existing EBSNs do not provide an intelligent and global arrangement for social activities and potential users.</p>
+<p><a href="http://www.cs.ubc.ca/~keqianli/papers/On_Social_Event_Organization_papers.pdf" target="_blank" rel="external">On Social Event Organization</a> introduces the <strong>social event organization</strong> problem, but it neglects the spatial influence between activities and users.</p>
+<p>Therefore, this paper introduced a novel social event arrangement strategy, called <strong>bottleneck-aware social event arrangement(BSEA)</strong>, it not only consider <em>location information</em>, <em>similarity of attributes</em> and <em>social friendship</em>, but also guarantees a balanced satisfactions in different activities in a <em>global optimal perspective</em></p>
+<ul>
+<li>we assume that each activity/user includes a profile, which consists of a list of attributes.</li>
+<li><strong>capacity condition</strong>: each activity includes a capacity.</li>
+<li><strong>social friendship constraint</strong>: each user in one activity has at least one friend who is also assigned to the same activity.</li>
+</ul>
+<h3 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h3><ul>
+<li><strong>Utility Function</strong><br>$$\mu(a,u)=\alpha(1-\frac{D(l_a,l_u)}{MaxD})+(1-\alpha)sim(t_a,t_u)$$</li>
+<li><strong>Average Utility of An Activity</strong><br>$$Ave_M(a)=\frac{\sum_{u\in U,(a,u)\in M}\mu(a,u)}{|M(a)|}$$</li>
+</ul>
+<p>BSEA problem is to find an arrangement M among activities and users to \(max\;min_{a_i\in A \land M(a_i)\not =\emptyset}{Ave(a_i)}\)</p>
+<h3 id="Solutions-for-BSEA"><a href="#Solutions-for-BSEA" class="headerlink" title="Solutions for BSEA"></a>Solutions for BSEA</h3><ul>
+<li><strong>Random:</strong><br>visit each activity in a random order, and visit each user that has not yet been arranged to any activity with probalility \(\frac{\theta}{|U|}\), where\(\theta=\lfloor |U|\,/\,|A|\rfloor\)</li>
+<li><strong>Greedy Algorithm:</strong><br>try to arrange a new user to an activity that curently has the lowest average utility value(or the one that will still have the lowest averate utility value even such new arrangement is made if there are multiple activities sharing the same lowest average utility value).</li>
+<li><strong>Random+Greedy Algorithm:</strong><br>similar to Random, except that visit each unarranged u in non-ascending order of \(\mu(a_i,u)\).</li>
+</ul>
+<h3 id="Experimental-Evaluation"><a href="#Experimental-Evaluation" class="headerlink" title="Experimental Evaluation"></a>Experimental Evaluation</h3><p>Evaluate proposed three algorithms interms of <em>Min Ave</em>, <em>running time</em> and <em>memory cost</em> via three parameters: <em>capacity \(\delta\)</em>, <em>the density of graph</em> and <em>balance parameter \(\alpha\)</em></p>
+<p><strong>Datasets:</strong> Meetup dataset and synthetic dataset.</p>
+<p>Note that Meetup dataset does not contain social information, this paper generate social graphs using the <em>python gragh library</em>.</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;p&gt;Most existing EBSNs do not pro
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
