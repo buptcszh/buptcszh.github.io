@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://henson.com/2016/09/28/Java%20Generic/</loc>
+    
+    <lastmod>2016-10-09T13:17:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://henson.com/2016/09/27/Java%20Nested%20Classes/</loc>
     
     <lastmod>2016-10-09T13:15:22.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://henson.com/2016/09/22/Java%20IO/</loc>
     
     <lastmod>2016-10-09T13:15:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://henson.com/2016/09/28/Java%20Generic/</loc>
-    
-    <lastmod>2016-10-09T13:14:17.000Z</lastmod>
     
   </url>
   
