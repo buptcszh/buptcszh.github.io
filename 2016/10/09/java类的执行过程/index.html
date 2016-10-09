@@ -40,7 +40,7 @@ static域被赋值或使用 (">
 创建类的实例。
 static方法被调用。
 static域被赋值或使用 (">
-<meta property="og:updated_time" content="2016-10-09T07:19:56.000Z">
+<meta property="og:updated_time" content="2016-10-09T07:45:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java类的执行过程">
 <meta name="twitter:description" content="加载
@@ -207,7 +207,7 @@ static域被赋值或使用 (">
 </li>
 <li><p>final域不会被初始化为默认值，因此必须被赋初值 (声明时、代码块中、构造函数中)。</p>
 </li>
-<li><p>父类static域 &gt; 子类static域 &gt; [父类普通域 &gt; 子类普通域 &gt; 构造函数]</p>
+<li><p>父类static域 &gt; 子类static域 &gt; [父类普通域 &gt; 父类构造函数 &gt; 子类普通域 &gt; 子类构造函数]</p>
 <p> 后面只有创建类的实例时才会进行，另外各个域按照代码的顺序执行。</p>
 </li>
 <li><p>引用static域只会导致实际声明该域的类或接口的初始化。</p>
