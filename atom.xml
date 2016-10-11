@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://henson.com/"/>
-  <updated>2016-10-11T11:37:25.000Z</updated>
+  <updated>2016-10-11T11:43:33.000Z</updated>
   <id>http://henson.com/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>分类器评价指标</title>
+    <title>《Event participation in location-based social services》</title>
     <link href="http://henson.com/2016/10/10/%E3%80%8AEvent%20participation%20in%20location-based%20social%20services%E3%80%8B/"/>
     <id>http://henson.com/2016/10/10/《Event participation in location-based social services》/</id>
     <published>2016-10-10T07:37:01.000Z</published>
-    <updated>2016-10-11T11:37:25.000Z</updated>
+    <updated>2016-10-11T11:43:33.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="阅读论文《Event-participation-in-location-based-social-services》"><a href="#阅读论文《Event-participation-in-location-based-social-services》" class="headerlink" title="阅读论文《Event participation in location-based social services》"></a>阅读论文《Event participation in location-based social services》</h4><ol>
+    <content type="html"><![CDATA[<ol>
 <li><p>这是一篇2014年发表在《Computer Science》上的论文。</p>
 </li>
 <li><p>研究的问题是基于LBSN的活动参与问题背后的用户行为和社交因素的影响。</p>
@@ -82,10 +82,17 @@
     
     <summary type="html">
     
-      &lt;h4 id=&quot;阅读论文《Event-participation-in-location-based-social-services》&quot;&gt;&lt;a href=&quot;#阅读论文《Event-participation-in-location-based-social-services》&quot; 
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;这是一篇2014年发表在《Computer Science》上的论文。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;研究的问题是基于LBSN的活动参与问题背后的用户行为和社交因素的影响。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;该研究不仅在社会科学领域有重要意义，在个性化
     
     </summary>
     
+    
+      <category term="论文" scheme="http://henson.com/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
@@ -314,7 +321,7 @@
     <link href="http://henson.com/2016/09/27/Java%20%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1/"/>
     <id>http://henson.com/2016/09/27/Java 引用对象/</id>
     <published>2016-09-26T16:40:49.000Z</published>
-    <updated>2016-09-26T16:40:49.000Z</updated>
+    <updated>2016-10-11T11:41:56.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="finalize方法"><a href="#finalize方法" class="headerlink" title="finalize方法"></a>finalize方法</h2><ol>
 <li><p><code>finalize()</code>方法在对象被GC回收之前调用。该方法 (需要重写)可以使对象重生，然而通常用于回收前的清理工作。</p>
@@ -338,14 +345,14 @@
 <li><p>如果一个对象仅持有软引用，那么它只有在内存不足时才会被GC回收 (标记为finalizable)。</p>
 </li>
 <li><p>如果包装这个对象的SoftReference对象向一个ReferenceQueue注册了的话，那么该<strong>SoftReference对象</strong>会在一段时间之后被加入到队列中。</p>
-<p> <code>SoftReference&lt;VeryBig&gt; sf = new SoftReference&lt;&gt;(new VeryBig(), rq)</code></p>
+<p><code>SoftReference&lt;VeryBig&gt; sf = new SoftReference&lt;&gt;(new VeryBig(), rq)</code></p>
 </li>
 </ol>
 <h3 id="WeakReference"><a href="#WeakReference" class="headerlink" title="WeakReference"></a>WeakReference</h3><ol>
 <li><p>如果一个对象仅持有弱引用，那么它一定会被GC回收 (标记为finalizable)。</p>
 </li>
 <li><p>如果包装这个对象的WeakReference对象向一个ReferenceQueue注册了的话，那么该<strong>WeakReference对象</strong>会在一段时间之后被加入到队列中。</p>
-<p> <code>WeakReference&lt;VeryBig&gt; wf = new WeakReference&lt;&gt;(new VeryBig(), rq)</code></p>
+<p><code>WeakReference&lt;VeryBig&gt; wf = new WeakReference&lt;&gt;(new VeryBig(), rq)</code></p>
 </li>
 <li><p>参见<code>WeakHashMap</code>。</p>
 </li>
