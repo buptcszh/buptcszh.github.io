@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>  · Henson的博客</title><meta name="description" content=" - Henson"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://henson.com/atom.xml" title="Henson的博客"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/u/1953093757" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/buptcszh" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title"></h1><div class="post-info">Oct 10, 2016</div><div class="post-content"><h4 id="阅读论文《Event-participation-in-location-based-social-services》"><a href="#阅读论文《Event-participation-in-location-based-social-services》" class="headerlink" title="阅读论文《Event participation in location-based social services》"></a>阅读论文《Event participation in location-based social services》</h4><ol>
+<li><p>这是一篇2014年发表在《Computer Science》上的论文。</p>
+</li>
+<li><p>研究的问题是基于LBSN的活动参与问题背后的用户行为和社交因素的影响。</p>
+</li>
+<li><p>该研究不仅在社会科学领域有重要意义，在个性化活动推荐领域也有重要的应用。首先，社交媒体与活动兴趣之间的联系可以用来提高推荐的效果；其次，假设已知用户的活动参与意向后，本框架可以直接作为一个基于内容的活动推荐系统使用。</p>
+</li>
+<li><p>主要贡献有三点：</p>
+<ul>
+<li>活动会吸引行为模式(即对签到时间、移动距离和地点类型的喜好)相似的用户。</li>
+<li>社交因素有很重要的作用，其中包括活动的知名度、朋友是否参加和朋友对地点类型的喜好。</li>
+<li>以上多种因素相结合产生的影响比单一因素的影响更强。</li>
+</ul>
+</li>
+<li><p>主要方法：</p>
+<ol>
+<li><p>由于Foursquare数据集没有提供用户的朋友列表，所以论文使用了用户在Twitter上的社交关系网。</p>
+</li>
+<li><p>论文首先提出了一个<strong>活动发现方法</strong>：当某地点的签到数量高于当天所有地点的平均签到数量的两倍时，就认为该地点发生了一个活动。并且以该地点为中心，将半径300m以内的签到数视为该活动的签到数。如果用户在这个范围内签到了的话，就认为用户参与的该活动。</p>
+</li>
+<li><p>对于一组用户和一组活动，分别用<strong>空间、时间、社交关系</strong>三个方面的因素为活动进行排名，排名靠前的作为用户会参加的预测活动列表。</p>
+<ul>
+<li><p>空间方面的因素：</p>
+<p>1) 用户的住址与活动地点之间的距离：距离越近则排名越高。</p>
+<p>2) 用户对地点类型的喜好：构造用户和活动的特征向量，两者的余弦相似度越大则排名越高。</p>
+<p>​    特征向量有I个分量，表示I类地点，每个分量表示对该类地点的喜好程度。</p>
+<p>​    构造用户的特征向量借鉴了TF-IDF的思想：用户在i类地点上签到次数的比重越高，且所有用户中在i类地点签到过的用户的比重越低，则该用户在i类地点上的分量越高。(1)</p>
+<p>​    活动的特征向量与它的参与者访问过的地点类型有关，是ab的乘积。a表示所有参与者中在i类地点签到过的参与者的比重，b表示所有参与者在i类地点的签到总数占所有用户在i类地点的签到总数的比重。(2)</p>
+</li>
+<li><p>时间方面的因素：</p>
+<p>​    论文假设用户对活动参与存在时间上的喜好，并且将一天中签到数量达到峰值的时间作为活动发生的时间，然后根据时间距离d进行排名。d越小表明用户在时间上的喜好与该活动发生的时间越吻合，则该活动的排名越高。</p>
+</li>
+<li><p>社交关系方面的因素：</p>
+<p>1) 活动的知名度：使用活动的签到数量作为活动的知名度，知名度越高则排名越高。</p>
+<p>2) 参与活动的朋友数量：朋友数越多则排名越高，当朋友数目相同时，考虑朋友节点的中心度。</p>
+<p>3) 朋友对地点类型的喜好：</p>
+<p>​    论文构造了一个由活动、地点类型、用户组成的图，用户之间的边值为各个用户朋友数量的倒数；用户和地点类型的边值由公式(1)计算；活动和地点类型的边值由公式(2)计算。然后在该图上进行<strong>从活动节点到用户节点</strong>的带重启的随机游走，游走到用户的分值越高表明用户对该活动越感兴趣。</p>
+<p>​    【应该由用户游走到活动，并且应该考虑用户之间的亲密度】</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>实验验证：</p>
+<ul>
+<li>对排名使用NDCG和准确度指标进行评估。</li>
+</ul>
+<p>​    Accuracy@X%表示预测列表的大小占总活动数的比例。如果用户参加过预测列表中的任意一个活动，则Accuracy=1，否则Accuracy=0。</p>
+<p>​    最后取所有用户NDCG和准确度指标的平均值。</p>
+<ul>
+<li>为了验证假设3，论文建立了一个监督学习模型：</li>
+</ul>
+<p>​    对于一个用户-活动对，之前的每个因素都可以作为一个特征产生一个分值，加上标签(+1表示参加，-1表示不参加)后则可以构成监督学习的训练集。论文使用WEKA的LR和M5 model tree训练模型，然后在测试集使用模型可以得到一个实数，最后根据这个实数进行排名。</p>
+<p>​</p>
+</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/10/09/java类的执行过程/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 <a href="http://henson.com">Henson</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
